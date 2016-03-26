@@ -13,6 +13,6 @@ This is a work-in-progress and so is likely to change often.
 
 ## License
 Copyright (c) Patternworks, All rights reserved
-Unauthorised copying of this file, via any medium is strictyle prohibited.
-Proprietary and confidential
-Written by Kashi Samaraweera &lt;kashi@kashis.com.au&gt;, 2016
+Unauthorised copying of this file, via any medium is strictly prohibited.
+Proprietary and confidential.
+Written by Kashi Samaraweera &lt;kashi@kashis.com.au&gt;, 2016.
