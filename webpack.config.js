@@ -21,7 +21,7 @@ var config = {
     },
     output: {
         publicPath: '/', 
-        path: path.resolve(__dirname, process.env.NODE_ENV === 'production' ? './dist/' : './build'), 
+        path: path.resolve(__dirname, process.env.NODE_ENV === 'production' ? './dist' : './build'), 
         filename: 'bundle.js' 
     },
     module: {
@@ -35,8 +35,6 @@ var config = {
                     presets: ['react', 'es2015']
                 }
             },
-
-            //{ test: /\.js$/, loader: 'jsx-loader', exclude: [bower_dir, node_modules_dir] },
             { test: /\.scss$/, loader: "style!css!sass" }
         ]
     },
