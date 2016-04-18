@@ -6,18 +6,18 @@ var resolveRoute = function () {
   if (!location.hash || location.hash.length === 1) {
     require.ensure([], function () {
       var Home = require('./Home.js');
-      ReactDOM.render(Home(), document.getElementById('app'));
+      ReactDOM.render(<Home />, document.getElementById('app'));
     });
     
   } else if (location.hash === '#device-registration') {
     require.ensure([], function () {
       var DevReg = require('./device-reg/DeviceRegistration.js');
-      ReactDOM.render(DevReg(), document.getElementById('app'));
+      ReactDOM.render(<DevReg />, document.getElementById('app'));
     });
   } else if (location.hash === '#survey') {
     require.ensure([], function () {
       var Survey = require('./survey/Survey.js');
-      ReactDOM.render(Survey(), document.getElementById('app'));
+      ReactDOM.render(<Survey />, document.getElementById('app'));
     });
   }
 

@@ -1,7 +1,7 @@
 var React = require('react');
 // require('./heading.scss');
 
-module.exports = React.createClass({
+var Nav = React.createClass({
     render: function() {
         return (
             <nav className="MainMenu">
@@ -12,3 +12,5 @@ module.exports = React.createClass({
         );
     }
 });
+
+module.exports = Nav;
