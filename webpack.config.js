@@ -35,12 +35,21 @@ var config = {
                     presets: ['react', 'es2015']
                 }
             },
-            { test: /\.scss$/, loader: "style!css!sass!autoprefixer" }
+
+            // Load stylesheets
+            {
+                test: /\.scss$/,
+                loader: "style!css!sass!"
+            }
+
+
         ]
     },
-    postcss: [
-        require('autoprefixer'({ browsers: ['last 2 versions'] }))
-    ],
+    // postcss: [
+    //     require('autoprefixer') ({
+    //         browsers: ['last 2 versions']
+    //     })
+    // ],
     plugins: [
         new webpack.optimize.CommonsChunkPlugin('common.js', 2)
     ]
