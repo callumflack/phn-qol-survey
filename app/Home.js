@@ -1,13 +1,14 @@
 var React = require("react");
-var Heading = require("./Heading.js");
 var Nav = require("./Nav.js");
+var PageOne = require("./PageOne.js");
+require('./stylesheets/app.scss');
 
 var Home = React.createClass({
     render: function () {
         return (
             <div>
-                <Heading title="Landing" />
                 <Nav />
+                <PageOne />
             </div>
         );
     }

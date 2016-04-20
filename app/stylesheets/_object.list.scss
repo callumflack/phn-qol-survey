@@ -1,0 +1,67 @@
+
+
+// --------------------------------------------------------------------------
+//   OBJECT: LIST
+// --------------------------------------------------------------------------
+
+
+ul {
+    list-style-type: disc;
+}
+
+ol {
+    list-style-type: decimal;
+}
+
+// 1. Remove extra vertical spacing when nesting lists.
+
+li {
+    margin-bottom: 0;
+
+    > ul,
+    > ol {
+        margin-bottom: 0; // 1.
+    }
+}
+
+
+// List: default
+// --------------------------------------------------------------------------
+
+@mixin list() {
+    margin-left: size(list-inset, margin);
+    padding-left: size(list-inset, padding);
+}
+
+.o-list { @include list(); }
+
+
+// Clean list: remove all default spacing
+// --------------------------------------------------------------------------
+
+@mixin listClean() {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.o-listClean { @include listClean(); }
+
+
+// Inline list.
+// Apply to the ul/ol tag, but it's setup for use on any div.
+// --------------------------------------------------------------------------
+
+@mixin listInline() {
+    @include listClean();
+
+    li,
+    div {
+        display: inline-block;
+        &:not(:last-child) {
+            margin-right: space(0.25);
+        }
+    }
+}
+
+.o-listInline { @include listInline(); }

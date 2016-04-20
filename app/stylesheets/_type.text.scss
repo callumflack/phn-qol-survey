@@ -1,0 +1,242 @@
+
+
+// --------------------------------------------------------------------------
+//   TEXT TYPOGRAPHY
+// --------------------------------------------------------------------------
+
+
+@mixin textTemplate() {
+	@include typeReset();
+	// color: palette(brand);
+	font-family: $font-sans-light;
+	line-height: $base-line-height-unit;
+
+	> li,
+	> li a,
+	> a {
+		color: currentColor;
+		font-family: inherit;
+		font-size: inherit;
+		margin: 0;
+	}
+}
+
+// 12
+@mixin TextXs(
+	$mixinColor: palette(brand),
+	$mixinFont: $font-sans-light
+) {
+	@include textTemplate();
+	color: $mixinColor;
+	font-size: fontsize(textXs, xs);
+
+	@include respond-to(xs) {
+		font-size: fontsize(textXs, base);
+	}
+}
+
+// 14
+@mixin TextSm(
+	$mixinColor: palette(brand),
+	$mixinFont: $font-sans-light
+) {
+	@include textTemplate();
+	color: $mixinColor;
+	font-size: fontsize(textSm, xs);
+
+	@include respond-to(xs) {
+		font-size: fontsize(textSm, base);
+	}
+}
+
+// 18/24
+// neutral or blue;
+// light or medium
+@mixin TextRg(
+	$mixinColor: palette(brand),
+	$mixinFont: $font-sans-light
+) {
+	@include textTemplate();
+	color: $mixinColor;
+	font-size: fontsize(textRg, xs);
+
+	@include respond-to(xs) {
+		font-size: fontsize(textRg, base);
+	}
+}
+
+// 21/29
+@mixin TextMd(
+	$mixinColor: palette(brand),
+	$mixinFont: $font-sans-light
+) {
+	@include textTemplate();
+	color: $mixinColor;
+	font-size: fontsize(textMd, xs);
+
+	@include respond-to(xs) {
+		font-size: fontsize(textMd, base);
+	}
+}
+
+
+
+
+
+
+
+
+@mixin TextLg() {
+	@include textTemplate();
+	font-size: fontsize(textLg, xs);
+	// line-height: 1.35;
+
+	@include respond-to(sm) {
+		font-size: fontsize(textLg, base);
+	}
+}
+
+
+// Apply base text styles
+// --------------------------------------------------------------------------
+
+.u-textXs        { @include TextXs(); }
+.u-textXs--faint { @include TextXs( palette(muted) ); }
+
+.u-textSm        { @include TextSm(); }
+.u-textSm--light { @include TextSm( palette(brand-counter) ); }
+
+.u-textRg        { @include TextRg(); }
+.u-textRg--light { @include TextRg( palette(brand-counter) ); }
+// .u-textRgBlock   { > * { @include TextRg( palette(brand-counter) ); } }
+
+.u-textMd        { @include TextMd(); }
+.u-textMd--light { @include TextMd( palette(brand-counter) ); }
+.u-textMdBlock   { > * { @include TextMd( palette(brand-counter) ); } }
+
+.u-textLg        { @include TextLg(); }
+
+
+// [class*="u-text"] {
+//     >  {
+//         inherit stuff…
+//     }
+// }
+
+
+// Weights & italics
+// --------------------------------------------------------------------------
+
+.u-textEmLg        { @include TextLg(); }
+
+.u-textEmRg        { font-family: $font-sans-regular-i !important; }
+.u-textWtRg        { font-family: $font-sans-regular !important; }
+
+.u-textEmMd        { font-family: $font-sans-medium-i !important; }
+.u-textWtMd        { font-family: $font-sans-medium !important; }
+
+
+// Colors
+// --------------------------------------------------------------------------
+
+.u-colorWhite       { color: palette(background) !important; }
+.u-colorFaint       { color: palette(faint) !important; }
+.u-colorLight       { color: palette(light) !important; }
+.u-colorFaint       { color: palette(faint) !important; }
+.u-colorMuted       { color: palette(muted) !important; }
+.u-colorMedium      { color: palette(medium) !important; }
+.u-colorDark        { color: palette(charcoal) !important; }
+.u-colorBlack       { color: palette(black) !important; }
+.u-colorBrand       { color: palette(brand) !important; }
+.u-colorBrandAlt    { color: palette(brand-complement) !important; }
+.u-colorBrandCount  { color: palette(brand-counter) !important; }
+
+
+
+
+
+
+
+// h1, h2, h3, h4, h5, h6,
+// blockquote, figure
+// li
+ul, ol, dl,
+p, address,
+table, time,
+fieldset, figcaption,
+pre, a {
+	@include TextSm();
+}
+
+// em,
+// .u-textEm {
+//     @include typeReset();
+//     font-family: $font-sans-regular-i;
+// }
+//
+// b,
+// strong,
+// .u-textBold {
+//     @include typeReset();
+//     font-family: $font-sans-bold;
+// }
+
+
+// Blockquote & lede
+// --------------------------------------------------------------------------
+
+blockquote,
+.Blockquote {
+	color: color(text, medium);
+	font-family: $font-sans-book;
+	font-size: fontsize(headerMd, xs);
+	margin-bottom: space(0.75);
+
+	@include respond-to(sm) {
+		font-size: fontsize(headerMd, base);
+		margin-bottom: space(1);
+	}
+}
+
+.TextLede {
+	@include TextRg();
+	color: color(text, brand) !important;
+	font-family: $font-sans-regular;
+	font-size: map-fetch($size, font, headerRg, xs);
+	line-height: 1.45;
+	// margin-bottom: space(1);
+
+	@include respond-to(sm) {
+		font-family: $font-sans-bold;
+		font-size: map-fetch($size, font, headerRg, base);
+		line-height: $base-line-height-unit;
+	}
+}
+
+
+
+// List cell of fixed width, like a tabbed info element
+// --------------------------------------------------------------------------
+
+.c-listItemTag {
+	@include TextSm( palette(brand-counter) );
+	display: inline-block;
+	width: space(0.75);
+}
+
+
+// Base spacer rules
+// --------------------------------------------------------------------------
+
+// quick spacer rules
+
+// p + h2 { margin-top: $space * 1.75; }
+
+.Container p,
+.Container li,
+.Container ol {
+	&:last-child,
+	&:last-child a {
+		margin-bottom: 0;
+	}
+}

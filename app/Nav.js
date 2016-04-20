@@ -1,16 +1,23 @@
 var React = require('react');
-// require('./heading.scss');
+var IcSettings = require('./Icon.js').IcSettings;
+var IcAvatar = require('./Icon.js').IcAvatar;
 
 var Nav = React.createClass({
-    render: function() {
-        return (
-            <nav className="MainMenu">
-                <a href="#">Home</a>
-                <a href="#device-registration">device-registration</a>
-                <a href="#survey">Survey</a>
-            </nav>
-        );
-    }
+	render: function() {
+		return (
+			<header className="c-header" role="header">
+				<nav className="c-nav">
+					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
+					<a className="c-nav-register" href="#device-registration">
+						<button className="Button t-buttonSecondary">
+							<IcSettings align="left" />
+							Register device
+						</button>
+					</a>
+				</nav>
+			</header>
+		);
+	}
 });
 
 module.exports = Nav;

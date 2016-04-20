@@ -1,0 +1,43 @@
+
+
+// --------------------------------------------------------------------------
+//   NAV COMPONENT
+// --------------------------------------------------------------------------
+
+
+.c-header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+}
+
+.c-nav {
+	display: flex;
+	height: rem(110);
+	padding: space(1);
+	position: relative;
+
+	&--survey {
+		background-color: palette(neutral);
+		border-bottom: 1px solid palette(base);
+	}
+
+	@include respond-to(xs) {
+		// background-color: pink;
+	}
+}
+
+.c-nav-home {
+	img {
+		background-blend-mode: multiply;
+		height: 60px;
+	}
+}
+
+.c-nav-register {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	margin-left: auto;
+	position: relative;
+}

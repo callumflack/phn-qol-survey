@@ -1,5 +1,4 @@
 var React = require('react');
-require('./heading.scss');
 
 var Heading = React.createClass({
   getDefaultProps: function() {
@@ -12,6 +11,6 @@ var Heading = React.createClass({
       <h1>{this.props.title}</h1>
     );
   }
-}); 
+});
 
 module.exports = Heading;

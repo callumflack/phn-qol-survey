@@ -1,0 +1,21 @@
+
+
+// --------------------------------------------------------------------------
+// FIGURE ELEMENT
+// --------------------------------------------------------------------------
+
+
+.Figure {
+    margin: space(2) auto;
+
+    img { width: 100%; }
+}
+
+.Figure--hero {
+    margin: 0 0 space(1);
+
+    @include respond-to(xs) {
+        margin: space(1.5) 0 space(1.25);
+        margin: 0 0 space(1.25);
+    }
+}

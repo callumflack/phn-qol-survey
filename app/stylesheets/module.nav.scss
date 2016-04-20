@@ -1,0 +1,43 @@
+
+
+// --------------------------------------------------------------------------
+//   NAV COMPONENT
+// --------------------------------------------------------------------------
+
+
+/* Nav component */
+// @import "app.base";
+// // @import "vendor.suitcss";
+// @import "base.type";
+// @import "type.text";
+// @import "object.button";
+
+.c-nav {
+    border-bottom: 1px solid palette(base);
+    display: flex;
+    height: rem(110);
+    padding: space(1);
+    position: relative;
+
+    &--survey {
+        background-color: palette(neutral);
+    }
+
+    @include respond-to(xs) {
+        // background-color: pink;
+    }
+}
+
+.c-nav-home {
+    img {
+        background-blend-mode: multiply;
+        height: 60px;
+    }
+}
+
+.c-nav-register {
+    align-items: center;
+    display: flex;
+    height: 100%;
+    margin-left: auto;
+}
