@@ -9,43 +9,43 @@ input,
 textarea,
 select,
 label {
-	@include TextSm();
-	color: palette(medium);
+	// @include TextSm();
+	// color: palette(medium);
 }
 
 input,
 textarea {
-	background: transparent;
-	border: 1px solid transparent;
-	border-radius: size(border-radius, base);
-	display: inline-block;
-	line-height: size(button-height, base);
-	padding: 0 space(2/3);
-	resize: none;
-	transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
-	width: 100%;
-	-webkit-appearance: none;
-
-	@include on-event() {
-		outline: 0;
-	}
-
-	@include respond-to(max-xs) {
-		// font-size: 16px;
-	}
-
-	&:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0 rem(100) darken( palette(neutral),4%) inset;
-		-webkit-text-fill-color: palette(medium);
-		background-clip: padding-box;
-	}
-
-	$color-placeholder: palette(medium);
-
-	&::-webkit-input-placeholder { color: $color-placeholder; }
-	&:-moz-placeholder           { color: $color-placeholder; }
-	&::-moz-placeholder          { color: $color-placeholder; }
-	&:-ms-input-placeholder      { color: $color-placeholder; }
+	// background: transparent;
+	// border: 1px solid transparent;
+	// border-radius: size(border-radius, base);
+	// display: inline-block;
+	// line-height: size(button-height, base);
+	// padding: 0 space(2/3);
+	// resize: none;
+	// transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
+	// width: 100%;
+	// -webkit-appearance: none;
+	//
+	// @include on-event() {
+	// 	outline: 0;
+	// }
+	//
+	// @include respond-to(max-xs) {
+	// 	// font-size: 16px;
+	// }
+	//
+	// &:-webkit-autofill {
+	// 	-webkit-box-shadow: 0 0 0 rem(100) darken( palette(neutral),4%) inset;
+	// 	-webkit-text-fill-color: palette(medium);
+	// 	background-clip: padding-box;
+	// }
+	//
+	// $color-placeholder: palette(medium);
+	//
+	// &::-webkit-input-placeholder { color: $color-placeholder; }
+	// &:-moz-placeholder           { color: $color-placeholder; }
+	// &::-moz-placeholder          { color: $color-placeholder; }
+	// &:-ms-input-placeholder      { color: $color-placeholder; }
 }
 
 input,
@@ -60,7 +60,12 @@ textarea {
 }
 
 
-// Pattern: transition hide the form label.
+
+
+
+
+
+// Pattern: hide/move the form label.
 // Requires JS.
 // --------------------------------------------------------------------------
 
