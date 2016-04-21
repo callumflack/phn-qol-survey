@@ -28,6 +28,7 @@
 ) {
 	@include textTemplate();
 	color: $mixinColor;
+	font-family: $mixinFont;
 	font-size: fontsize(textXs, xs);
 
 	@include respond-to(xs) {
@@ -42,6 +43,7 @@
 ) {
 	@include textTemplate();
 	color: $mixinColor;
+	font-family: $mixinFont;
 	font-size: fontsize(textSm, xs);
 
 	@include respond-to(xs) {
@@ -58,6 +60,7 @@
 ) {
 	@include textTemplate();
 	color: $mixinColor;
+	font-family: $mixinFont;
 	font-size: fontsize(textRg, xs);
 
 	@include respond-to(xs) {
@@ -72,6 +75,7 @@
 ) {
 	@include textTemplate();
 	color: $mixinColor;
+	font-family: $mixinFont;
 	font-size: fontsize(textMd, xs);
 
 	@include respond-to(xs) {
@@ -128,6 +132,8 @@
 // --------------------------------------------------------------------------
 
 .u-textEmLg        { @include TextLg(); }
+
+.u-textWtLt        { font-family: $font-sans-light !important; }
 
 .u-textEmRg        { font-family: $font-sans-regular-i !important; }
 .u-textWtRg        { font-family: $font-sans-regular !important; }

@@ -140,6 +140,7 @@ $space                    : $space-unit * 1;
 $size: (
 
 	border-radius: (
+		small             : rem(2),
 		base              : rem(4),
 		large             : rem(6)
 	),
@@ -156,8 +157,9 @@ $size: (
 	),
 
 	button-height: (
+		concise           : rem(36),
 		base              : rem(44),
-		concise           : rem(36)
+		large             : rem(48)
 	),
 
 	container: (

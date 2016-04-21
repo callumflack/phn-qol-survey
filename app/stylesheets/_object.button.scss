@@ -59,6 +59,12 @@
 
 .t-button {
 	@include button;
+
+	&--lg {
+		// line-height: size(button-height, large);
+		text-align: center;
+		width: space(12);
+	}
 }
 
 
