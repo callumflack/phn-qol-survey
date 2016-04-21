@@ -1,6 +1,6 @@
 var React = require("react");
 
-var PageOne = React.createClass({
+var Content = React.createClass({
 	render: function () {
 		return (
 			<div>
@@ -31,7 +31,7 @@ var PageOne = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" name="button" disabled>Start survey</button>
+								<a className="Button t-button" href="#survey" type="button" name="button" disabled>Start survey</a>
 							</span>
 							<p className="u-textXs--faint u-textCenter u-marginT">You need to register this device first</p>
 						</div>
@@ -44,4 +44,4 @@ var PageOne = React.createClass({
 	}
 });
 
-module.exports = PageOne;
+module.exports = Content;

@@ -1,6 +1,6 @@
 var React = require('react');
-var IcSettings = require('./Icon.js').IcSettings;
-var IcAvatar = require('./Icon.js').IcAvatar;
+var IcSettings = require('../ui-Icons/Icons.js').IcSettings;
+var IcAvatar = require('../ui-Icons/Icons.js').IcAvatar;
 
 var Nav = React.createClass({
 	render: function() {
