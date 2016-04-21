@@ -12,18 +12,25 @@ var Question = React.createClass({
 
 	render: function() {
 		var questionNumber = this.props.questionData.number;
+
 		return (
 			<div className="c-question">
-				<div className={"Survey-question " + this.props.answered? "-is-answered" : ""}></div>
+
 				<p className="c-question-ask Media">
-					<span className="c-question-ask--number Media-figure">{this.props.questionData.number}.</span>
-					<span className="Media-body">{this.props.questionData.text}</span>
+					<span className="c-question-ask--number Media-figure">
+						{this.props.questionData.number}.
+					</span>
+					<span className="Media-body">
+						{this.props.questionData.text}
+					</span>
 				</p>
-				<div className="c-question-choices">
+
+				<div className="c-question-choices t-radioInputs">
 					{this.props.questionData.answers.map(function(answer, i) {
 						return <Answer key={i} value={answer.value} label={answer.label} questionNumber={questionNumber} question={this}/>
 					})}
 				</div>
+
 			</div>
 		)
 	}
