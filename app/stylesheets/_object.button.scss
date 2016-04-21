@@ -1,0 +1,140 @@
+
+
+// --------------------------------------------------------------------------
+//    BUTTONS
+// --------------------------------------------------------------------------
+
+
+@mixin buttonBase() {
+	@include baseTransition();
+	background-color: rgba( palette(brand-complement), 1 );
+	border-color: transparent;
+	border-radius: size(border-radius, base);
+	border-style: solid;
+	border-width: 0;
+	padding: 0 space(0.75);
+	// transition: all transition(duration, short) transition(type, base);
+	// vertical-align: top; // 1.
+
+	a {
+
+	}
+
+	&disabled {
+		color: palette(medium);
+		border-color: currentColor;
+		opacity: 0.4;
+
+	}
+
+	@include on-event() {
+		// background-color: rgba( palette(brand-complement), 0.5 );
+		opacity: 0.5;
+		outline: none !important;
+	}
+}
+
+
+// Primary button
+// --------------------------------------------------------------------------
+
+@mixin textButton() {
+	@include typeReset();
+	color: palette(white);
+	font-family: $font-sans-medium;
+	font-size: fontsize(textSm, xs);
+	letter-spacing: 0.05em;
+	line-height: size(button-height, base);
+	text-transform: uppercase;
+
+	@include respond-to(xs) {
+		font-size: fontsize(textSm, base);
+	}
+}
+
+@mixin button() {
+	@include buttonBase();
+	@include textButton();
+}
+
+.t-button {
+	@include button;
+
+	&--lg {
+		// line-height: size(button-height, large);
+		text-align: center;
+		width: space(12);
+	}
+}
+
+
+// Secondary buttons
+// --------------------------------------------------------------------------
+
+@mixin textButtonSm(
+	$mixinColor: palette(brand-complement),
+	$mixinBorderColor: $mixinColor
+) {
+	@include typeReset();
+	color: $mixinColor;
+	font-family: $font-sans-medium;
+	font-size: fontsize(textXs, xs);
+	letter-spacing: 0.05em;
+	line-height: size(button-height, concise);
+	text-transform: uppercase;
+
+	@include respond-to(xs) {
+		font-size: fontsize(textXs, base);
+	}
+
+	@include on-event() {
+		border-color: rgba( $mixinBorderColor, 0.5);
+		color: rgba( $mixinColor, 0.5);
+	}
+}
+
+@mixin buttonSecondary () {
+	@include buttonBase();
+	@include textButtonSm();
+	background-color: transparent;
+	border-color: currentColor;
+	border-width: 1px;
+
+	@include on-event() {
+	}
+}
+
+.t-buttonSecondary {
+	@include buttonSecondary();
+}
+
+
+// Invisible button (for holding the touch space & layout)
+// --------------------------------------------------------------------------
+
+@mixin buttonInvisible () {
+	@include buttonBase();
+	@include textButtonSm($mixinColor: palette(brand) );
+	background-color: transparent;
+	text-transform: none;
+
+	@include on-event() {
+	}
+}
+
+.t-buttonInvisible {
+	@include buttonInvisible();
+}
+
+
+
+// Subtitle
+// --------------------------------------------------------------------------
+
+// use this to vertically align elements with a button
+// .ButtonLineHeight {
+//     line-height: size(button-height, base);
+//     vertical-align: bottom;
+// }
+
+// padding-top: 2px; // theme typography alignment

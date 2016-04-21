@@ -1,0 +1,44 @@
+
+
+// --------------------------------------------------------------------------
+// OBJECT: RULE
+// --------------------------------------------------------------------------
+
+
+// TOD0: figure out ways to manage this complexity…
+// .msm-SectionRule        { @include Sectionrule(); @include respond-to(sm) { display: none; } }
+// .msm-SectionRule--light { @include Sectionrule($mixin-color: rgba( palette(muted), 0.5) ); @include respond-to(sm) { display: none; } }
+// .mxs-SectionRule        { @include respond-to(max-xs) { @include Sectionrule(); } }
+
+@mixin rule(
+    $mixin-color: palette(brand),
+    $mixin-weight: 1px
+) {
+    border: 0;
+    border-top: $mixin-weight solid $mixin-color;
+}
+
+// Indepedent…
+
+.HzRule {
+    @include rule();
+    height: 0;
+    margin-top: calc( #{space(1)} - 1px);
+    margin-bottom: space(1);
+}
+
+// Contained on…
+
+.o-rule {
+    @include rule();
+}
+
+.DivRule--light {
+    @include rule( 1px, palette(base) );
+}
+
+// Contained on vertically…
+
+.VertRule--left {
+    border-left: 1px solid palette(base);
+}
