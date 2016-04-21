@@ -16,8 +16,13 @@ var resolveRoute = function () {
 	});
   } else if (location.hash === '#survey') {
 	require.ensure([], function () {
-	  var Survey = require('./components/ui-Survey/SurveyPage.js');
+	  var Survey = require('./components/ui-Survey/Survey.js');
 	  ReactDOM.render(<Survey />, document.getElementById('app'));
+	});
+  } else if (location.hash === '#admin') {
+	require.ensure([], function () {
+	  var Admin = require('./components/ui-Admin/Admin.js');
+	  ReactDOM.render(<Admin />, document.getElementById('app'));
 	});
   }
 
