@@ -1,0 +1,17 @@
+
+
+// --------------------------------------------------------------------------
+//   QUESTION COMPONENT
+// --------------------------------------------------------------------------
+
+
+.c-question {
+	background-color: rgba(palette(neutral), 0.4);
+	border: 1px solid rgba(palette(brand), 0.7);
+	border-radius: size(border-radius, base);
+	padding: space(1) space(1.5);
+
+	+ .c-question {
+		margin-top: space(2);
+	}
+}
