@@ -1,18 +1,18 @@
 var React = require('react');
-var IcSettings = require('../ui-Icons/Icons.js').IcSettings;
-var IcAvatar = require('../ui-Icons/Icons.js').IcAvatar;
+var SurveyProgress = require('./SurveyProgress.js');
+var BtnRegister = require('../ui-Buttons/NavButtons.js').BtnRegister;
+var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
+var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
 	render: function() {
 		return (
 			<header className="c-header" role="header">
-				<nav className="c-nav">
+				<nav className={"c-nav c-nav--" + this.props.details}>
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
-					<a className="c-nav-register" href="#device-registration">
-						<button className="Button t-buttonSecondary">
-							<IcSettings align="left" />
-							Register device
-						</button>
+					<SurveyProgress />
+					<a className="c-nav-status" href="#device-registration">
+						<BtnLocation location="Aurukun" />
 					</a>
 				</nav>
 			</header>
