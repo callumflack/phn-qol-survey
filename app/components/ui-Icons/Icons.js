@@ -29,7 +29,46 @@ var IconAvatar = React.createClass({
 	}
 });
 
+var IconChoice = React.createClass({
+	render: function() {
+		return (
+			<svg className={"Icon Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Question Chosen Icon</title>
+				<path d="M0 0h24v24H0z" fill="none"/>
+				<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+			</svg>
+		);
+	}
+});
+
+var IconSubmit = React.createClass({
+	render: function() {
+		return (
+			<svg className={"Icon Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Survey complete icon</title>
+				<path d="M0 0h24v24H0z" fill="none"/>
+				<path d="M19 3h-4.18C14.4 1.84 13.3 1 12 1c-1.3 0-2.4.84-2.82 2H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 0c.55 0 1 .45 1 1s-.45 1-1 1-1-.45-1-1 .45-1 1-1zm-2 14l-4-4 1.41-1.41L10 14.17l6.59-6.59L18 9l-8 8z"/>
+			</svg>
+		);
+	}
+});
+
+var IconDownload = React.createClass({
+	render: function() {
+		return (
+			<svg className={"Icon Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Download icon</title>
+				<path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+				<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+		);
+	}
+});
+
 module.exports = {
 	IcSettings: IconSettings,
 	IcAvatar: IconAvatar,
+	IcChoice: IconChoice,
+	IcSubmit: IconSubmit,
+	IcDownload: IconDownload
 }
