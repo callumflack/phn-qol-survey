@@ -1,0 +1,79 @@
+
+
+// --------------------------------------------------------------------------
+//   NAV COMPONENT
+// --------------------------------------------------------------------------
+
+
+.c-header {
+	position: fixed;
+	top: 0;
+	width: 100%;
+	z-index: 9;
+}
+
+.c-nav {
+	display: flex;
+	height: rem(110);
+	padding: space(1);
+	position: relative;
+
+	&--registered {
+		background-color: palette(neutral);
+		border-bottom: 1px solid palette(base);
+	}
+
+	@include respond-to(xs) {
+		// background-color: pink;
+	}
+}
+
+
+// Logo home link
+// --------------------------------------------------------------------------
+
+.c-nav-home {
+	img {
+		height: 60px;
+	}
+}
+
+
+// Survey progress
+// --------------------------------------------------------------------------
+
+.c-surveyProgress {
+	align-items: center;
+	// display: flex;
+	height: 100%;
+	// width: 60%;
+}
+
+.c-surveyProgress-score {
+	@include textButtonSm($mixinColor: palette(brand) );
+	letter-spacing: 0.01em;
+	text-transform: none;
+
+	a {
+		font-family: $font-sans-regular;
+	}
+}
+
+.c-surveyProgress-indicator {
+	background-color: rgba(palette(brand), 0.3);
+	border-radius: 1px;
+	height: 2px;
+	width: 100%;
+}
+
+
+// Service provider / Admin status
+// --------------------------------------------------------------------------
+
+.c-nav-status {
+	align-items: center;
+	display: flex;
+	height: 100%;
+	margin-left: auto;
+	position: relative;
+}

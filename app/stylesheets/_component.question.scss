@@ -1,0 +1,69 @@
+
+
+// --------------------------------------------------------------------------
+//   QUESTION COMPONENT
+// --------------------------------------------------------------------------
+
+
+.c-question {
+	@include baseTransition();
+	background-color: rgba(palette(neutral), 0.4);
+	border: 1px solid rgba(palette(brand), 0.6);
+	border-radius: size(border-radius, base);
+	opacity: 0.3;
+	padding: space(1) space(1.5);
+
+	+ .c-question {
+		margin-top: space(2);
+	}
+
+	&.is-focussed {
+		@include baseTransition();
+		opacity: 1;
+	}
+}
+
+.c-question-ask {
+	@include TextMd($mixinFont: $font-sans-regular);
+	margin-bottom: space(1);
+}
+
+.c-question-ask--number {
+	width: space(1);
+}
+
+.c-question-choices {
+	margin: 0 auto;
+	width: 80%;
+}
+
+.c-question-choices--option {
+	@include TextRg();
+	border-radius: size(border-radius, small);
+	display: flex;
+	margin-bottom: space(0.25);
+	padding: space(0.35) space(0.7);
+
+	input {
+		margin-right: 12px;
+	}
+
+	.Icon {
+		// fill: transparent;
+		margin-left: auto;
+	}
+
+	&.is-active {
+		background-color: palette(brand-complement);
+		color: palette(white);
+		font-family: $font-sans-medium;
+
+		&.Icon {
+			fill: palette(white) !important;
+		}
+	}
+
+	// &:not(:last-child) {
+	// 	margin-bottom: space(0.25);
+	// }
+}

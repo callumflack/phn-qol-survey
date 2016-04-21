@@ -1,0 +1,22 @@
+
+
+// --------------------------------------------------------------------------
+// COMPONENT: CONTAINER
+// --------------------------------------------------------------------------
+
+
+.o-content {
+    margin: space(7) auto 0;
+}
+
+.o-container {
+    @include clearfix();
+    margin: 0 auto;
+    max-width: size(container, default);
+    padding: 0 space(0.75);
+    position: relative;
+
+    @include respond-to(xs) {
+        padding: 0;
+    }
+}
