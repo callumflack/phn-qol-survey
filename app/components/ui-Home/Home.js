@@ -1,5 +1,6 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
+var Registration = require("../ui-Registration/Registration.js");
 var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
@@ -8,8 +9,10 @@ var Home = React.createClass({
 	render: function () {
 		return (
 			<div>
+
 				<Nav />
-				<main className="o-content" role="main" deviceRegistered={this.props.deviceRegistered}>
+
+				<main className="o-content" role="main">
 					<div className="o-container">
 
 						<h1 className="c-delimit u-headline">
@@ -40,11 +43,14 @@ var Home = React.createClass({
 								<StartButton deviceRegistered={this.props.deviceRegistered} />
 
 							</span>
-							<p className="u-textXs--faint u-textCenter u-marginT">You need to register this device first</p>
+							<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
 						</div>
 
 					</div>
 				</main>
+
+				<Registration />
+
 			</div>
 		);
 	}
