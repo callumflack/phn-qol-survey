@@ -9,11 +9,6 @@ var resolveRoute = function () {
 	  ReactDOM.render(<Home />, document.getElementById('app'));
 	});
 
-  } else if (location.hash === '#device-registration') {
-	require.ensure([], function () {
-	  var DevReg = require('./components/ui-DevReg/DeviceRegistration.js');
-	  ReactDOM.render(<DevReg />, document.getElementById('app'));
-	});
   } else if (location.hash === '#survey') {
 	require.ensure([], function () {
 	  var Survey = require('./components/ui-Survey/Survey.js');
@@ -34,5 +29,5 @@ resolveRoute();
 // If hot swapping can be done, do it by resolving the current route
 // and render the application again
 if (module.hot) {
-  module.hot.accept(resolveRoute);
+	module.hot.accept(resolveRoute);
 }
