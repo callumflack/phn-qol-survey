@@ -14,7 +14,9 @@ var Nav = React.createClass({
 						<BtnLocation location="Aurukun" />
 					</a>
 				</nav>
-				<SurveyProgress />
+
+				<SurveyProgress active="false" />
+
 			</header>
 		);
 	}
