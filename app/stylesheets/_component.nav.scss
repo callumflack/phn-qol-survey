@@ -22,6 +22,7 @@
 	height: rem(110);
 	padding: space(0.9);
 	position: relative;
+	z-index: 9;
 
 	@include respond-to(xs) {
 		padding: space(1);

@@ -135,6 +135,18 @@
 }
 
 
+// Stick an element exactly over a relatively positioned element
+// --------------------------------------------------------------------------
+
+@mixin posFixed {
+	bottom: 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+}
+
+
 // Centers an element vertically & horizontally using flexbox.
 // --------------------------------------------------------------------------
 

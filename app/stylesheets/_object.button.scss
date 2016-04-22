@@ -20,11 +20,11 @@
 
 	}
 
-	&disabled {
-		color: palette(medium);
-		border-color: currentColor;
+	&[disabled] {
+		// background-color: palette(medium);
+		// border-color: currentColor;
+		cursor: not-allowed;
 		opacity: 0.4;
-
 	}
 
 	@include on-event() {
@@ -50,6 +50,10 @@
 	@include respond-to(xs) {
 		font-size: fontsize(textSm, base);
 	}
+
+	@include on-event() {
+		color: palette(white);
+	}
 }
 
 @mixin button() {
@@ -59,6 +63,12 @@
 
 .t-button {
 	@include button;
+
+	&--md {
+		// line-height: size(button-height, large);
+		text-align: center;
+		width: space(6);
+	}
 
 	&--lg {
 		// line-height: size(button-height, large);
@@ -88,8 +98,9 @@
 	}
 
 	@include on-event() {
-		border-color: rgba( $mixinBorderColor, 0.5);
-		color: rgba( $mixinColor, 0.5);
+		// border-color: rgba( $mixinBorderColor, 0.5);
+		// color: rgba( $mixinColor, 0.5);
+		color: $mixinColor;
 	}
 }
 
@@ -119,11 +130,22 @@
 	text-transform: none;
 
 	@include on-event() {
+		color: palette(brand);
 	}
 }
 
 .t-buttonInvisible {
 	@include buttonInvisible();
+}
+
+
+// Close button (this just positions an icon)
+// --------------------------------------------------------------------------
+
+.t-buttonClose {
+	position: absolute;
+	right: space(1);
+	top: space(1);
 }
 
 

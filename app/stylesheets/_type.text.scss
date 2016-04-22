@@ -8,7 +8,7 @@
 @mixin textTemplate() {
 	@include typeReset();
 	// color: palette(brand);
-	font-family: $font-sans-light;
+	// font-family: $font-sans-light;
 	line-height: $base-line-height-unit;
 
 	> li,
@@ -90,22 +90,23 @@
 
 
 
-@mixin TextLg() {
-	@include textTemplate();
-	font-size: fontsize(textLg, xs);
-	// line-height: 1.35;
-
-	@include respond-to(sm) {
-		font-size: fontsize(textLg, base);
-	}
-}
+// @mixin TextLg() {
+// 	@include textTemplate();
+// 	font-size: fontsize(textLg, xs);
+// 	// line-height: 1.35;
+//
+// 	@include respond-to(sm) {
+// 		font-size: fontsize(textLg, base);
+// 	}
+// }
 
 
 // Apply base text styles
 // --------------------------------------------------------------------------
 
-.u-textXs        { @include TextXs(); }
-.u-textXs--faint { @include TextXs( palette(muted) ); }
+.u-textXs         { @include TextXs(); }
+.u-textXs--medium { @include TextXs( palette(medium) ); }
+.u-textXs--muted  { @include TextXs( palette(muted) ); }
 
 .u-textSm        { @include TextSm(); }
 .u-textSm--light { @include TextSm( palette(brand-counter) ); }
@@ -118,7 +119,7 @@
 .u-textMd--light { @include TextMd( palette(brand-counter) ); }
 .u-textMdBlock   { > * { @include TextMd( palette(brand-counter) ); } }
 
-.u-textLg        { @include TextLg(); }
+// .u-textLg        { @include TextLg(); }
 
 
 // [class*="u-text"] {
@@ -131,14 +132,11 @@
 // Weights & italics
 // --------------------------------------------------------------------------
 
-.u-textEmLg        { @include TextLg(); }
+.u-textEmRg        { font-family: $font-sans-regular-i !important; }
+.u-textEmMd        { font-family: $font-sans-medium-i !important; }
 
 .u-textWtLt        { font-family: $font-sans-light !important; }
-
-.u-textEmRg        { font-family: $font-sans-regular-i !important; }
 .u-textWtRg        { font-family: $font-sans-regular !important; }
-
-.u-textEmMd        { font-family: $font-sans-medium-i !important; }
 .u-textWtMd        { font-family: $font-sans-medium !important; }
 
 

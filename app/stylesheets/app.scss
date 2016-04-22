@@ -12,6 +12,7 @@
 @import "settings.variables";
 
 @import "vendor.suitcss";
+@import "vendor.suitcss.flexbox";
 // @import "vendor.suitcss.settings";
 
 @import "base.page";
@@ -35,5 +36,6 @@
 @import "component.question";
 @import "component.form";
 @import "component.form.radiobutton";
+@import "component.modal";
 
 @import "trumps.spacers";
