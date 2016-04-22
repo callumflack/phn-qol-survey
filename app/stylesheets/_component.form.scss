@@ -68,20 +68,18 @@ textarea {
 
 
 
-input[type="text"],
-label {
-	@include TextMd();
-	color: rgba( palette(brand-counter), 0.7 );
-}
+// REFACTOR: text inputs only so I don't override radio btn component styles…
 
 input[type="text"] {
+	@include TextMd();
+	color: rgba( palette(brand-counter), 0.7 );
 	background: transparent;
 	border: 0;
 	border-bottom: 1px solid transparent;
 	border-color: rgba( palette(brand-counter), 0.4 );
 	// border-radius: size(border-radius, base);
 	display: inline-block;
-	font-family: $font-sans-regular;
+	// font-family: $font-sans-regular;
 	line-height: size(button-height, base);
 	padding: 0;
 	resize: none;
@@ -127,10 +125,12 @@ input[type="text"] {
 	}
 
 	label {
+		@include TextMd();
+		color: rgba( palette(brand-counter), 0.7 );
+		cursor: text;
+		left: rem(16);
 		position: absolute;
 		top: rem(10);
-		left: rem(16);
-		cursor: text;
 		transition: all map-fetch($transition, duration, fast) map-fetch($transition, type, fine);
 		z-index: 100;
 	}

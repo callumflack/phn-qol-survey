@@ -65,7 +65,6 @@
 	@include button;
 
 	&--md {
-		// line-height: size(button-height, large);
 		text-align: center;
 		width: space(6);
 	}
@@ -73,7 +72,11 @@
 	&--lg {
 		// line-height: size(button-height, large);
 		text-align: center;
-		width: space(12);
+		width: 100%;
+
+		@include respond-to(sm) {
+			width: space(12);
+		}
 	}
 }
 

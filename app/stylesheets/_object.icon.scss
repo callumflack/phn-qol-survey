@@ -34,10 +34,10 @@
 	}
 
 	&--left {
-		margin-right: 3px;
+		margin-right: 5px;
 
 		@include respond-to(xs) {
-			margin-right: rem(5);
+			margin-right: rem(7);
 		}
 	}
 
@@ -50,10 +50,10 @@
 	}
 
 	&--right {
-		margin-left: 3px;
+		margin-left: 5px;
 
 		@include respond-to(xs) {
-			margin-left: rem(5);
+			margin-left: rem(7);
 		}
 	}
 
