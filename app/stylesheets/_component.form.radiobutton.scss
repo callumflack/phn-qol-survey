@@ -141,6 +141,7 @@
 	[type="radio"]:not(:checked)+label,
 	[type="radio"]:checked+label {
 		font-size: inherit;
+		transition: none;
 	}
 
 	// not checked
@@ -182,7 +183,7 @@
 	font-family: $font-sans-light;
 	font-size: 15px;
 	position: absolute;
-	left: 8.5px;
+	left: 8px;
 	text-align: center;
 
 	@include when-inside(".is-active") {
