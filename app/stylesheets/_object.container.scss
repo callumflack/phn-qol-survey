@@ -6,17 +6,31 @@
 
 
 .o-content {
-    margin: space(7) auto 0;
+	margin: space(12) auto 0;
+
+	@include respond-to(sm) {
+		margin: space(7) auto 0;
+	}
 }
 
 .o-container {
-    @include clearfix();
-    margin: 0 auto;
-    max-width: size(container, default);
-    padding: 0 space(0.75);
-    position: relative;
+	@include clearfix();
+	margin: 0 auto;
+	max-width: size(container, default);
+	padding: 0 space(1);
+	position: relative;
 
-    @include respond-to(xs) {
-        padding: 0;
-    }
+	@include respond-to(xs) {
+		max-width: size(container, default);
+		padding: 0;
+	}
+
+	&--specWidth {
+		width: size(container, default);
+
+		@include respond-to(xs) {
+			width: size(container, default);
+		}
+	}
+
 }
