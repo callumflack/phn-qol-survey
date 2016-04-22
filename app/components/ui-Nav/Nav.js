@@ -7,14 +7,16 @@ var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 var Nav = React.createClass({
 	render: function() {
 		return (
-			<header className="c-header" role="header">
-				<nav className={"c-nav c-nav--" + this.props.details}>
+			<header className={"c-header is-" + this.props.details} role="header">
+				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
-					<SurveyProgress />
 					<a className="c-nav-status" href="#device-registration">
 						<BtnLocation location="Aurukun" />
 					</a>
 				</nav>
+
+				<SurveyProgress active="false" />
+
 			</header>
 		);
 	}

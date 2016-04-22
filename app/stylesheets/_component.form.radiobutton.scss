@@ -55,8 +55,8 @@
 
 [type="radio"]:not(:checked) + label:before,
 [type="radio"]:not(:checked) + label:after {
-	background-color: rgba( palette(brand-counter), 0.2);
-	border: 1px solid palette(brand-counter);
+	// background-color: rgba( palette(brand-counter), 0.2);
+	// border: 1px solid palette(brand-counter);
 }
 
 [type="radio"]:not(:checked) + label:after {
@@ -134,34 +134,63 @@
 // --------------------------------------------------------------------------
 
 .t-radioInputs {
+	[type="radio"]:not(:checked) + label:after {
+		// transform: scale(1);
+	}
+
 	[type="radio"]:not(:checked)+label,
 	[type="radio"]:checked+label {
 		font-size: inherit;
+		transition: none;
 	}
 
+	// not checked
 	[type="radio"]:not(:checked) + label:before,
 	[type="radio"]:not(:checked) + label:after {
 		background-color: rgba( palette(brand-counter), 0.2);
 		border: 1px solid palette(brand-counter);
-		color: palette(brand-counter);
-		font-family: $font-sans-light;
-		font-size: 15px;
-		text-align: center;
 	}
 
+	// checked
 	[type="radio"] + label:before,
 	[type="radio"] + label:after {
-		content: '2';
+		content: ' ';
 		height: space(1);
 		margin: 0 1px 1px;
+		transition: none;
 		width: space(1);
 	}
 
 	.is-active {
-		[type="radio"]:not(:checked) + label:before,
-		[type="radio"]:not(:checked) + label:after {
-			background-color: palette(background);
+		[type="radio"]:not(:checked) + label:before {
+			background-color: transparent;
+			border: 1px solid palette(white);
+			color: palette(white);
 			font-family: $font-sans-medium;
 		}
+
+		[type="radio"]:not(:checked) + label:after {
+			background-color: palette(white);
+		}
 	}
+}
+
+// the typographic element that React will update
+.c-radioInputNumber {
+	background-color: transparent;
+	border: 0;
+	color: palette(brand-counter);
+	font-family: $font-sans-light;
+	font-size: 15px;
+	position: absolute;
+	left: 8px;
+	text-align: center;
+
+	@include when-inside(".is-active") {
+		color: palette(white);
+	}
+}
+
+.t-radioInputs.is-active .c-radioInputNumber {
+	color: palette(white);
 }

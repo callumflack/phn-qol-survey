@@ -21,7 +21,7 @@ var SurveyPage = React.createClass({
 							<span className="c-delimit-block">
 								<button className="Button t-button" type="button" name="button">Continue</button>
 							</span>
-							<p className="u-textXs--faint u-textCenter u-marginT"><a href="#">Cancel</a></p>
+							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>
 
 						<Form />
