@@ -15,17 +15,6 @@ var Question = React.createClass({
 	render: function() {
 		var questionNumber = this.props.questionData.number;
 
-		var questionInfo = function() {
-			for (i = 0; i < 100; i++) {
-				if (i == 10)
-					print("The following questions are the bee's knees.");
-				if (i == 20)
-					print("The following questions aren't so hot.");
-
-				print(question[i]);
-			}
-		}
-
 		return (
 			<div>
 				<div className="c-question">
