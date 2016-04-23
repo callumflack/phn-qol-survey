@@ -1,5 +1,6 @@
 var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
+var AboutForm = require('../ui-SurveyAbout/Form.js');
 var Form = require('./Form.js');
 
 var SurveyPage = React.createClass({
@@ -7,6 +8,7 @@ var SurveyPage = React.createClass({
 		return (
 			<div>
 				<Nav details="registered" />
+
 				<main className="o-content" role="main">
 					<div className="o-container">
 
@@ -19,11 +21,12 @@ var SurveyPage = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" name="button">Continue</button>
+								<button className="Button t-button" type="button" name="button">Let's begin</button>
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>
 
+						<AboutForm />
 						<Form />
 
 					</div>

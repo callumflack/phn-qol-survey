@@ -26,8 +26,7 @@ var Form = React.createClass({
 		if (qNumber === 10)
 			return (<div className="c-questionContext">The following questions ask about how completely you experience or were able to do certain things in the last two weeks.</div>);
 		if (qNumber === 16)
-			return (<div className="c-questionContext">The following questions ask you to say how good or satisfied you have felt about various aspects of your life over the last two
-weeks.</div>);
+			return (<div className="c-questionContext">The following questions ask you to say how good or satisfied you have felt about various aspects of your life over the last two weeks.</div>);
 		if (qNumber === 26)
 			return (<div className="c-questionContext">The following question refers to how often you have felt or experienced certain things in the last two weeks.</div>);
 
