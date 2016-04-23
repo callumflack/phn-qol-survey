@@ -11,7 +11,8 @@ var Nav = React.createClass({
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
 					<a className="c-nav-status" href="#device-registration">
-						<BtnLocation location="Aurukun" />
+						{/*<BtnLocation location="Aurukun" />*/}
+						<BtnRegister />
 					</a>
 				</nav>
 
