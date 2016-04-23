@@ -14,6 +14,7 @@
 var AnswerSets = require("./answer-sets.js");
 
 module.exports = [
+    {number: 1, text:"How would you rate your quality of life?", answers: AnswerSets.satisfaction },
     {number: 2, text:"How satisfied are you with your health?", answers: AnswerSets.satisfaction },
     {number: 3, text:"To what extend do you feel that physical pain prevents you from doing what you need to do?", answers: AnswerSets.amount.noun },
     {number: 4, text:"How much do you need any medical treatment to function in your life?", answers: AnswerSets.amount.noun },
