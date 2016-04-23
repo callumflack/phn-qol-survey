@@ -28,8 +28,6 @@ var Question = React.createClass({
 
 		return (
 			<div>
-				<p className="u-textSm">{questionInfo}</p>
-
 				<div className="c-question">
 
 					<p className="c-question-ask Media">
@@ -43,7 +41,7 @@ var Question = React.createClass({
 
 					<div className="c-question-choices t-radioInputs">
 						{this.props.questionData.answers.map(function(answer, i) {
-							return <Answer key={i} value={answer.value} label={answer.label} questionNumber={questionNumber} question={this}/>
+							return <Answer key={i} number={answer.value} label={answer.label} questionNumber={questionNumber} question={this}/>
 						})}
 					</div>
 
