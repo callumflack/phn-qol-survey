@@ -10,7 +10,7 @@ var Form = React.createClass({
 	/**
 	 * Generates some preceding text to be placed above certain questions as
 	 * an introdution to the section.
-	 * 
+	 *
 	 * @param question Object	The data objet for a single question, as
 	 * 							supplied by the PHN QLD Server API. This is used
 	 * 							to determine the question number (note, not the
@@ -20,14 +20,17 @@ var Form = React.createClass({
 	 */
 	questionPretext: function(question) {
 		var qNumber = question.number;
-		
-		if (qNumber === 2)
-			return (<div className="SurveySectionIntro">Q2 Preceding text</div>);
-		if (qNumber === 12)
-			return (<div className="SurveySectionIntro">Q12 Preceding text</div>);
-		if (qNumber === 22)
-			return (<div className="SurveySectionIntro">Q22 Preceding text</div>);
-			
+
+		if (qNumber === 3)
+			return (<div className="c-questionContext">The following questions ask about how much you have experienced certain things in the last two weeks.</div>);
+		if (qNumber === 10)
+			return (<div className="c-questionContext">The following questions ask about how completely you experience or were able to do certain things in the last two weeks.</div>);
+		if (qNumber === 16)
+			return (<div className="c-questionContext">The following questions ask you to say how good or satisfied you have felt about various aspects of your life over the last two
+weeks.</div>);
+		if (qNumber === 26)
+			return (<div className="c-questionContext">The following question refers to how often you have felt or experienced certain things in the last two weeks.</div>);
+
 		// Superflous code, but may help readability:
 		// Functions that don't have a return statement return undefined anyway,
 		// but I'll leave this here to clarify that any code reaching this point
@@ -39,7 +42,7 @@ var Form = React.createClass({
 	 * inserting preceding text between Question objects where they exist.
 	 * Preceding text is defined (or undefined) using the questionPretext
 	 * method above.
-	 * 
+	 *
 	 * @param questiondData	question[]	An array of question data objects, as
 	 * 									supplied by the PHN QLD Server API.
 	 * @return React.Component[]	Returns an array of React components that
@@ -51,10 +54,10 @@ var Form = React.createClass({
 		this.props.questionData.map((question, i) => {
 			var precedingText = this.questionPretext(question);
 			if (precedingText) components.push(precedingText);
-			
+
 			components.push(<Question questionData={question} key={i}/>);
 		});
-		
+
 		return components;
 	},
 	render: function() {

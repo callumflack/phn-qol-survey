@@ -5,13 +5,19 @@
 // --------------------------------------------------------------------------
 
 
+.c-questionContext {
+	@include TextSm($mixinFont: $font-sans-medium);
+	margin: space(5) 0 space(2.25);
+	width: 70%;
+}
+
 .c-question {
 	@include baseTransition();
 	background-color: rgba(palette(neutral), 0.4);
 	border: 1px solid rgba(palette(brand), 0.6);
 	border-radius: size(border-radius, base);
 	// opacity: 0.3;
-	margin-bottom: space(2);
+	margin-bottom: space(3);
 	padding: space(1) space(1.5);
 
 	&.is-active {
@@ -31,7 +37,7 @@
 
 .c-question-choices {
 	margin: 0 auto;
-	width: 80%;
+	width: 83%;
 }
 
 .c-question-choices--option {
