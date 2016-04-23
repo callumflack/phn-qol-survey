@@ -1,5 +1,6 @@
 /**
  * Answer Sets
+ * PHN QoL Survey
  *
  * Helps assemble common answer sets for survey-type questions that all work on
  * a standaradised scale 0..4.
@@ -8,6 +9,7 @@
  * @version 0.1.0
  * @copyright Patternworks 2016
  */
+
 module.exports = {
 	satisfaction: [
 		{value: 0, label: "Very dissatisfied"},
