@@ -9,7 +9,7 @@ require('./../../stylesheets/app.scss');
 var Form = React.createClass({
 	/**
 	 * Generates some preceding text to be placed above certain questions as
-	 * an introdution to the section.
+	 * an introduction to the section.
 	 *
 	 * @param question Object	The data objet for a single question, as
 	 * 							supplied by the PHN QLD Server API. This is used
