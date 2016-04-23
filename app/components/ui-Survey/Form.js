@@ -11,7 +11,7 @@ var Form = React.createClass({
 	 * Generates some preceding text to be placed above certain questions as
 	 * an introduction to the section.
 	 *
-	 * @param question Object	The data objet for a single question, as
+	 * @param question Object	The data object for a single question, as
 	 * 							supplied by the PHN QLD Server API. This is used
 	 * 							to determine the question number (note, not the
 	 * 							question ID in the DB nor React-issued key).
