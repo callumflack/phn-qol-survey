@@ -15,7 +15,7 @@ var Answer = React.createClass({
 		});
 	},
 
-	{/* @Kashi: this is here for you to…*/}
+	/* @Kashi: this is here for you to…*/
 	updateQuestion: function(event) {
 	},
 
