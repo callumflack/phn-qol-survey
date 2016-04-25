@@ -70,7 +70,19 @@ var IconClose = React.createClass({
 		return (
 			<svg className={"Icon Icon--buttonAlign Icon--" + this.props.size} viewBox="0 0 24 24" aria-labelledby="title">
 				<title id="title">Close icon</title>
-				<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" stroke="white" stroke-width="20"/>
+				<path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" stroke="white" stroke-width="30"/>
+				<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+		);
+	}
+});
+
+var IconReturn = React.createClass({
+	render: function() {
+		return (
+			<svg className={"Icon Icon--sm Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Return home icon</title>
+				<path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/>
 				<path d="M0 0h24v24H0z" fill="none"/>
 			</svg>
 		);
@@ -83,5 +95,6 @@ module.exports = {
 	IcChoice: IconChoice,
 	IcSubmit: IconSubmit,
 	IcDownload: IconDownload,
-	IcClose: IconClose
+	IcClose: IconClose,
+	IcReturn: IconReturn
 }
