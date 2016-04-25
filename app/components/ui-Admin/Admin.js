@@ -28,7 +28,7 @@ var Admin = React.createClass({
 						</p>
 
 						<div className="Grid Grid--withGutter Grid--alignCenter">
-							<div className="Grid-cell u-size8of12">
+							<div className="Grid-cell u-size7of12 u-marginT2">
 
 								<AdminForm />
 

@@ -2,12 +2,13 @@ var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
 var AboutForm = require('../ui-SurveyAbout/Form.js');
 var Form = require('./Form.js');
+var Score = require('./Score.js');
 
 var SurveyPage = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<Nav details="registered" />
+				<Nav showProgress="registered" />
 
 				<main className="o-content" role="main">
 					<div className="o-container">
@@ -18,7 +19,7 @@ var SurveyPage = React.createClass({
 						<p className="u-textMd u-colorBrandCount">If you are unsure about which response to give to a question, please choose the one that appears most appropriate. This can often be your first response.</p>
 						<p className="u-textMd u-textWtRg">Please read each question, assess your feelings, and choose the number on the scale for each question that gives the best answer for you.</p>
 
-						<div className="c-delimit u-textCenter u-marginT2">
+						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
 								<button className="Button t-button" type="button" name="button">Let's begin</button>
@@ -31,6 +32,9 @@ var SurveyPage = React.createClass({
 
 					</div>
 				</main>
+
+				<Score />
+
 			</div>
 		);
 	}

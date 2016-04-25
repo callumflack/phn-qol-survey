@@ -49,7 +49,10 @@ var Registration = React.createClass({
 									<span className="c-delimit-block">Register</span>
 								</h1>
 
-								<RegistrationForm />
+								<div className="u-size9of12 Grid-cell--center">
+									<RegistrationForm />
+								</div>
+
 
 							</div>
 						</main>
