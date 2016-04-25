@@ -6,17 +6,22 @@ var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
 	render: function() {
+		{/*var headerClasses = classNames({
+			'Modal': true,
+			'is-active': false,
+		});*/}
+
 		return (
-			<header className={"c-header is-" + this.props.details} role="header">
+			<header className={"c-header is-" + this.props.showProgress} role="header">
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
-					<a className="c-nav-status" href="#device-registration">
+					<a className="c-nav-status" href="#registration">
 						{/*<BtnLocation location="Aurukun" />*/}
 						<BtnRegister />
 					</a>
 				</nav>
 
-				<SurveyProgress active="false" />
+				<SurveyProgress display="block" />
 
 			</header>
 		);
