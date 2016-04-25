@@ -63,21 +63,6 @@
 
 .t-button {
 	@include button;
-
-	&--md {
-		text-align: center;
-		width: space(6);
-	}
-
-	&--lg {
-		// line-height: size(button-height, large);
-		text-align: center;
-		width: 100%;
-
-		@include respond-to(sm) {
-			width: space(12);
-		}
-	}
 }
 
 
@@ -107,7 +92,7 @@
 	}
 }
 
-@mixin buttonSecondary () {
+@mixin buttonSecondary() {
 	@include buttonBase();
 	@include textButtonSm();
 	background-color: transparent;
@@ -142,10 +127,40 @@
 }
 
 
+// Button sizes
+// --------------------------------------------------------------------------
+
+.t-button {
+	@include button;
+
+	&--md {
+		text-align: center;
+		width: space(6);
+	}
+
+	&--lg {
+		line-height: size(button-height, large);
+		text-align: center;
+		width: 100%;
+
+		@include respond-to(sm) {
+			width: space(12);
+		}
+	}
+
+	&--full {
+		line-height: size(button-height, large);
+		text-align: center;
+		width: 100%;
+	}
+}
+
+
 // Close button (this just positions an icon)
 // --------------------------------------------------------------------------
 
 .t-buttonClose {
+	color: palette(brand);
 	position: absolute;
 	right: space(1);
 	top: space(1);

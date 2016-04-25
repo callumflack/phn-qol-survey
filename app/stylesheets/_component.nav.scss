@@ -37,6 +37,12 @@
 	img {
 		height: 60px;
 	}
+
+	@include when-inside(".Modal") {
+		position: absolute;
+		left: 1.425rem;
+		top: 1.425rem;
+	}
 }
 
 

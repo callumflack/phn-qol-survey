@@ -1,0 +1,51 @@
+
+
+// --------------------------------------------------------------------------
+//   CHART COMPONENT
+// --------------------------------------------------------------------------
+
+
+// .u-size10of12 { width: 83.33333333333334% !important;
+// .u-size7of8 { width: 87.5% !important;
+// .u-size9of10 { width: 90% !important;
+// .u-size11of12 { width: 91.66666666666666% !important;
+
+.c-chart {
+	margin: space(2) auto space(1.5);
+	width: 87.5%;
+}
+
+.c-chart-bar {
+	background-color: rgba(palette(neutral), 0.4);
+	border: 1px solid rgba(palette(brand), 0.6);
+	border-radius: size(border-radius, base);
+	height: 220px;
+	position: relative;
+}
+
+.c-chart-indicator {
+	@include baseTransition();
+	@include posAbsoluteCenter();
+	background-color: palette(brand-complement);
+	border-bottom-left-radius: size(border-radius, base);
+	border-bottom-right-radius: size(border-radius, base);
+	color: palette(white);
+	font-family: $font-sans-medium;
+	font-size: fontsize(headerXl, base);
+	text-align: center;
+	top: auto;
+	height: 44%;
+
+	> span {
+		font-family: $font-sans-regular;
+		font-size: fontsize(textSm, base);
+		position: relative;
+		top: -20px;
+	}
+}
+
+.c-chart-label {
+	@include TextSm($mixinFont: $font-sans-medium);
+	margin-top: space(0.5);
+	text-align: center;
+}

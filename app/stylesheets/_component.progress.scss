@@ -8,6 +8,15 @@
 // The progress component layout
 // is managed by Suit's flexbox component
 
+.c-surveyProgressWrapper {
+	display: none;
+	
+	@include respond-to(max-sm) {
+		position: relative;
+		padding-bottom: space(6);
+	}
+}
+
 .c-surveyProgress {
 	width: 100%;
 

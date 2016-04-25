@@ -30,6 +30,7 @@
 	color: $mixinColor;
 	font-family: $mixinFont;
 	font-size: fontsize(textXs, xs);
+	letter-spacing: 0.01em;
 
 	@include respond-to(xs) {
 		font-size: fontsize(textXs, base);
@@ -107,6 +108,8 @@
 .u-textXs         { @include TextXs(); }
 .u-textXs--medium { @include TextXs( palette(medium) ); }
 .u-textXs--muted  { @include TextXs( palette(muted) ); }
+.u-textXs--light  { @include TextXs( $mixinFont: $font-sans-medium, $mixinColor: palette(brand-counter) ); }
+// .u-textXs--light  { @include TextXs( $mixinColor: palette(brand-counter) ); }
 
 .u-textSm        { @include TextSm(); }
 .u-textSm--light { @include TextSm( palette(brand-counter) ); }
