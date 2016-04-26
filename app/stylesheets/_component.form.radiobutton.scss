@@ -75,12 +75,12 @@
 [type="radio"]:checked + label:after,
 [type="radio"].with-gap:checked + label:before,
 [type="radio"].with-gap:checked + label:after {
-	border: 1px solid palette(charcoal);
+	border: 1px solid palette(white);
 }
 
 [type="radio"]:checked + label:after,
 [type="radio"].with-gap:checked + label:after {
-	background-color: palette(brand);
+	// background-color: palette(brand);
 	z-index: 0;
 }
 
