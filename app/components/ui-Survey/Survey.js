@@ -2,6 +2,10 @@ var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
 var AboutForm = require('../ui-SurveyAbout/Form.js');
 var questionData = require('./data/questions.js');
+
+var Registration = require("../ui-Registration/Registration.js");
+var Deregistration = require("../ui-Registration/Deregistration.js");
+
 var Form = require('./Form.js');
 var Score = require('./Score.js');
 
@@ -23,12 +27,15 @@ var SurveyPage = React.createClass({
 		return {
 			deviceRegistered: deviceToken? true : false,
 			surveyInProgress: false,
+			registrationOpen: false,
 			scoreOpen: false
 		};
 	},
 	submitSurvey: function() {
-		console.log("Thank you for your submission.");
-		this.setState({ scoreOpen: true });
+		this.setState({
+			registrationOpen: false,
+			scoreOpen: true 
+		});
 	},
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId] = response;
@@ -52,8 +59,45 @@ var SurveyPage = React.createClass({
 			return a;
 		})()
 	},
+	deregisterDevice: function() {
+		localStorage.clear();
+		this.setState({
+			deviceRegistered: false,
+			registrationOpen: false
+		});
+		setTimeout(() => { window.location = "/"}, 400);
+	},
 	closeScoreHandler: function() {
 		this.setState( { scoreOpen: false });
+	},
+	registrationModal: function() {
+		if ( ! this.state.deviceRegistered) {
+			return (
+				<Registration
+					registerDevice={this.registerDevice}
+					registrationOpen={this.state.registrationOpen}
+					region={this.props.region}
+					toggleRegistration={this.toggleRegistration}
+					ref={(ref) => this.registration = ref}
+				/>
+			);
+		} else {
+			return(
+				<Deregistration
+					deregisterDevice={this.deregisterDevice}
+					registrationOpen={this.state.registrationOpen}
+					region={this.props.region}
+					toggleRegistration={this.toggleRegistration}
+					ref={(ref) => this.registration = ref}
+				/>
+			);
+		}
+	},
+	toggleRegistration: function(newState) {
+		if (newState === undefined)
+			newState = !this.state.registrationOpen;
+
+		this.setState({ registrationOpen: newState });
 	},
 	render: function () {
 		return (
@@ -63,6 +107,7 @@ var SurveyPage = React.createClass({
 					region={this.props.region}
 					ref={(ref) => this.nav = ref}
 					surveyInProgress={this.state.surveyInProgress}
+					toggleRegistration={this.toggleRegistration}
 					questionsAnswered={this.props.questionsAnswered}
 				/>
 
@@ -92,7 +137,7 @@ var SurveyPage = React.createClass({
 
 					</div>
 				</main>
-
+				{this.registrationModal()}
 				<Score
 					scoreOpen={this.state.scoreOpen}
 					closeScoreHandler={this.closeScoreHandler}

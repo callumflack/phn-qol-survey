@@ -91,7 +91,6 @@ var Home = React.createClass({
 	 * Used to decide which registaration modal to show.
 	 */
 	registrationModal: function() {
-		console.log("working out which registration modal to show.");
 		if ( ! this.state.deviceRegistered) {
 			return (
 				<Registration

@@ -6,7 +6,7 @@ var IcReturn = require('../ui-Icons/Icons.js').IcReturn;
 
 var Score = React.createClass({
 	randomGraph: function() {
-		var amount = 20 + Math.round(Math.random()*60),
+		var amount = 34 + Math.round(Math.random()*20),
 			properties = {
 				style: { height: amount + "%" },
 				magnitude: amount
@@ -14,7 +14,6 @@ var Score = React.createClass({
 		return properties;
 	},
 	closeScoreHandler: function() {
-		console.log("Closing score");
 		this.props.closeScoreHandler();
 	},
 	render: function () {
