@@ -74,14 +74,3 @@
 	// 	margin-bottom: space(0.25);
 	// }
 }
-
-
-
-
-.t-selectInputs {
-	@include TextRg();
-	border-color: rgba( palette(brand), 0.25 );
-	border-radius: size(border-radius, small);
-	margin-left: 45px;
-	width: auto;
-}

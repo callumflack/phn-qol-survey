@@ -11,6 +11,10 @@ select,
 label {
 	// @include TextSm();
 	// color: palette(medium);
+
+	@include on-event() {
+		outline: 0;
+	}
 }
 
 input:not([type="radio"]),
@@ -110,10 +114,8 @@ input[type="text"] {
 }
 
 
-
-
-// Pattern: hide/move the form label.
-// Requires JS.
+// Floating label pattern
+// Usually requires JS unless you're using React…
 // --------------------------------------------------------------------------
 
 /* uncss:ignore */
@@ -137,21 +139,19 @@ input[type="text"] {
 
 	input.Form-control,
 	textarea.Form-control {
-		// padding-left: rem(16);
-		// padding-right: rem(16);
 	}
 
 	&--sm {
 		// line-height: size(button-height, base);
 		line-height: 38px;
 
-		input.Form-control {
-			line-height: inherit;
-		}
-
 		label {
 			@include TextRg();
 			color: palette(brand-counter);
+		}
+
+		input.Form-control {
+			line-height: inherit;
 		}
 	}
 
@@ -169,28 +169,17 @@ input[type="text"] {
 	// }
 }
 
-// /* uncss:ignore */
-// .Form-group.is-active > label:not(.has-error) {
-// 	opacity: 0;
-// 	transform: translateY(rem(-10));
-// }
-//
-// /* uncss:ignore */
-// .Form--clear .Form-group.is-active > label:not(.has-error) {
-// 	font-size: fontsize(textXs, base);
-// 	opacity: 1;
-// 	transform: translate(0, -32px);
-// }
+.Form-group.is-active {
+	label {
+		font-size: fontsize(textXs, base);
+		opacity: 1;
+		transform: translate(1px, -16px);
+	}
 
-.Form-group.is-active > label:not(.has-error) {
-	font-size: fontsize(textXs, base);
-	opacity: 1;
-	transform: translate(1px, -16px);
-}
-
-.Form-group.is-active > input.Form-control:not(.has-error) {
-	border-color: rgba( palette(brand-complement), 1 );
-	color: palette(brand-complement);
+	input.Form-control {
+		border-color: rgba( palette(brand-complement), 1 );
+		color: palette(brand-complement);
+	}
 }
 
 .Form-group.has-error {
