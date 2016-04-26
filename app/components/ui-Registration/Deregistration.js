@@ -1,6 +1,5 @@
 var React = require("react");
 var classNames = require('classnames');
-var RegistrationForm = require("./RegistrationForm.js");
 var IcClose = require('../ui-Icons/Icons.js').IcClose;
 
 // Close btn in same file to study flow of state/props
@@ -17,8 +16,8 @@ var CloseButton = React.createClass({
 	}
 });
 
-// Registration
-var Registration = React.createClass({
+// Modal
+var Deregistration = React.createClass({
 	closeRegClick: function() {
 		this.props.registrationOpen = false;
 		this.props.toggleRegistration(false);
@@ -27,6 +26,7 @@ var Registration = React.createClass({
 		var modalClasses = classNames({
 			'Modal': true,
 			'is-active': this.props.registrationOpen
+			// 'is-active': true
 		});
 
 		return (
@@ -39,18 +39,15 @@ var Registration = React.createClass({
 						<main className="o-content" role="main" deviceRegistered={this.props.deviceRegistered}>
 							<div className="o-container">
 
-								<h1 className="c-delimit u-headline">
-									<div className="c-delimit-rule"></div>
-									<span className="c-delimit-block">Register</span>
+								<h1 className="u-textMd u-textWtMd u-textCenter">
+									You're registered as a Service Provider in Cairns.<br />
+								<span className="u-textWtLt">Are you sure you want to deregister?</span>
 								</h1>
 
-								<div className="u-size9of12 Grid-cell--center">
-									<RegistrationForm
-										registrationOpen={this.props.registrationOpen}
-										registerDevice={this.props.registerDevice}
-									/>
-								</div>
-
+								<p className="u-textCenter u-marginT15">
+									<button className="Button t-button--brand t-button--md u-marginR" type="submit">No</button>
+									<button className="Button t-button--rev t-button--md u-colorBrand" type="submit">Yes</button>
+								</p>
 
 							</div>
 						</main>
@@ -62,4 +59,4 @@ var Registration = React.createClass({
 	}
 });
 
-module.exports = Registration;
+module.exports = Deregistration;

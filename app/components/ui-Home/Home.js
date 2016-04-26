@@ -2,6 +2,7 @@ var React = require("react");
 var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var Registration = require("../ui-Registration/Registration.js");
+var Deregistration = require("../ui-Registration/Deregistration.js");
 var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
@@ -26,13 +27,13 @@ var Home = React.createClass({
 	toggleRegistration: function(newState) {
 		if (newState === undefined)
 			newState = !this.state.registrationOpen;
-			
+
 		this.setState({ registrationOpen: newState });
 	},
 	/**
 	 * Handles device registration by communicating with the server via AJAX,
 	 * parsing the result for success or failure.
-	 * 
+	 *
 	 * @param {string} providerCode	The (case-insensitive) provider code to
 	 * 								search on the server.
 	 */
@@ -59,15 +60,15 @@ var Home = React.createClass({
 						if (result.errors) {
 							return validationFailCallback();
 						}
-						
+
 						var token = result.token,
 							region = result.provider.region;
-						
+
 						localStorage.setItem('deviceToken', token);
 						localStorage.setItem('phnRegion', region);
 						this.props.region = region;
 						this.setState(
-							{ 
+							{
 								deviceRegistered: true,
 								registrationOpen: false
 							}
@@ -142,6 +143,8 @@ var Home = React.createClass({
 					toggleRegistration={this.toggleRegistration}
 					ref={(ref) => this.registration = ref}
 				/>
+
+				<Deregistration />
 
 			</div>
 		);

@@ -8,10 +8,10 @@
 @mixin buttonBase() {
 	@include baseTransition();
 	background-color: rgba( palette(brand-complement), 1 );
-	border-color: transparent;
+	border-color: palette(brand-complement);
 	border-radius: size(border-radius, base);
 	border-style: solid;
-	border-width: 0;
+	border-width: 1px;
 	padding: 0 space(0.75);
 	// transition: all transition(duration, short) transition(type, base);
 	// vertical-align: top; // 1.
@@ -64,6 +64,19 @@
 	@include button;
 }
 
+.t-button--brand {
+	@include button;
+	background-color: palette(brand);
+	border-color: palette(brand);
+}
+
+.t-button--rev {
+	@include button;
+	background-color: transparent;
+	border-color: currentColor;
+	border-width: 1px;
+}
+
 
 // Secondary buttons
 // --------------------------------------------------------------------------
@@ -114,6 +127,7 @@
 	@include buttonBase();
 	@include textButtonSm($mixinColor: palette(brand) );
 	background-color: transparent;
+	border-color: transparent;
 	text-transform: none;
 
 	@include on-event() {

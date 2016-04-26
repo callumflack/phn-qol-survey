@@ -16,16 +16,6 @@ var Answer = React.createClass({
 			'is-active': this.props.selected
 		});
 
-		// // manipulate classes in pure JS
-		// var choiceClassName = "c-question-choices--option";
-		// var iconActive = " ";
-
-		// if (this.state.chosen) {
-		// 	choiceClassName += " is-active";
-		// 	iconActive += "is-active";
-		// 	this.props.value = "checked";
-		// }
-
 		this.props.activate = this.activate;
 		this.props.deactivate = this.deactivate;
 
