@@ -5,10 +5,33 @@ var Form = require('./Form.js');
 var Score = require('./Score.js');
 
 var SurveyPage = React.createClass({
+	getDefaultProps: function() {
+		var region = localStorage.getItem('phnRegion');
+		return {
+			region: region,
+			questionsAnswered: 0
+		}
+	},
+	getInitialState: function() {
+		var deviceToken = localStorage.getItem('deviceToken');
+		return {
+			deviceRegistered: deviceToken? true : false,
+			surveyInProgress: false
+		};
+	},
+	startSurvey: function() {
+		this.setState({ surveyInProgress: true });
+	},
 	render: function () {
 		return (
 			<div>
-				<Nav showProgress="true" />
+				<Nav
+					deviceRegistered={this.state.deviceRegistered}
+					region={this.props.region}
+					ref={(ref) => this.nav = ref}
+					surveyInProgress={this.state.surveyInProgress}
+					questionsAnswered={this.props.questionsAnswered}
+				/>
 
 				<main className="o-content" role="main">
 					<div className="o-container">
@@ -22,7 +45,7 @@ var SurveyPage = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" name="button">Let's begin</button>
+								<button className="Button t-button" type="button" onClick={this.startSurvey} name="button">Let's begin</button>
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>

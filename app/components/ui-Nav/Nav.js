@@ -21,8 +21,8 @@ var Nav = React.createClass({
 		var settingsBtn = (this.props.deviceRegistered)? 
 							<BtnLocation location={this.props.region} />
 							: <BtnRegister />,
-			surveyProgress = (this.props.surveyActive)?
-							<SurveyProgress />
+			surveyProgress = (this.props.surveyInProgress)?
+							<SurveyProgress questionsAnswered={this.props.questionsAnswered} />
 							: "";
 							
 		return (

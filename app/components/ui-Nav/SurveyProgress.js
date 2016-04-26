@@ -13,11 +13,13 @@ var SurveyProgress = React.createClass({
 						<div className="u-flex u-flexAlignItemsCenter u-sizeFill">
 							<div className="c-surveyProgress">
 								<p className="c-surveyProgress-score">
-									<span>0 of 26 answered</span>
+									<span>{this.props.questionsAnswered} of 26 answered</span>
 									<a className="c-surveyProgress-cancel" href="#cancel-survey">Cancel this survey</a>
 								</p>
 
-								<SurveyProgressIndicator />
+								<SurveyProgressIndicator
+									questionsAnswered={this.props.questionsAnswered}
+								/>
 
 							</div>
 						</div>
