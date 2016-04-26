@@ -73,11 +73,10 @@ var Form = React.createClass({
 		return components;
 	},
 	render: function() {
-		console.log(this.props);
 		return (
 			<form method="post" action="" className="Survey u-marginT5">
 				{this.questionBlocks(this.props.questionData)}
-				<Submit />
+				<Submit submitSurvey={this.props.submitSurvey} />
 			</form>
 		)
 	}

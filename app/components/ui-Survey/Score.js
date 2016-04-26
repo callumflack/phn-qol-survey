@@ -5,19 +5,37 @@ var CloseButton = require('../ui-Buttons/CloseButton.js');
 var IcReturn = require('../ui-Icons/Icons.js').IcReturn;
 
 var Score = React.createClass({
+	randomGraph: function() {
+		var amount = 34 + Math.round(Math.random()*20),
+			properties = {
+				style: { height: amount + "%" },
+				magnitude: amount
+			}
+		return properties;
+	},
+	closeScoreHandler: function() {
+		this.props.closeScoreHandler();
+	},
 	render: function () {
 		var modalClasses = classNames({
 			'Modal': true,
-			'is-active': false,
+			'is-active': this.props.scoreOpen,
 		});
-
+		
+		var amounts = [
+			this.randomGraph(),
+			this.randomGraph(),
+			this.randomGraph(),
+			this.randomGraph()
+		];
+		
 		return (
 			<div className={modalClasses} tabindex="-1" role="dialog" aria-labelledby="">
 				<div className="Modal-dialog" role="document">
 					<div className="Modal-content">
 
 						<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
-						<CloseButton />
+						<CloseButton modalCloseFunction={this.closeScoreHandler} />
 
 						<main className="o-content u-marginT5" role="main" deviceRegistered={this.props.deviceRegistered}>
 							<div className="o-container">
@@ -31,32 +49,32 @@ var Score = React.createClass({
 									<div className="Grid Grid--withGutter">
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator">
-													44<span>%</span>
+												<div className="c-chart-indicator" style={amounts[0].style}>
+													 {amounts[0].magnitude}<span>%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator">
-													44<span>%</span>
+												<div className="c-chart-indicator" style={amounts[1].style}>
+													{amounts[1].magnitude}<span>%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator">
-													44<span>%</span>
+												<div className="c-chart-indicator" style={amounts[2].style}>
+													{amounts[2].magnitude}<span>%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator">
-													44<span>%</span>
+												<div className="c-chart-indicator" style={amounts[3].style}>
+													{amounts[3].magnitude}<span>%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
