@@ -29,16 +29,6 @@ var Answer = React.createClass({
 			'is-active': this.state.chosen
 		});
 
-		{/* manipulate classes in pure JS
-		var choiceClassName = "c-question-choices--option";
-		var iconActive = " ";
-
-		if (this.state.chosen) {
-			choiceClassName += " is-active";
-			iconActive += "is-active";
-			this.props.value = "checked";
-		} */}
-
 		return (
 			<div className={choiceClassName} onClick={this.handleClick}>
 				<input name={"q_" + this.props.questionNumber} value={this.props.number} type="radio"/>
