@@ -9,60 +9,49 @@ var Question = React.createClass({
 	},
 	getDefaultProps: function() {
 		return {
-			answers: []
+			answerComponents: []
 		}
 	},
 	updateAnswers: function(newAnswerValue) {
 		this.setState({ chosen: newAnswerValue });
-		this.props.answers.map(function(answer) {
-			if (answer.props.value === newAnswerValue)
-				answer.props.activate();
-			else
-				answer.props.deactivate();
-		});
-	},
-	createAnswers: function(answers) {
-		var questionNumber = this.props.questionData.number;
-		var updateAnswers = this.updateAnswers;
-
-		if (this.props.answers.length > 0) return this.props.answers;
-
-		var answerJsx = [];
-
-		answers.map(
-			function(answer, i) {
-				answerJsx.push(<Answer 
-					key={i}
-					value={answer.value}
-					updateAnswers={updateAnswers}
-					number={answer.value}
-					label={answer.label}
-					questionNumber={questionNumber}
-					question={this}
-					ref={(ref) => answers.push(ref)}
-				/>);
-			}
-		);
-		
-		this.props.answers = answerJsx;
-		return answerJsx;
 	},
 	render: function() {
+		var questionNumber = this.props.number;
+		var updateAnswers = this.updateAnswers;
+		var question = this;
+		var answers = this.props.answers;
+		var chosen = this.state.chosen;
+
 		return (
 			<div>
 				<div className="c-question">
 
 					<p className="c-question-ask Media">
 						<span className="c-question-ask--number Media-figure">
-							{this.props.questionData.number}.
+							{this.props.number}.
 						</span>
 						<span className="Media-body">
-							{this.props.questionData.text}
+							{this.props.text}
 						</span>
 					</p>
 
 					<div className="c-question-choices t-radioInputs">
-						{this.createAnswers(this.props.questionData.answers)}
+						{
+							answers.map(
+								function(answer, i) {
+									return (<Answer 
+										key={i}
+										value={answer.value}
+										updateAnswers={updateAnswers}
+										number={answer.value}
+										label={answer.label}
+										questionNumber={questionNumber}
+										question={question}
+										selected={answer.value === chosen}
+									/>);
+								}
+							)
+						}
 					</div>
 
 				</div>

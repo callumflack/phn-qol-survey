@@ -53,8 +53,19 @@ var Form = React.createClass({
 		this.props.questionData.map((question, i) => {
 			var precedingText = this.questionPretext(question);
 			if (precedingText) components.push(precedingText);
+			
+			var questionNumber = question.number,
+				questionText = question.text,
+				answers = question.answers.slice(0);
 
-			components.push(<Question questionData={question} key={i}/>);
+			components.push(
+				<Question
+					number={questionNumber}
+					text={questionText}
+					answers={answers}
+					key={i}
+				/>
+			);
 		});
 
 		return components;

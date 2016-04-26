@@ -19,6 +19,9 @@ var SurveyPage = React.createClass({
 			surveyInProgress: false
 		};
 	},
+	updateProgress: function() {
+		
+	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
 	},
@@ -45,12 +48,12 @@ var SurveyPage = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" onClick={this.startSurvey} name="button">Let's begin</button>
+								<button className="Button t-button" type="button" name="button">Let's begin</button>
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>
 
-						<AboutForm />
+						<AboutForm startSurveyCallback={this.startSurvey} />
 						<Form />
 
 					</div>

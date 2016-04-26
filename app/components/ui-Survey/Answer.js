@@ -3,41 +3,17 @@ var classNames = require('classnames');
 var IconChoice = require('../ui-Icons/Icons.js').IcChoice;
 
 var Answer = React.createClass({
-	getInitialState: function() {
-		return {
-			chosen: undefined
-		};
-	},
-	getDefaultProps: function() {
-		return {
-			activate: this.activate,
-			deactivate: this.deactivate
-		}
-	},
 	handleClick: function(event) {
-		this.setState({
-			chosen : true
-		});
 		this.props.updateAnswers(this.props.value);
-	},
-	activate: function() {
-		this.setState({
-			chosen: true
-		});
-	},
-	deactivate: function() {
-		this.setState({
-			chosen : undefined
-		})
 	},
 	render: function() {
 		var choiceClassName = classNames({
 			'c-question-choices--option': true,
-			'is-active': this.state.chosen
+			'is-active': this.props.selected
 		});
 
 		var iconActive = classNames({
-			'is-active': this.state.chosen
+			'is-active': this.props.selected
 		});
 
 		// // manipulate classes in pure JS
@@ -55,7 +31,7 @@ var Answer = React.createClass({
 
 		return (
 			<div className={choiceClassName} onClick={this.handleClick}>
-				<input name={"q_" + this.props.questionNumber} value={this.props.number} type="radio" checked={this.state.chosen}/>
+				<input name={"q_" + this.props.questionNumber} value={this.props.number} type="radio" checked={this.props.selected}/>
 				<label className="">
 					<span className="c-radioInputNumber">{this.props.number + 1}</span>
 					{this.props.label}
