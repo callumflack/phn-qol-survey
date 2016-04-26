@@ -5,19 +5,12 @@ var IcClose = require('../ui-Icons/Icons.js').IcClose;
 
 // Close btn in same file to study flow of state/props!
 var CloseButton = React.createClass({
-	getInitialState: function() {
-		return { open: false };
+	close: function() {
+		this.props.modalCloseFunction();
 	},
-
-	handleClick: function(event) {
-		/* set state to 'not open' */
-		this.setState({ open: !this.state.open });
-	},
-
 	render: function () {
 		return (
-			/* bind this state to onClick w/ something like {this.click.bind(this)} ?? */
-			<button className="t-buttonClose" onClick="" aria-label="close">
+			<button className="t-buttonClose" onClick={this.close} aria-label="close">
 				<IcClose size="super" />
 			</button>
 		);
@@ -26,12 +19,18 @@ var CloseButton = React.createClass({
 
 // Registration
 var Registration = React.createClass({
+	getInitialState: function() {
+		return { open: false };
+	},
+	closeRegistratonModal: function() {
+		this.setState({ open: false });
+	},
 	render: function () {
 		var modalClasses = classNames({
 			'Modal': true,
 			/* @Kashi: based on state, add 'is-active', s'thing like this {open: this.state.open} ?? */
 			/* For now, I'm toggling to style via this argument below */
-			'is-active': false,
+			'is-active': this.state.open,
 		});
 
 		return (
@@ -39,7 +38,7 @@ var Registration = React.createClass({
 				<div className="Modal-dialog" role="document">
 					<div className="Modal-content">
 
-						<CloseButton />
+						<CloseButton modalCloseFunction={this.closeRegistratonModal} />
 
 						<main className="o-content" role="main" deviceRegistered={this.props.deviceRegistered}>
 							<div className="o-container">

@@ -15,14 +15,25 @@ var Home = React.createClass({
 	getInitialState: function() {
 		var deviceToken = localStorage.getItem('deviceToken');
 		return {
-			deviceRegistered: deviceToken? true : false
+			deviceRegistered: deviceToken? true : false,
+			registrationOpen: false
 		};
+	},
+	toggleRegistratonModal: function() {
+		var registrationOpen = !this.state.registrationOpen;
+		this.setState({ registrationOpen: registrationOpen });
+		this.registration.setState({ open: registrationOpen });
 	},
 	render: function () {
 		return (
 			<div>
 
-				<Nav deviceRegistered={this.state.deviceRegistered} region={this.props.region} />
+				<Nav
+					deviceRegistered={this.state.deviceRegistered}
+					region={this.props.region}
+					toggleRegistration={this.toggleRegistratonModal}
+					ref={(ref) => this.nav = ref}
+				/>
 
 				<main className="o-content" role="main">
 					<div className="o-container">
@@ -63,7 +74,7 @@ var Home = React.createClass({
 					</div>
 				</main>
 
-				<Registration />
+				<Registration ref={(ref) => this.registration = ref} />
 
 			</div>
 		);

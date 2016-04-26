@@ -5,6 +5,10 @@ var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
 var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
+	regClick: function() {
+		if ( ! this.props.deviceRegistered)
+			this.props.toggleRegistration();
+	},
 	render: function() {
 		// {/*var headerClasses = classNames({
 		// 	'Modal': true,
@@ -16,12 +20,12 @@ var Nav = React.createClass({
 		} else {
 			buttonToShow = (<BtnLocation location={this.props.region} />);
 		}
-		
+
 		return (
 			<header className={"c-header is-" + this.props.showProgress} role="header">
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
-					<a className="c-nav-status" href="#registration">
+					<a className="c-nav-status" onClick={this.regClick}>
 						{buttonToShow}
 					</a>
 				</nav>
