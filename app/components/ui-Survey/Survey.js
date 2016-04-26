@@ -11,8 +11,8 @@ var SurveyPage = React.createClass({
 		return {
 			region: region,
 			questionsAnswered: 0,
-			questionResponses: (function() { 
-				var a = [], b = questionData.length; 
+			questionResponses: (function() {
+				var a = [], b = questionData.length;
 				while(b--) a.push(undefined);
 				return a;
 			})()
@@ -26,7 +26,7 @@ var SurveyPage = React.createClass({
 		};
 	},
 	updateProgress: function() {
-		
+
 	},
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId] = response;
@@ -44,8 +44,8 @@ var SurveyPage = React.createClass({
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
 		this.props.questionsAnswered = 0;
-		this.props.questionResponses = (function() { 
-			var a = [], b = questionData.length; 
+		this.props.questionResponses = (function() {
+			var a = [], b = questionData.length;
 			while(b--) a.push(undefined);
 			return a;
 		})()
@@ -59,6 +59,7 @@ var SurveyPage = React.createClass({
 					ref={(ref) => this.nav = ref}
 					surveyInProgress={this.state.surveyInProgress}
 					questionsAnswered={this.props.questionsAnswered}
+					blocked="true"
 				/>
 
 				<main className="o-content" role="main">
