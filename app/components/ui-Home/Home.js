@@ -6,6 +6,8 @@ var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
 
+const DEVICE_REG_URL = "http://localhost:3000/device";
+
 var Home = React.createClass({
 	getDefaultProps: function() {
 		var region = localStorage.getItem('phnRegion');
@@ -35,7 +37,7 @@ var Home = React.createClass({
 	 */
 	registerDevice: function(providerCode) {
 		var deviceInfo = {
-				providerCode: this.pcInput.value
+				providerCode: providerCode
 			},
 			headers = new Headers();
 
@@ -54,7 +56,8 @@ var Home = React.createClass({
 					.json()
 					.then((result) => {
 						localStorage.setItem('deviceToken', result.token);
-						
+						localStorage.setItem('region', result.region);
+						this.setState({ deviceRegistered: true });
 					});
 			})
 			.catch((err) => {
