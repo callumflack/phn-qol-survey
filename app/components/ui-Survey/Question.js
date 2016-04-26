@@ -45,7 +45,6 @@ var Question = React.createClass({
 		);
 		
 		this.props.answers = answerJsx;
-		console.log(answerJsx);
 		return answerJsx;
 	},
 	render: function() {
