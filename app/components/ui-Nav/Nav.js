@@ -1,4 +1,5 @@
 var React = require('react');
+var classNames = require('classnames');
 var SurveyProgress = require('./SurveyProgress.js');
 var BtnRegister = require('../ui-Buttons/NavButtons.js').BtnRegister;
 var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
@@ -10,10 +11,13 @@ var Nav = React.createClass({
 			this.props.toggleRegistration();
 	},
 	render: function() {
-		// {/*var headerClasses = classNames({
-		// 	'Modal': true,
-		// 	'is-active': false,
-		// });*/}
+		var headerStyleClasses = classNames({
+			'c-header': true,
+			// The header has a background color if you're on the survey page.
+			// The below is commented out until we can test device registration.
+			// 'is-registered': this.props.deviceRegistered
+			'is-registered': true
+		});
 
 		var buttonToShow = undefined;
 		var surveyShowsProgress = undefined;
@@ -27,7 +31,7 @@ var Nav = React.createClass({
 		}
 
 		return (
-			<header className={"c-header is-" + this.props.showProgress} role="header">
+			<header className={headerStyleClasses} role="header">
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
 					<a className="c-nav-status" onClick={this.regClick}>
