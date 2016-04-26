@@ -47,9 +47,9 @@ var Form = React.createClass({
 	 * 								contain the complete set of questions with
 	 * 								any preceeding text slotted in place.
 	 */
-	questionBlocks: function(questionData, recordQuestionResponse) {
+	questionBlocks: function(questionData) {
 		var components = [];
-		console.log(this);
+		var recordQuestionResponse = this.props.recordQuestionResponse;
 		
 		this.props.questionData.map((question, i) => {
 			var precedingText = this.questionPretext(question);
@@ -76,7 +76,7 @@ var Form = React.createClass({
 		console.log(this.props);
 		return (
 			<form method="post" action="" className="Survey u-marginT5">
-				{this.questionBlocks(this.props.questionData, this.props.recordQuestionResponse)}
+				{this.questionBlocks(this.props.questionData)}
 				<Submit />
 			</form>
 		)

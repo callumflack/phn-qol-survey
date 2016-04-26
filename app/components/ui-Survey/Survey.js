@@ -43,6 +43,12 @@ var SurveyPage = React.createClass({
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
+		this.props.questionsAnswered = 0;
+		this.props.questionResponses = (function() { 
+			var a = [], b = questionData.length; 
+			while(b--) a.push(undefined);
+			return a;
+		})()
 	},
 	render: function () {
 		return (
