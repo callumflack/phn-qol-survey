@@ -21,6 +21,7 @@
 	}
 
 	&[disabled] {
+		border-color: palette(muted);
 		background-color: palette(muted);
 		cursor: not-allowed;
 		opacity: 0.4;
