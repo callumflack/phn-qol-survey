@@ -20,7 +20,7 @@ var Home = React.createClass({
 			registrationOpen: false
 		};
 	},
-	toggleRegistratonModal: function() {
+	toggleRegistrationModal: function() {
 		var registrationOpen = !this.state.registrationOpen;
 		this.setState({ registrationOpen: registrationOpen });
 		this.registration.setState({ open: registrationOpen });
@@ -37,7 +37,7 @@ var Home = React.createClass({
 				<Nav
 					deviceRegistered={this.state.deviceRegistered}
 					region={this.props.region}
-					toggleRegistration={this.toggleRegistratonModal}
+					toggleRegistration={this.toggleRegistrationModal}
 					ref={(ref) => this.nav = ref}
 				/>
 
@@ -75,7 +75,7 @@ var Home = React.createClass({
 									<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
 									: ""
 							}
-							</div>
+						</div>
 
 					</div>
 				</main>
