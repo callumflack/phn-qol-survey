@@ -54,7 +54,7 @@ var Home = React.createClass({
 								<StartButton deviceRegistered={this.state.deviceRegistered} />
 							</span>
 							{
-								! this.state.deviceRegistered ?
+								(! this.state.deviceRegistered)?
 									<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
 									: ""
 							}
