@@ -30,6 +30,13 @@ var Home = React.createClass({
 
 		this.setState({ registrationOpen: newState });
 	},
+	deregisterDevice: function() {
+		localStorage.clear();
+		this.setState({
+			deviceRegistered: false,
+			registrationOpen: false
+		});
+	},
 	/**
 	 * Handles device registration by communicating with the server via AJAX,
 	 * parsing the result for success or failure.
@@ -79,6 +86,33 @@ var Home = React.createClass({
 				console.log("Error!");
 				console.log(err);
 			});
+	},
+	/**
+	 * Used to decide which registaration modal to show.
+	 */
+	registrationModal: function() {
+		console.log("working out which registration modal to show.");
+		if ( ! this.state.deviceRegistered) {
+			return (
+				<Registration
+					registerDevice={this.registerDevice}
+					registrationOpen={this.state.registrationOpen}
+					region={this.props.region}
+					toggleRegistration={this.toggleRegistration}
+					ref={(ref) => this.registration = ref}
+				/>
+			);
+		} else {
+			return(
+				<Deregistration
+					deregisterDevice={this.deregisterDevice}
+					registrationOpen={this.state.registrationOpen}
+					region={this.props.region}
+					toggleRegistration={this.toggleRegistration}
+					ref={(ref) => this.registration = ref}
+				/>
+			);
+		}
 	},
 	render: function () {
 		var delimitRuleClasses = classNames({
@@ -136,15 +170,7 @@ var Home = React.createClass({
 					</div>
 				</main>
 
-				<Registration
-					registerDevice={this.registerDevice}
-					registrationOpen={this.state.registrationOpen}
-					region={this.props.region}
-					toggleRegistration={this.toggleRegistration}
-					ref={(ref) => this.registration = ref}
-				/>
-
-				<Deregistration />
+				{this.registrationModal()}
 
 			</div>
 		);

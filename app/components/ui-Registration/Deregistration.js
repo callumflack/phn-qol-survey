@@ -40,13 +40,13 @@ var Deregistration = React.createClass({
 							<div className="o-container">
 
 								<h1 className="u-textMd u-textWtMd u-textCenter">
-									You're registered as a Service Provider in Cairns.<br />
+									You're registered as a Service Provider in {this.props.region}.<br />
 								<span className="u-textWtLt">Are you sure you want to deregister?</span>
 								</h1>
 
 								<p className="u-textCenter u-marginT15">
-									<button className="Button t-button--brand t-button--md u-marginR" type="submit">No</button>
-									<button className="Button t-button--rev t-button--md u-colorBrand" type="submit">Yes</button>
+									<button className="Button t-button--brand t-button--md u-marginR" onClick={this.closeRegClick} type="submit">No</button>
+									<button className="Button t-button--rev t-button--md u-colorBrand" onClick={this.props.deregisterDevice} type="submit">Yes</button>
 								</p>
 
 							</div>
