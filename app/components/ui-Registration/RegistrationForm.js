@@ -15,12 +15,23 @@ var RegistrationForm = React.createClass({
 
 		// Instruct the Home component to register the device.
 		var providerCode = this.pcInput.value;
-		this.props.registerDevice(providerCode);
+		this.props.registerDevice(providerCode, this.validationFailCallback);
+		
+		// Unfocus our input
+		this.pcInput.blur();
+		
 		return false;
+	},
+	/**
+	 * Lets our user know that their value for the provider code is invalid.
+	 */
+	validationFailCallback: function() {
+		this.setState({ invalidData: true });
 	},
 	getInitialState: function() {
 		return {
-			inputVisible: false
+			inputVisible: false,
+			invalidData: false
 		};
 	},
 	handleClick: function(event) {
@@ -42,7 +53,8 @@ var RegistrationForm = React.createClass({
 			'Form-group': true,
 			'u-flexGrow1': true,
 			'u-paddingRD1': true,
-			'is-active': this.state.inputVisible
+			'is-active': this.state.inputVisible,
+			'has-error': this.state.invalidData
 		});
 
 		return (

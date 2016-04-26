@@ -36,7 +36,7 @@ var Home = React.createClass({
 	 * @param {string} providerCode	The (case-insensitive) provider code to
 	 * 								search on the server.
 	 */
-	registerDevice: function(providerCode) {
+	registerDevice: function(providerCode, validationFailCallback) {
 		var deviceInfo = {
 				providerCode: providerCode
 			},
@@ -56,9 +56,13 @@ var Home = React.createClass({
 				response
 					.json()
 					.then((result) => {
+						if (result.errors) {
+							return validationFailCallback();
+						}
+						
 						var token = result.token,
 							region = result.provider.region;
-
+						
 						localStorage.setItem('deviceToken', token);
 						localStorage.setItem('phnRegion', region);
 						this.props.region = region;
@@ -134,6 +138,7 @@ var Home = React.createClass({
 				<Registration
 					registerDevice={this.registerDevice}
 					registrationOpen={this.state.registrationOpen}
+					region={this.props.region}
 					toggleRegistration={this.toggleRegistration}
 					ref={(ref) => this.registration = ref}
 				/>
