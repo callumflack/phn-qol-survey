@@ -7,7 +7,7 @@ var SurveyProgressIndicator = require('./SurveyProgressIndicator.js');
 var SurveyProgress = React.createClass({
 	render: function() {
 		return (
-			<div className={"c-surveyProgressWrapper u-" + this.props.display}>
+			<div className="c-surveyProgressWrapper">
 				<div className="u-posAbsoluteCenter u-flex">
 					<div className="o-container o-container--specWidth u-flex">
 						<div className="u-flex u-flexAlignItemsCenter u-sizeFill">

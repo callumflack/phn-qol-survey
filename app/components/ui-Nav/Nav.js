@@ -14,11 +14,16 @@ var Nav = React.createClass({
 		// 	'Modal': true,
 		// 	'is-active': false,
 		// });*/}
+
 		var buttonToShow = undefined;
+		var surveyShowsProgress = undefined;
+
 		if ( ! this.props.deviceRegistered) {
 			buttonToShow = (<BtnRegister />);
+			surveyShowsProgress = " ";
 		} else {
 			buttonToShow = (<BtnLocation location={this.props.region} />);
+			surveyShowsProgress = (<SurveyProgress />);
 		}
 
 		return (
@@ -30,7 +35,7 @@ var Nav = React.createClass({
 					</a>
 				</nav>
 
-				<SurveyProgress display="block" />
+				{surveyShowsProgress}
 
 			</header>
 		);
