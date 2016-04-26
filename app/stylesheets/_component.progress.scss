@@ -9,8 +9,8 @@
 // is managed by Suit's flexbox component
 
 .c-surveyProgressWrapper {
-	display: none;
-	
+	// display: none;
+
 	@include respond-to(max-sm) {
 		position: relative;
 		padding-bottom: space(6);
