@@ -54,11 +54,11 @@ var Submit = React.createClass({
 	render: function() {
 		return (
 			<div className="c-delimit u-textCenter u-marginT4 u-marginB6">
-				<p className="u-textMd u-textWtMd u-colorBrandAlt u-textCenter u-marginBD6">That was easy wasn't it?</p>
-				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">Now on to the second part.</p>
+				<p className="u-textMd u-textWtMd u-colorBrandAlt u-textCenter u-marginBD6">Now on to the second part.</p>
+				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">26 easy multiple choice questions.</p>
 				<div className="c-delimit-rule c-delimit-rule--active"></div>
 				<span className="c-delimit-block">
-					<button className="Button t-button" name="button" type="button" value="Submit survey">
+					<button className="Button t-button" name="button" type="submit" value="Submit survey">
 						Start the survey
 					</button>
 				</span>
@@ -115,28 +115,32 @@ var AboutForm = React.createClass({
 
 				<div className="c-question">
 					<QuestionAsked number="2" text="How old are you?" />
-					<select className="c-question-choices t-selectInputs">
-						<option value="" disabled selected>Choose from these options</option>
-						<option value="1">15</option>
-						<option value="2">15–24</option>
-						<option value="3">25–34</option>
-						<option value="4">35–44</option>
-						<option value="5">45–54</option>
-						<option value="6">55–64</option>
-						<option value="7">65+</option>
-					</select>
+					<div className="t-selectInputs">
+						<select>
+							<option value="" disabled selected>Choose from these options</option>
+							<option value="1">15</option>
+							<option value="2">15–24</option>
+							<option value="3">25–34</option>
+							<option value="4">35–44</option>
+							<option value="5">45–54</option>
+							<option value="6">55–64</option>
+							<option value="7">65+</option>
+						</select>
+					</div>
 				</div>
 
 				<div className="c-question">
 					<QuestionAsked number="3" text="What is the highest education you received?" />
-					<select className="c-question-choices t-selectInputs">
-						<option value="" disabled selected>Choose from these options</option>
-						<option value="1">Primary school</option>
-						<option value="2">High (secondary) school</option>
-						<option value="3">Tafe certificate or diploma</option>
-						<option value="4">University (Tertiary)</option>
-						<option value="5">Other</option>
-					</select>
+					<div className="t-selectInputs">
+						<select>
+							<option value="" disabled selected>Choose from these options</option>
+							<option value="1">Primary school</option>
+							<option value="2">High (secondary) school</option>
+							<option value="3">Tafe certificate or diploma</option>
+							<option value="4">University (Tertiary)</option>
+							<option value="5">Other</option>
+						</select>
+					</div>
 				</div>
 
 				<div className="c-question">
@@ -163,67 +167,70 @@ var AboutForm = React.createClass({
 
 				<div className="c-question">
 					<QuestionAsked number="5" text="Where are you receiving this health service at?" />
-					<select className="c-question-choices t-selectInputs">
-						<option value="" disabled selected>Choose from these options</option>
-						<optgroup label="Torres and Cape">
-							<option value="0">Aurukun</option>
-							<option value="1">Cook</option>
-							<option value="2">Hope Vale</option>
-							<option value="3">Kowanyama</option>
-							<option value="4">Lockhart River</option>
-							<option value="5">Mapoon</option>
-							<option value="6">Napranum</option>
-							<option value="7">Northern Peninsula Area</option>
-							<option value="8">Pormpuraaw</option>
-							<option value="9">Torres</option>
-							<option value="10">Torres Strait Island</option>
-							<option value="11">Weipa</option>
-						</optgroup>
-						<optgroup label="Cairns and Hinterland">
-							<option value="0">Cairns; Douglas</option>
-							<option value="1">Cassowary Coast</option>
-							<option value="2">Croydon</option>
-							<option value="3">Etheridge</option>
-							<option value="4">Tablelands; Mareeba</option>
-							<option value="5">Wujal Wujal</option>
-							<option value="6">Yarrabah</option>
-						</optgroup>
-						<optgroup label="Townsville">
-							<option value="0">Burdekin</option>
-							<option value="1">Charters Towers</option>
-							<option value="2">Flinders</option>
-							<option value="3">Hinchinbrook</option>
-							<option value="4">Palm Island</option>
-							<option value="5">Richmond</option>
-							<option value="6">Townsville</option>
-						</optgroup>
-						<optgroup label="Mackay">
-							<option value="0">Isaac</option>
-							<option value="1">Charters Towers</option>
-							<option value="2">Mackay</option>
-							<option value="3">Whitsunday</option>
-						</optgroup>
-
-					</select>
+					<div className="t-selectInputs">
+						<select>
+							<option value="" disabled selected>Choose from these options</option>
+							<optgroup label="Torres and Cape">
+								<option value="0">Aurukun</option>
+								<option value="1">Cook</option>
+								<option value="2">Hope Vale</option>
+								<option value="3">Kowanyama</option>
+								<option value="4">Lockhart River</option>
+								<option value="5">Mapoon</option>
+								<option value="6">Napranum</option>
+								<option value="7">Northern Peninsula Area</option>
+								<option value="8">Pormpuraaw</option>
+								<option value="9">Torres</option>
+								<option value="10">Torres Strait Island</option>
+								<option value="11">Weipa</option>
+							</optgroup>
+							<optgroup label="Cairns and Hinterland">
+								<option value="0">Cairns; Douglas</option>
+								<option value="1">Cassowary Coast</option>
+								<option value="2">Croydon</option>
+								<option value="3">Etheridge</option>
+								<option value="4">Tablelands; Mareeba</option>
+								<option value="5">Wujal Wujal</option>
+								<option value="6">Yarrabah</option>
+							</optgroup>
+							<optgroup label="Townsville">
+								<option value="0">Burdekin</option>
+								<option value="1">Charters Towers</option>
+								<option value="2">Flinders</option>
+								<option value="3">Hinchinbrook</option>
+								<option value="4">Palm Island</option>
+								<option value="5">Richmond</option>
+								<option value="6">Townsville</option>
+							</optgroup>
+							<optgroup label="Mackay">
+								<option value="0">Isaac</option>
+								<option value="1">Charters Towers</option>
+								<option value="2">Mackay</option>
+								<option value="3">Whitsunday</option>
+							</optgroup>
+						</select>
+					</div>
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="6" text="How many sessions have you done with this particular health provider?" />
-					<select className="c-question-choices t-selectInputs">
-						<option value="" disabled selected>Choose from these options</option>
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-						<option value="11">11</option>
-						<option value="12">12</option>
-					</select>
+					<QuestionAsked number="6" text="How many sessions have you had with this particular health provider?" />
+					<div className="t-selectInputs">
+						<select>
+							<option value="" disabled selected>Choose from these options</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+							<option value="11">11</option>
+							<option value="12">12</option>
+						</select>
+					</div>
 				</div>
 
 				<Submit />

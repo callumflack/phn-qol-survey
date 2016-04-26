@@ -163,6 +163,10 @@
 	position: absolute;
 	right: space(1);
 	top: 31px;
+
+	@include on-event() {
+		outline: none;
+	}
 }
 
 

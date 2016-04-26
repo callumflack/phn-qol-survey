@@ -13,6 +13,10 @@
 	display: inline-block;
 	fill: currentColor; // The color of the SVG will inherit the parent's `color`.
 
+	@include on-event() {
+		outline: 0;
+	}
+
 	&--sm {
 		width: 12px;
 		height: 12px;
