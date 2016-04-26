@@ -7,8 +7,7 @@ var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
 	regClick: function() {
-		if ( ! this.props.deviceRegistered)
-			this.props.toggleRegistration(true);
+		this.props.toggleRegistration(true);
 	},
 	render: function() {
 		var headerStyleClasses = classNames({
@@ -18,28 +17,24 @@ var Nav = React.createClass({
 			// 'is-registered': this.props.deviceRegistered
 			'is-registered': true
 		});
-
-		var buttonToShow = undefined;
-		var surveyShowsProgress = undefined;
-
-		if ( ! this.props.deviceRegistered) {
-			buttonToShow = (<BtnRegister />);
-			surveyShowsProgress = " ";
-		} else {
-			buttonToShow = (<BtnLocation location={this.props.region} />);
-			surveyShowsProgress = (<SurveyProgress />);
-		}
-
+		
+		var settingsBtn = (this.props.deviceRegistered)? 
+							<BtnLocation location={this.props.region} />
+							: <BtnRegister />,
+			surveyProgress = (this.props.surveyActive)?
+							<SurveyProgress />
+							: "";
+							
 		return (
 			<header className={headerStyleClasses} role="header">
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
 					<a className="c-nav-status" onClick={this.regClick}>
-						{buttonToShow}
+						{settingsBtn}
 					</a>
 				</nav>
 
-				{surveyShowsProgress}
+				{surveyProgress}
 
 			</header>
 		);

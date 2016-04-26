@@ -19,7 +19,8 @@ var Home = React.createClass({
 		var deviceToken = localStorage.getItem('deviceToken');
 		return {
 			deviceRegistered: deviceToken? true : false,
-			registrationOpen: false
+			registrationOpen: false,
+			isSurveying: false
 		};
 	},
 	toggleRegistration: function(newState) {
@@ -55,9 +56,18 @@ var Home = React.createClass({
 				response
 					.json()
 					.then((result) => {
-						localStorage.setItem('deviceToken', result.token);
-						localStorage.setItem('region', result.region);
-						this.setState({ deviceRegistered: true });
+						var token = result.token,
+							region = result.provider.region;
+
+						localStorage.setItem('deviceToken', token);
+						localStorage.setItem('phnRegion', region);
+						this.props.region = region;
+						this.setState(
+							{ 
+								deviceRegistered: true,
+								registrationOpen: false
+							}
+						);
 					});
 			})
 			.catch((err) => {
@@ -79,6 +89,7 @@ var Home = React.createClass({
 					region={this.props.region}
 					toggleRegistration={this.toggleRegistration}
 					ref={(ref) => this.nav = ref}
+					surveyInProgress={false}
 				/>
 
 				<main className="o-content" role="main">
