@@ -54,6 +54,12 @@ var config = {
         new webpack.optimize.CommonsChunkPlugin('common.js', 2),
         new webpack.ProvidePlugin({
             'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compressor: {
+                warnings: false
+            },
+            mangle: false
         })
     ]
 };

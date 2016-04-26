@@ -25,25 +25,21 @@ var QuestionAsked = React.createClass({
 var QuestionAskedInputRadio = React.createClass({
 	getInitialState: function() {
 		return {
-			chosen : false
-		};
+			checked: undefined
+		}
 	},
-
-	handleClick: function(event) {
-		this.setState({
-			chosen : !this.state.chosen
-		});
+	activate: function(genderChangeEvent) {
+		var newState = true;
+		this.setState({ checked: (newState)? true : undefined });
+		this.props.updateGroup(this.props.number)
 	},
-
+	deactivate: function() {
+		this.setState({ checked: false });
+	},
 	render: function() {
-		var choiceClassName = classNames({
-			'c-question-choices--option': true,
-			'is-active': this.state.chosen
-		});
-
 		return (
-			<div className={choiceClassName} onClick={this.handleClick}>
-				<input name="gender" type="radio"/>
+			<div className="c-question-choices--option" onClick={this.activate}>
+				<input name={this.props.name} type="radio" value={this.props.value} checked={this.state.checked} />
 				<label className="">
 					<span className="c-radioInputNumber">{this.props.number}</span>
 					{this.props.label}
@@ -72,15 +68,48 @@ var Submit = React.createClass({
 });
 
 var AboutForm = React.createClass({
-
+	getDefaultProps: function() {
+		return {
+			genderQuestions: [],
+			indigenousQuestions: []
+		}
+	},
+	genderGroupChange: function(setValue) {
+		console.log("Now set to #: ", setValue);
+		this.props.genderQuestions.map(function(question) {
+			if (question.props.number !== setValue)
+				question.deactivate();
+		});
+	},
+	indigenousGroupChange: function(setValue) {
+		console.log("Now set to #: ", setValue);
+		this.props.indigenousQuestions.map(function(question) {
+			if (question.props.number !== setValue)
+				question.deactivate();
+		});
+	},
 	render: function() {
 		return (
 			<form className="" method="post" action="">
 				<div className="c-question">
 					<QuestionAsked number="1" text="What is your gender?" />
 					<div className="c-question-choices t-radioInputs">
-						<QuestionAskedInputRadio number="1" label="Male" />
-						<QuestionAskedInputRadio number="2" label="Female" />
+						<QuestionAskedInputRadio
+							updateGroup={this.genderGroupChange}
+							ref={(ref) => this.props.genderQuestions.push(ref)}
+							name="gender"
+							value="Male"
+							number={1}
+							label="Male"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.genderGroupChange}
+							ref={(ref) => this.props.genderQuestions.push(ref)}
+							name="gender"
+							value="Female"
+							number={2}
+							label="Female"
+						/>
 					</div>
 				</div>
 
@@ -117,8 +146,22 @@ var AboutForm = React.createClass({
 				<div className="c-question">
 					<QuestionAsked number="4" text="Do you identify as Indigenous Australian?" />
 					<div className="c-question-choices t-radioInputs">
-						<QuestionAskedInputRadio number="1" label="Yes" />
-						<QuestionAskedInputRadio number="2" label="No" />
+						<QuestionAskedInputRadio
+							number="1"
+							name="indigenous"
+							value="true"
+							updateGroup={this.indigenousGroupChange}
+							ref={(ref) => this.props.indigenousQuestions.push(ref)}
+							label="Yes"
+						/>
+						<QuestionAskedInputRadio
+							number="2"
+							name="indigenous"
+							value="false"
+							updateGroup={this.indigenousGroupChange}
+							ref={(ref) => this.props.indigenousQuestions.push(ref)}
+							label="No"
+						/>
 					</div>
 				</div>
 
@@ -170,7 +213,7 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="6" text="How many sessions have you done with this particular health provider?" />
+					<QuestionAsked number="6" text="How many sessions have you had with this particular health provider?" />
 					<div className="t-selectInputs">
 						<select>
 							<option value="" disabled selected>Choose from these options</option>
