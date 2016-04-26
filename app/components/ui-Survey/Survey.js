@@ -1,6 +1,7 @@
 var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
 var AboutForm = require('../ui-SurveyAbout/Form.js');
+var questionData = require('./data/questions.js');
 var Form = require('./Form.js');
 var Score = require('./Score.js');
 
@@ -9,7 +10,12 @@ var SurveyPage = React.createClass({
 		var region = localStorage.getItem('phnRegion');
 		return {
 			region: region,
-			questionsAnswered: 0
+			questionsAnswered: 0,
+			questionResponses: (function() { 
+				var a = [], b = questionData.length; 
+				while(b--) a.push(undefined);
+				return a;
+			})()
 		}
 	},
 	getInitialState: function() {
@@ -18,6 +24,22 @@ var SurveyPage = React.createClass({
 			deviceRegistered: deviceToken? true : false,
 			surveyInProgress: false
 		};
+	},
+	updateProgress: function() {
+		
+	},
+	recordQuestionResponse: function(questionId, response) {
+		this.props.questionResponses[questionId] = response;
+
+		function countSet(a) {
+			var b = a.length, c = 0;
+			while (b--) c+= (a[b] !== undefined)? 1 : 0; return c;
+		}
+		this.props.questionsAnswered = countSet(
+			this.props.questionResponses
+		);
+		this.nav.props.questionsAnswered = this.props.questionsAnswered;
+		this.nav.forceUpdate();
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
@@ -45,13 +67,16 @@ var SurveyPage = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" onClick={this.startSurvey} name="button">Let's begin</button>
+								<button className="Button t-button" type="button" name="button">Let's begin</button>
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>
 
-						<AboutForm />
-						<Form />
+						<AboutForm startSurveyCallback={this.startSurvey} />
+						<Form
+							questionData={questionData}
+							recordQuestionResponse={this.recordQuestionResponse}
+						/>
 
 					</div>
 				</main>

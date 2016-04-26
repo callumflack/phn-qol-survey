@@ -51,6 +51,12 @@ var QuestionAskedInputRadio = React.createClass({
 });
 
 var Submit = React.createClass({
+	startSurvey: function(submitEvent) {
+		submitEvent.preventDefault();
+		submitEvent.stopPropagation();
+		
+		this.props.startSurveyCallback();
+	},
 	render: function() {
 		return (
 			<div className="c-delimit u-textCenter u-marginT4 u-marginB6">
@@ -58,7 +64,7 @@ var Submit = React.createClass({
 				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">26 easy multiple choice questions.</p>
 				<div className="c-delimit-rule c-delimit-rule--active"></div>
 				<span className="c-delimit-block">
-					<button className="Button t-button" name="button" type="submit" value="Submit survey">
+					<button className="Button t-button" name="button" type="button" onClick={this.startSurvey} value="Submit survey">
 						Start the survey
 					</button>
 				</span>
@@ -75,14 +81,12 @@ var AboutForm = React.createClass({
 		}
 	},
 	genderGroupChange: function(setValue) {
-		console.log("Now set to #: ", setValue);
 		this.props.genderQuestions.map(function(question) {
 			if (question.props.number !== setValue)
 				question.deactivate();
 		});
 	},
 	indigenousGroupChange: function(setValue) {
-		console.log("Now set to #: ", setValue);
 		this.props.indigenousQuestions.map(function(question) {
 			if (question.props.number !== setValue)
 				question.deactivate();
@@ -233,7 +237,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<Submit />
+				<Submit startSurveyCallback={this.props.startSurveyCallback} />
 
 			</form>
 		)
