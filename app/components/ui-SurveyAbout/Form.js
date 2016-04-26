@@ -81,14 +81,12 @@ var AboutForm = React.createClass({
 		}
 	},
 	genderGroupChange: function(setValue) {
-		console.log("Now set to #: ", setValue);
 		this.props.genderQuestions.map(function(question) {
 			if (question.props.number !== setValue)
 				question.deactivate();
 		});
 	},
 	indigenousGroupChange: function(setValue) {
-		console.log("Now set to #: ", setValue);
 		this.props.indigenousQuestions.map(function(question) {
 			if (question.props.number !== setValue)
 				question.deactivate();

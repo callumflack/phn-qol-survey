@@ -1,6 +1,5 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
-var questionData = require('./data/questions.js');
 var Question = require('./Question');
 var Submit = require('./Submit');
 
@@ -48,8 +47,10 @@ var Form = React.createClass({
 	 * 								contain the complete set of questions with
 	 * 								any preceeding text slotted in place.
 	 */
-	questionBlocks: function(questionData) {
+	questionBlocks: function(questionData, recordQuestionResponse) {
 		var components = [];
+		console.log(this);
+		
 		this.props.questionData.map((question, i) => {
 			var precedingText = this.questionPretext(question);
 			if (precedingText) components.push(precedingText);
@@ -64,6 +65,7 @@ var Form = React.createClass({
 					text={questionText}
 					answers={answers}
 					key={i}
+					recordQuestionResponse={recordQuestionResponse}
 				/>
 			);
 		});
@@ -71,9 +73,10 @@ var Form = React.createClass({
 		return components;
 	},
 	render: function() {
+		console.log(this.props);
 		return (
 			<form method="post" action="" className="Survey u-marginT5">
-				{this.questionBlocks(this.props.questionData)}
+				{this.questionBlocks(this.props.questionData, this.props.recordQuestionResponse)}
 				<Submit />
 			</form>
 		)
@@ -81,4 +84,4 @@ var Form = React.createClass({
 });
 
 
-module.exports = e => <Form questionData={questionData} />
+module.exports = Form;

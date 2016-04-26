@@ -1,6 +1,7 @@
 var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
 var AboutForm = require('../ui-SurveyAbout/Form.js');
+var questionData = require('./data/questions.js');
 var Form = require('./Form.js');
 var Score = require('./Score.js');
 
@@ -9,7 +10,12 @@ var SurveyPage = React.createClass({
 		var region = localStorage.getItem('phnRegion');
 		return {
 			region: region,
-			questionsAnswered: 0
+			questionsAnswered: 0,
+			questionResponses: (function() { 
+				var a = [], b = questionData.length; 
+				while(b--) a.push(undefined);
+				return a;
+			})()
 		}
 	},
 	getInitialState: function() {
@@ -21,6 +27,19 @@ var SurveyPage = React.createClass({
 	},
 	updateProgress: function() {
 		
+	},
+	recordQuestionResponse: function(questionId, response) {
+		this.props.questionResponses[questionId] = response;
+
+		function countSet(a) {
+			var b = a.length, c = 0;
+			while (b--) c+= (a[b] !== undefined)? 1 : 0; return c;
+		}
+		this.props.questionsAnswered = countSet(
+			this.props.questionResponses
+		);
+		this.nav.props.questionsAnswered = this.props.questionsAnswered;
+		this.nav.forceUpdate();
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
@@ -54,7 +73,10 @@ var SurveyPage = React.createClass({
 						</div>
 
 						<AboutForm startSurveyCallback={this.startSurvey} />
-						<Form />
+						<Form
+							questionData={questionData}
+							recordQuestionResponse={this.recordQuestionResponse}
+						/>
 
 					</div>
 				</main>
