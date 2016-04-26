@@ -12,18 +12,15 @@ var Nav = React.createClass({
 	render: function() {
 		var headerStyleClasses = classNames({
 			'c-header': true,
-			// The header has a background color if you're on the survey page.
-			// The below is commented out until we can test device registration.
-			'is-registered': this.props.deviceRegistered
-			// 'is-registered': true
+			'is-registered': this.props.blocked
 		});
 
 		var settingsBtn = (this.props.deviceRegistered)?
-							<BtnLocation location={this.props.region} />
-							: <BtnRegister />,
+						<BtnLocation location={this.props.region} />
+						: <BtnRegister />,
 			surveyProgress = (this.props.surveyInProgress)?
-							<SurveyProgress questionsAnswered={this.props.questionsAnswered} />
-							: "";
+						<SurveyProgress questionsAnswered={this.props.questionsAnswered} />
+						: "";
 
 		return (
 			<header className={headerStyleClasses} role="header">
