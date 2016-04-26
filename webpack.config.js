@@ -16,7 +16,8 @@ var config = {
     resolve: {
         alias: {
             'react': bower_dir + '/react/react.min.js',
-            'react-dom': bower_dir + '/react/react-dom.min.js'
+            'react-dom': bower_dir + '/react/react-dom.min.js',
+            'fetch': bower_dir + '/fetch/fetch.js'
         }
     },
     output: {
@@ -51,7 +52,10 @@ var config = {
     //     })
     // ],
     plugins: [
-        new webpack.optimize.CommonsChunkPlugin('common.js', 2)
+        new webpack.optimize.CommonsChunkPlugin('common.js', 2),
+        new webpack.ProvidePlugin({
+            'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
+        })
     ]
 };
 
