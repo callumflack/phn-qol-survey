@@ -31,6 +31,7 @@
   },
   "scripts": {
     "dev": "set NODE_ENV=development&&webpack-dev-server --devtool eval --hot --progress --colors --content-base build",
+    "start": "set NODE_ENV=development&&webpack-dev-server --devtool eval --hot --progress --colors --content-base build",
     "deploy": "set NODE_ENV=production&&webpack -p"
   },
   "author": "Kashi Samaraweera",
