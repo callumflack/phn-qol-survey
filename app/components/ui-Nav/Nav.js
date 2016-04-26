@@ -7,7 +7,7 @@ var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 var Nav = React.createClass({
 	regClick: function() {
 		if ( ! this.props.deviceRegistered)
-			this.props.toggleRegistration();
+			this.props.toggleRegistration(true);
 	},
 	render: function() {
 		// {/*var headerClasses = classNames({

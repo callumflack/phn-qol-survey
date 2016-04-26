@@ -19,18 +19,14 @@ var CloseButton = React.createClass({
 
 // Registration
 var Registration = React.createClass({
-	getInitialState: function() {
-		return { open: false };
-	},
-	closeRegistratonModal: function() {
-		this.setState({ open: false });
+	closeRegClick: function() {
+		this.props.registrationOpen = false;
+		this.props.toggleRegistration(false);
 	},
 	render: function () {
 		var modalClasses = classNames({
 			'Modal': true,
-			/* @Kashi: based on state, add 'is-active', s'thing like this {open: this.state.open} ?? */
-			/* For now, I'm toggling to style via this argument below */
-			'is-active': this.state.open,
+			'is-active': this.props.registrationOpen
 		});
 
 		return (
@@ -38,7 +34,7 @@ var Registration = React.createClass({
 				<div className="Modal-dialog" role="document">
 					<div className="Modal-content">
 
-						<CloseButton modalCloseFunction={this.closeRegistratonModal} />
+						<CloseButton modalCloseFunction={this.closeRegClick} />
 
 						<main className="o-content" role="main" deviceRegistered={this.props.deviceRegistered}>
 							<div className="o-container">
@@ -49,7 +45,10 @@ var Registration = React.createClass({
 								</h1>
 
 								<div className="u-size9of12 Grid-cell--center">
-									<RegistrationForm />
+									<RegistrationForm
+										registrationOpen={this.props.registrationOpen}
+										registerDevice={this.props.registerDevice}
+									/>
 								</div>
 
 

@@ -20,10 +20,47 @@ var Home = React.createClass({
 			registrationOpen: false
 		};
 	},
-	toggleRegistratonModal: function() {
-		var registrationOpen = !this.state.registrationOpen;
-		this.setState({ registrationOpen: registrationOpen });
-		this.registration.setState({ open: registrationOpen });
+	toggleRegistration: function(newState) {
+		if (newState === undefined)
+			newState = !this.state.registrationOpen;
+			
+		this.setState({ registrationOpen: newState });
+	},
+	/**
+	 * Handles device registration by communicating with the server via AJAX,
+	 * parsing the result for success or failure.
+	 * 
+	 * @param {string} providerCode	The (case-insensitive) provider code to
+	 * 								search on the server.
+	 */
+	registerDevice: function(providerCode) {
+		var deviceInfo = {
+				providerCode: this.pcInput.value
+			},
+			headers = new Headers();
+
+		headers.set('Content-Type', 'application/json');
+		headers.set('Accept', 'application/json');
+		return fetch(
+			DEVICE_REG_URL,
+			{
+				method: "POST",
+				mode: "cors",
+				headers: headers,
+				body: JSON.stringify(deviceInfo)
+			})
+			.then((response) => {
+				response
+					.json()
+					.then((result) => {
+						localStorage.setItem('deviceToken', result.token);
+						
+					});
+			})
+			.catch((err) => {
+				console.log("Error!");
+				console.log(err);
+			});
 	},
 	render: function () {
 		var delimitRuleClasses = classNames({
@@ -37,7 +74,7 @@ var Home = React.createClass({
 				<Nav
 					deviceRegistered={this.state.deviceRegistered}
 					region={this.props.region}
-					toggleRegistration={this.toggleRegistratonModal}
+					toggleRegistration={this.toggleRegistration}
 					ref={(ref) => this.nav = ref}
 				/>
 
@@ -80,7 +117,12 @@ var Home = React.createClass({
 					</div>
 				</main>
 
-				<Registration ref={(ref) => this.registration = ref} />
+				<Registration
+					registerDevice={this.registerDevice}
+					registrationOpen={this.state.registrationOpen}
+					toggleRegistration={this.toggleRegistration}
+					ref={(ref) => this.registration = ref}
+				/>
 
 			</div>
 		);
