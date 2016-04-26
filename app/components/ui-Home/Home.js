@@ -6,11 +6,19 @@ var StartButton = require("./StartButton.js");
 require('./../../stylesheets/app.scss');
 
 var Home = React.createClass({
+	getInitialState: function() {
+		var deviceToken = localStorage.getItem('deviceToken'),
+			region = localStorage.getItem('phnRegion');
+
+		return {
+			deviceRegistered: deviceToken? true : false
+		};
+	},
 	render: function () {
 		return (
 			<div>
 
-				<Nav />
+				<Nav deviceRegistered={this.state.deviceRegistered} />
 
 				<main className="o-content" role="main">
 					<div className="o-container">
@@ -28,8 +36,8 @@ var Home = React.createClass({
 							<li><a href="tel:1300-7746279">
 								<span className="c-listItemTag">T</span>1300 PRIMARY (7746279)
 							</a></li>
-							<li><a href="mailto:admin@primaryhealth.com.au ">
-								<span className="c-listItemTag">E</span>admin@primaryhealth.com.au 
+							<li><a href="mailto:admin@primaryhealth.com.au">
+								<span className="c-listItemTag">E</span>admin@primaryhealth.com.au
 							</a></li>
 							<li><a href="http://www.primaryhealth.com.au">
 								<span className="c-listItemTag">W</span>www.primaryhealth.com.au
@@ -39,9 +47,7 @@ var Home = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-
-								<StartButton deviceRegistered={this.props.deviceRegistered} />
-
+								<StartButton deviceRegistered={this.state.deviceRegistered} />
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
 						</div>
