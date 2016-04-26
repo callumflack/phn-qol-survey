@@ -6,10 +6,14 @@ var StartButton = require("./StartButton.js");
 require('./../../stylesheets/app.scss');
 
 var Home = React.createClass({
+	getDefaultProps: function() {
+		var region = localStorage.getItem('phnRegion');
+		return {
+			region: region
+		}
+	},
 	getInitialState: function() {
-		var deviceToken = localStorage.getItem('deviceToken'),
-			region = localStorage.getItem('phnRegion');
-
+		var deviceToken = localStorage.getItem('deviceToken');
 		return {
 			deviceRegistered: deviceToken? true : false
 		};
@@ -18,7 +22,7 @@ var Home = React.createClass({
 		return (
 			<div>
 
-				<Nav deviceRegistered={this.state.deviceRegistered} />
+				<Nav deviceRegistered={this.state.deviceRegistered} region={this.props.region} />
 
 				<main className="o-content" role="main">
 					<div className="o-container">
@@ -49,8 +53,12 @@ var Home = React.createClass({
 							<span className="c-delimit-block">
 								<StartButton deviceRegistered={this.state.deviceRegistered} />
 							</span>
-							<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
-						</div>
+							{
+								! this.state.deviceRegistered ?
+									<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
+									: ""
+							}
+							</div>
 
 					</div>
 				</main>

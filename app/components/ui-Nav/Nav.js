@@ -6,18 +6,23 @@ var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
 	render: function() {
-		{/*var headerClasses = classNames({
-			'Modal': true,
-			'is-active': false,
-		});*/}
-
+		// {/*var headerClasses = classNames({
+		// 	'Modal': true,
+		// 	'is-active': false,
+		// });*/}
+		var buttonToShow = undefined;
+		if ( ! this.props.deviceRegistered) {
+			buttonToShow = (<BtnRegister />);
+		} else {
+			buttonToShow = (<BtnLocation location={this.props.region} />);
+		}
+		
 		return (
 			<header className={"c-header is-" + this.props.showProgress} role="header">
 				<nav className="c-nav">
 					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
 					<a className="c-nav-status" href="#registration">
-						{/*<BtnLocation location="Aurukun" />*/}
-						<BtnRegister />
+						{buttonToShow}
 					</a>
 				</nav>
 
