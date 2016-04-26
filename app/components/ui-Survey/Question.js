@@ -4,17 +4,51 @@ var Answer = require('./Answer.js');
 var Question = React.createClass({
 	getInitialState: function() {
 		return {
-			answered : false
+			chosen: undefined
 		};
 	},
-
-	handleChildChange: function(child) {
-		console.log("A child has changed!");
+	getDefaultProps: function() {
+		return {
+			answers: []
+		}
 	},
-
-	render: function() {
+	updateAnswers: function(newAnswerValue) {
+		this.setState({ chosen: newAnswerValue });
+		this.props.answers.map(function(answer) {
+			if (answer.props.value === newAnswerValue)
+				answer.props.activate();
+			else
+				answer.props.deactivate();
+		});
+	},
+	createAnswers: function(answers) {
 		var questionNumber = this.props.questionData.number;
+		var updateAnswers = this.updateAnswers;
 
+		if (this.props.answers.length > 0) return this.props.answers;
+
+		var answerJsx = [];
+
+		answers.map(
+			function(answer, i) {
+				answerJsx.push(<Answer 
+					key={i}
+					value={answer.value}
+					updateAnswers={updateAnswers}
+					number={answer.value}
+					label={answer.label}
+					questionNumber={questionNumber}
+					question={this}
+					ref={(ref) => answers.push(ref)}
+				/>);
+			}
+		);
+		
+		this.props.answers = answerJsx;
+		console.log(answerJsx);
+		return answerJsx;
+	},
+	render: function() {
 		return (
 			<div>
 				<div className="c-question">
@@ -29,9 +63,7 @@ var Question = React.createClass({
 					</p>
 
 					<div className="c-question-choices t-radioInputs">
-						{this.props.questionData.answers.map(function(answer, i) {
-							return <Answer key={i} number={answer.value} label={answer.label} questionNumber={questionNumber} question={this}/>
-						})}
+						{this.createAnswers(this.props.questionData.answers)}
 					</div>
 
 				</div>
