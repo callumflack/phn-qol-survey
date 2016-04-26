@@ -1,4 +1,5 @@
 var React = require("react");
+var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var Registration = require("../ui-Registration/Registration.js");
 var StartButton = require("./StartButton.js");
@@ -25,6 +26,11 @@ var Home = React.createClass({
 		this.registration.setState({ open: registrationOpen });
 	},
 	render: function () {
+		var delimitRuleClasses = classNames({
+			'c-delimit-rule': true,
+			'c-delimit-rule--active': this.state.deviceRegistered,
+			'c-delimit-rule--disabled': !this.state.deviceRegistered
+		});
 		return (
 			<div>
 
@@ -60,7 +66,7 @@ var Home = React.createClass({
 						</ul>
 
 						<div className="c-delimit u-textCenter u-marginT2">
-							<div className="c-delimit-rule c-delimit-rule--active"></div>
+							<div className={delimitRuleClasses}></div>
 							<span className="c-delimit-block">
 								<StartButton deviceRegistered={this.state.deviceRegistered} />
 							</span>

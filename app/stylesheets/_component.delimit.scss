@@ -6,22 +6,26 @@
 
 
 .c-delimit {
-    position: relative;
+	position: relative;
 }
 
 .c-delimit-rule {
-    @include rule();
-    opacity: 0.6;
-    transform: translateY(22px);
+	@include rule();
+	opacity: 0.6;
+	transform: translateY(22px);
 
-    &--active {
-        @include rule( palette(brand-complement) );
-    }
+	&--active {
+		@include rule( palette(brand-complement) );
+	}
+
+	&--disabled {
+		@include rule( palette(base) );
+	}
 }
 
 .c-delimit-block {
-    background-color: palette(background);
-    display: inline-block;
-    padding: 0 space(0.5);
-    position: relative;
+	background-color: palette(background);
+	display: inline-block;
+	padding: 0 space(0.5);
+	position: relative;
 }
