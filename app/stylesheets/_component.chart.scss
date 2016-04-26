@@ -29,14 +29,17 @@
 	background-color: palette(brand-complement);
 	border-bottom-left-radius: size(border-radius, base);
 	border-bottom-right-radius: size(border-radius, base);
-	color: palette(white);
-	font-family: $font-sans-medium;
-	font-size: fontsize(headerXl, base);
-	text-align: center;
 	top: auto;
 	height: 44%;
 
-	> span {
+	.c-chart-indicatorScore {
+		color: palette(white);
+		font-family: $font-sans-medium;
+		font-size: fontsize(headerXl, base);
+		text-align: center;
+	}
+
+	.c-chart-indicatorMark {
 		font-family: $font-sans-regular;
 		font-size: fontsize(textSm, base);
 		position: relative;

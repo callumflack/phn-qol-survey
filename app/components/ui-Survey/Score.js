@@ -21,14 +21,14 @@ var Score = React.createClass({
 			'Modal': true,
 			'is-active': this.props.scoreOpen,
 		});
-		
+
 		var amounts = [
 			this.randomGraph(),
 			this.randomGraph(),
 			this.randomGraph(),
 			this.randomGraph()
 		];
-		
+
 		return (
 			<div className={modalClasses} tabindex="-1" role="dialog" aria-labelledby="">
 				<div className="Modal-dialog" role="document">
@@ -50,7 +50,8 @@ var Score = React.createClass({
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[0].style}>
-													 {amounts[0].magnitude}<span>%</span>
+													<span className="c-chart-indicatorScore">{amounts[0].magnitude}</span>
+													<span className="c-chart-indicatorMark">%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
@@ -58,7 +59,8 @@ var Score = React.createClass({
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[1].style}>
-													{amounts[1].magnitude}<span>%</span>
+													<span className="c-chart-indicatorScore">{amounts[1].magnitude}</span>
+													<span className="c-chart-indicatorMark">%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
@@ -66,7 +68,8 @@ var Score = React.createClass({
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[2].style}>
-													{amounts[2].magnitude}<span>%</span>
+													<span className="c-chart-indicatorScore">{amounts[2].magnitude}</span>
+													<span className="c-chart-indicatorMark">%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
@@ -74,7 +77,8 @@ var Score = React.createClass({
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[3].style}>
-													{amounts[3].magnitude}<span>%</span>
+													<span className="c-chart-indicatorScore">{amounts[3].magnitude}</span>
+													<span className="c-chart-indicatorMark">%</span>
 												</div>
 											</div>
 											<h2 className="c-chart-label">Physical</h2>
@@ -82,7 +86,6 @@ var Score = React.createClass({
 
 									</div>
 								</div>
-
 
 								<div className="u-well">
 									<h3 className="u-headlineSm--light u-textCenter u-marginBD1">Share your score by email or SMS</h3>
@@ -94,7 +97,6 @@ var Score = React.createClass({
 								<p className="u-textCenter u-marginT">
 									<a className="u-textXs--light" href="/"><IcReturn align="left" />Do another survey</a>
 								</p>
-
 
 							</div>
 						</main>
