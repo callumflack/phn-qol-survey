@@ -115,7 +115,7 @@ var Home = React.createClass({
 									<p className="u-textXs--medium u-textCenter u-marginT">You need to register this device first</p>
 									: ""
 							}
-							</div>
+						</div>
 
 					</div>
 				</main>

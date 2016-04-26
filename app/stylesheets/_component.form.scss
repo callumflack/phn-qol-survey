@@ -161,7 +161,7 @@ input[type="text"] {
 	// }
 
 	// /* uncss:ignore */
-	// &.is-active > label:not(.error) {
+	// &.is-active > label:not(.has-error) {
 	//     // color: palette(charcoal);
 	//     // font-size: rem($sizeTextSm * 0.65);
 	//     opacity: 0;
@@ -170,30 +170,30 @@ input[type="text"] {
 }
 
 // /* uncss:ignore */
-// .Form-group.is-active > label:not(.error) {
+// .Form-group.is-active > label:not(.has-error) {
 // 	opacity: 0;
 // 	transform: translateY(rem(-10));
 // }
 //
 // /* uncss:ignore */
-// .Form--clear .Form-group.is-active > label:not(.error) {
+// .Form--clear .Form-group.is-active > label:not(.has-error) {
 // 	font-size: fontsize(textXs, base);
 // 	opacity: 1;
 // 	transform: translate(0, -32px);
 // }
 
-.Form-group.is-active > label:not(.error) {
+.Form-group.is-active > label:not(.has-error) {
 	font-size: fontsize(textXs, base);
 	opacity: 1;
 	transform: translate(1px, -16px);
 }
 
-.Form-group.is-active > input.Form-control:not(.error) {
+.Form-group.is-active > input.Form-control:not(.has-error) {
 	border-color: rgba( palette(brand-complement), 1 );
 	color: palette(brand-complement);
 }
 
-.Form-group.is-active.error {
+.Form-group.has-error {
 	label {
 		color: palette(bad-news);
 	}
