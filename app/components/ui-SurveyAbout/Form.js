@@ -37,8 +37,13 @@ var QuestionAskedInputRadio = React.createClass({
 		this.setState({ checked: false });
 	},
 	render: function() {
+		var choiceClassName = classNames({
+			'c-question-choices--option': true,
+			'is-active': this.state.checked
+		});
+
 		return (
-			<div className="c-question-choices--option" onClick={this.activate}>
+			<div className={choiceClassName} onClick={this.activate}>
 				<input name={this.props.name} type="radio" value={this.props.value} checked={this.state.checked} />
 				<label className="">
 					<span className="c-radioInputNumber">{this.props.number}</span>
@@ -54,7 +59,7 @@ var Submit = React.createClass({
 	startSurvey: function(submitEvent) {
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
-		
+
 		this.props.startSurveyCallback();
 	},
 	render: function() {
