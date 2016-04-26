@@ -26,7 +26,7 @@ var QuestionAskedInputRadio = React.createClass({
 	render: function() {
 		return (
 			<div className="c-question-choices--option">
-				<input name="" value="" type="radio"/>
+				<input name="gender" type="radio"/>
 				<label className="">
 					<span className="c-radioInputNumber">{this.props.number}</span>
 					{this.props.label}

@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 
-var bower_dir = path.join(__dirname, 'bower_components');
 var node_modules_dir = path.join(__dirname, 'node_modules');
 
 var config = {
@@ -15,9 +14,9 @@ var config = {
     },
     resolve: {
         alias: {
-            'react': bower_dir + '/react/react.min.js',
-            'react-dom': bower_dir + '/react/react-dom.min.js',
-            'fetch': bower_dir + '/fetch/fetch.js'
+            'react': path.join(node_modules_dir, './react/dist/react.min.js'),
+            'react-dom': path.join(node_modules_dir, './react-dom/dist/react-dom.min.js'),
+            'fetch': path.join(node_modules_dir, './whatwg-fetch/fetch.js')
         }
     },
     output: {
@@ -30,7 +29,7 @@ var config = {
         loaders: [
             {
                 test: /\.jsx?$/,
-                exclude: /(node_modules|bower_components)/,
+                exclude: /node_modules/,
                 loader: 'babel', // 'babel-loader' is also a legal name to reference
                 query: {
                     presets: ['react', 'es2015']
@@ -59,6 +58,6 @@ var config = {
     ]
 };
 
-config.addVendor('react', path.resolve(bower_dir, 'react/react.min.js'));
+config.addVendor('react', path.resolve(node_modules_dir, './react/dist/react.min.js'));
 
 module.exports = config;
