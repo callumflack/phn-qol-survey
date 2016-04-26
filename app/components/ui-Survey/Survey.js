@@ -22,11 +22,13 @@ var SurveyPage = React.createClass({
 		var deviceToken = localStorage.getItem('deviceToken');
 		return {
 			deviceRegistered: deviceToken? true : false,
-			surveyInProgress: false
+			surveyInProgress: false,
+			scoreOpen: false
 		};
 	},
-	updateProgress: function() {
-		
+	submitSurvey: function() {
+		console.log("Thank you for your submission.");
+		this.setState({ scoreOpen: true });
 	},
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId] = response;
@@ -49,6 +51,9 @@ var SurveyPage = React.createClass({
 			while(b--) a.push(undefined);
 			return a;
 		})()
+	},
+	closeScoreHandler: function() {
+		this.setState( { scoreOpen: false });
 	},
 	render: function () {
 		return (
@@ -82,12 +87,16 @@ var SurveyPage = React.createClass({
 						<Form
 							questionData={questionData}
 							recordQuestionResponse={this.recordQuestionResponse}
+							submitSurvey={this.submitSurvey}
 						/>
 
 					</div>
 				</main>
 
-				<Score />
+				<Score
+					scoreOpen={this.state.scoreOpen}
+					closeScoreHandler={this.closeScoreHandler}
+				/>
 
 			</div>
 		);

@@ -6,7 +6,7 @@ var classNames = require('classnames');
 var CloseButton = React.createClass({
 	render: function () {
 		return (
-			<button className="t-buttonClose" aria-label="close">
+			<button className="t-buttonClose" onClick={this.props.modalCloseFunction} aria-label="close">
 				<IcClose size="super" />
 			</button>
 		);
