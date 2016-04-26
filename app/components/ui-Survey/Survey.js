@@ -8,7 +8,7 @@ var SurveyPage = React.createClass({
 	render: function () {
 		return (
 			<div>
-				<Nav showProgress="active" />
+				<Nav showProgress="true" />
 
 				<main className="o-content" role="main">
 					<div className="o-container">
