@@ -15,13 +15,18 @@
 	border-radius: size(border-radius, small);
 	margin-left: 45px;
 	margin-bottom: space(0.5);
-	padding: 2px 5px;
+	padding: 2px 5px 2px 8px;
 	position: relative;
 	width: 50%;
 
-	select,
-	option {
-		// @include TextRg();
+	// Reset
+	select {
+		border: 0;
+		background-color: transparent;
+		display: inline-block;
+		width: 100%;
+		-moz-appearance: window;
+		-webkit-appearance: none;
 	}
 
 	&:after {
