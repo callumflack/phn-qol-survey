@@ -9,6 +9,9 @@ var Deregistration = require("../ui-Registration/Deregistration.js");
 var QolForm = require('./QolForm.js');
 var Score = require('./Score.js');
 
+const NXT_QUESTION_SCROLL_DURATION = 800;
+const NXT_QUESTION_SCROLL_DELAY = 400;
+
 var SurveyPage = React.createClass({
 	getDefaultProps: function() {
 		var region = localStorage.getItem('phnRegion');
@@ -47,14 +50,26 @@ var SurveyPage = React.createClass({
 				return;
 			}
 		}
+		try {
+			this.validateParticipant();
+		} catch (formError) {
+			if (formError.code = "validation") {
+				// Furnish error states.
+				var invalidQuestions = formError.questions,
+				firstInvalid = invalidQuestions[0];
+				firstInvalid.questionComponent.scrollTo();
+				return;
+			}
+		}
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
 		});
 	},
 	/**
-	 * Validates each survey question and the About You section responses for
-	 * correctness. If any of the data is not valid, an error is thrown.
+	 * Validates the survey question responses provided by the user. If there
+	 * are questions outstanding, they are wrapped in an array of errors and
+	 * thrown from this function.
 	 * @throws {SurveyValidationError}	Thrown if there are one or more survey
 	 * 									questions that do not have a valid
 	 * 									response.
@@ -84,6 +99,25 @@ var SurveyPage = React.createClass({
 			throw validationError;				
 		}
 	},
+	/**
+	 * Validates the 'About You' information provided by the user.
+	 * @throws {ParticipantValidationError}	Thrown if there are issues with the
+	 * 										participant information.
+	 */
+	validateParticipant: function() {
+		
+	},
+	/**
+	 * Used when a user makes her answer selection. This will store the user's
+	 * choice in a local property (questionResponses), update the progress bar
+	 * in the nav, and move the user onto the succeeding question.
+	 * @param {Number} questionNum	The question number (not ID) that is being
+	 * 								answered.
+	 * @param {Number} response	The value of the chosen response, from 0..4.
+	 * @throws {ParticipantValidationError}	Thrown if there are issues with the
+	 * 										participant information.
+	 */
+	
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId - 1] = response;
 
@@ -96,6 +130,15 @@ var SurveyPage = React.createClass({
 		);
 		this.nav.props.questionsAnswered = this.props.questionsAnswered;
 		this.nav.forceUpdate();
+
+		setTimeout(
+			() => { (questionData[questionId])?
+				questionData[questionId].questionComponent.scrollTo(
+					NXT_QUESTION_SCROLL_DURATION
+				)
+				: null; },
+			NXT_QUESTION_SCROLL_DELAY
+		)
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
@@ -104,7 +147,8 @@ var SurveyPage = React.createClass({
 			var a = [], b = questionData.length;
 			while(b--) a.push(undefined);
 			return a;
-		})()
+		})();
+		questionData[0].questionComponent.scrollTo();
 	},
 	deregisterDevice: function() {
 		localStorage.clear();
@@ -179,7 +223,7 @@ var SurveyPage = React.createClass({
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
-								<button className="Button t-button" type="button" name="button">Let's begin</button>
+								<button className="Button t-button" type="button" onClick={this.startSurvey} name="button">Let's begin</button>
 							</span>
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>

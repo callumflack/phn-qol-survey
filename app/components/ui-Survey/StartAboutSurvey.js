@@ -2,10 +2,10 @@ var React = require("react");
 var IcSubmit = require('../ui-Icons/Icons.js').IcSubmit;
 
 var StartAboutSurvey = React.createClass({
-	submitSurvey: function(submitEvent) {
+	startSurvey: function(submitEvent) {
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
-
+		this.props.startSurveyCallback();
 		this.props.submitSurvey();
 	},
 	render: function() {

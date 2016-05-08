@@ -24,9 +24,12 @@ var Question = React.createClass({
 	},
 	/**
 	 * Scrolls the viewport to this Question.
+	 * @param {Number} scrollTime	The number of milliseconds that the scroll
+	 * 								animation should last.
 	 */
-	scrollTo: function() {
-		smoothScroll(React.findDOMNode(this.props.questionComponent), 1800);
+	scrollTo: function(scrollTime) {
+		var scrollTime = isNaN(scrollTime)? 1800 : scrollTime;
+		smoothScroll(React.findDOMNode(this.props.questionComponent), scrollTime);
 	},
 	/**
 	 * Used to toggle off the non-selected answers, and toggle on the selected
