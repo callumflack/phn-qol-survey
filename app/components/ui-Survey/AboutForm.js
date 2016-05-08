@@ -3,7 +3,6 @@ var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var IcActive = require('../ui-Icons/Icons.js').IcActive;
 var IcChoice = require('../ui-Icons/Icons.js').IcChoice;
-var IcSubmit = require('../ui-Icons/Icons.js').IcSubmit;
 var SubmitSurveys = require('./SubmitSurveys');
 
 require('./../../stylesheets/app.scss');
