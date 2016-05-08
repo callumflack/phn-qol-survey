@@ -57,6 +57,8 @@ var QuestionAskedInputRadio = React.createClass({
 var AboutForm = React.createClass({
 	getDefaultProps: function() {
 		return {
+			ageQuestions: [],
+			educationQuestions: [],
 			genderQuestions: [],
 			indigenousQuestions: []
 		}
