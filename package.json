@@ -34,6 +34,17 @@
 	"dev": "set NODE_ENV=development&&webpack-dev-server --devtool eval --hot --progress --colors --content-base build",
 	"deploy": "set NODE_ENV=production&&webpack -p"
   },
-  "author": "Kashi Samaraweera",
+	"contributors": [
+		{
+			"name": "Callum Flack",
+			"email": "callum@patternworks.com",
+			"url": "http://www.patternworks.com.au"
+		},
+		{
+			"name": "Kashi Samaraweera",
+			"email": "kashi@kashis.com.au",
+			"url": "https://kashis.com.au"
+		}
+	],
   "license": "ISC"
 }
