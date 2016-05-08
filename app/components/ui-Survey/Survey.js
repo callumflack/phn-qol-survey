@@ -43,6 +43,7 @@ var SurveyPage = React.createClass({
 				// Furnish error states.
 				var invalidQuestions = formError.questions,
 				firstInvalid = invalidQuestions[0];
+				firstInvalid.questionComponent.scrollTo();
 				return;
 			}
 		}

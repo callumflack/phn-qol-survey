@@ -1,5 +1,6 @@
 var React = require('react');
 var Answer = require('./Answer.js');
+var smoothScroll = require('../util/smoothscroll.js');
 
 var Question = React.createClass({
 	getInitialState: function() {
@@ -22,6 +23,12 @@ var Question = React.createClass({
 		this.setState({ error: hasError });
 	},
 	/**
+	 * Scrolls the viewport to this Question.
+	 */
+	scrollTo: function() {
+		smoothScroll(React.findDOMNode(this.props.questionComponent), 1800);
+	},
+	/**
 	 * Used to toggle off the non-selected answers, and toggle on the selected
 	 * answer. This calls the supplied (ancestor) recordQuestionResponse
 	 * function.
@@ -39,7 +46,7 @@ var Question = React.createClass({
 		var chosen = this.state.chosen;
 
 		return (
-			<div>
+			<div ref={(ref) => this.props.questionComponent = ref}>
 				<div className={"c-question" + ((this.state.error)? ' has-error' : '')}>
 
 					<p className="c-question-ask Media">
