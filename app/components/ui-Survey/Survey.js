@@ -114,10 +114,8 @@ var SurveyPage = React.createClass({
 
 				<main className="o-content" role="main">
 					<div className="o-container">
-
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>
-
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
@@ -135,7 +133,9 @@ var SurveyPage = React.createClass({
 
 					</div>
 				</main>
+
 				{this.registrationModal()}
+
 				<Score
 					scoreOpen={this.state.scoreOpen}
 					closeScoreHandler={this.closeScoreHandler}
