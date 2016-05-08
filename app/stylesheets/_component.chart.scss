@@ -34,9 +34,11 @@
 
 	.c-chart-indicatorScore {
 		color: palette(white);
+		display: inline-block;
 		font-family: $font-sans-medium;
 		font-size: fontsize(headerXl, base);
 		text-align: center;
+		width: 100%;
 	}
 
 	.c-chart-indicatorMark {
@@ -48,7 +50,17 @@
 }
 
 .c-chart-label {
-	@include TextSm($mixinFont: $font-sans-medium);
+	// @include TextSm($mixinFont: $font-sans-medium);
 	margin-top: space(0.5);
 	text-align: center;
+
+	color: palette(brand);
+	font-family: $font-sans-medium;
+	font-size: fontsize(textXs, xs);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+
+	@include respond-to(xs) {
+		font-size: fontsize(textXs, base);
+	}
 }

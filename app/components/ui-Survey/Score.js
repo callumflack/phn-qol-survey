@@ -34,7 +34,7 @@ var Score = React.createClass({
 				<div className="Modal-dialog" role="document">
 					<div className="Modal-content">
 
-						<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
+						<span className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></span>
 						<CloseButton modalCloseFunction={this.closeScoreHandler} />
 
 						<main className="o-content u-marginT5" role="main" deviceRegistered={this.props.deviceRegistered}>
@@ -50,38 +50,46 @@ var Score = React.createClass({
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[0].style}>
-													<span className="c-chart-indicatorScore">{amounts[0].magnitude}</span>
-													<span className="c-chart-indicatorMark">%</span>
+													<span className="c-chart-indicatorScore">
+														{amounts[0].magnitude}
+														<span className="c-chart-indicatorMark">%</span>
+													</span>
 												</div>
 											</div>
-											<h2 className="c-chart-label">Physical</h2>
+											<h2 className="c-chart-label">Physical health</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[1].style}>
-													<span className="c-chart-indicatorScore">{amounts[1].magnitude}</span>
-													<span className="c-chart-indicatorMark">%</span>
+													<span className="c-chart-indicatorScore">
+														{amounts[1].magnitude}
+														<span className="c-chart-indicatorMark">%</span>
+													</span>
 												</div>
 											</div>
-											<h2 className="c-chart-label">Physical</h2>
+											<h2 className="c-chart-label">Psychological</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[2].style}>
-													<span className="c-chart-indicatorScore">{amounts[2].magnitude}</span>
-													<span className="c-chart-indicatorMark">%</span>
+													<span className="c-chart-indicatorScore">
+														{amounts[2].magnitude}
+														<span className="c-chart-indicatorMark">%</span>
+													</span>
 												</div>
 											</div>
-											<h2 className="c-chart-label">Physical</h2>
+											<h2 className="c-chart-label">Social relationships</h2>
 										</div>
 										<div className="Grid-cell u-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[3].style}>
-													<span className="c-chart-indicatorScore">{amounts[3].magnitude}</span>
-													<span className="c-chart-indicatorMark">%</span>
+													<span className="c-chart-indicatorScore">
+														{amounts[3].magnitude}
+														<span className="c-chart-indicatorMark">%</span>
+													</span>
 												</div>
 											</div>
-											<h2 className="c-chart-label">Physical</h2>
+											<h2 className="c-chart-label">Environment</h2>
 										</div>
 
 									</div>
