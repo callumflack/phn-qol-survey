@@ -6,7 +6,7 @@ var IcAvatar = require('../ui-Icons/Icons.js').IcAvatar;
 const ButtonRegister = (props) =>
 	<button className="Button t-buttonSecondary">
 		<IcSettings align="left" />
-		Register device
+		Register
 	</button>;
 
 var ButtonLocation = React.createClass({
