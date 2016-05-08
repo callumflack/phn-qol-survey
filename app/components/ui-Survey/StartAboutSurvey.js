@@ -12,11 +12,11 @@ var StartAboutSurvey = React.createClass({
 		return (
 			<div className="c-delimit u-textCenter u-marginT4 u-marginB6">
 				<p className="u-textMd u-textWtMd u-colorBrandAlt u-textCenter u-marginBD6">Now on to the second part.</p>
-				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">5 easy multiple choice questions.</p>
+				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">5 fast, easy multiple choice questions about you.</p>
 				<div className="c-delimit-rule c-delimit-rule--active"></div>
 				<span className="c-delimit-block">
 					<button className="Button t-button" name="button" type="button" onClick={this.startSurvey} value="Submit survey">
-						Complete the section about you
+						Complete the last section
 					</button>
 				</span>
 			</div>
