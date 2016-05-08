@@ -1,6 +1,6 @@
 bower_components/
 node_modules/
-dist/*.js
+dist/
 build/*.js
 .vscode/
 .idea/
