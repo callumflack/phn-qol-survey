@@ -25,7 +25,7 @@ var Nav = React.createClass({
 		return (
 			<header className={headerStyleClasses} role="header">
 				<nav className="c-nav">
-					<a className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></a>
+					<span className="c-nav-home"><img src="images/NQPHN.png" alt="" /></span>
 					<a className="c-nav-status" onClick={this.regClick}>
 						{settingsBtn}
 					</a>
