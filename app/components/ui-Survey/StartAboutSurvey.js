@@ -16,7 +16,7 @@ var StartAboutSurvey = React.createClass({
 				<div className="c-delimit-rule c-delimit-rule--active"></div>
 				<span className="c-delimit-block">
 					<button className="Button t-button" name="button" type="button" onClick={this.startSurvey} value="Submit survey">
-						Complete the 'about you' survey
+						Complete the section about you
 					</button>
 				</span>
 			</div>
