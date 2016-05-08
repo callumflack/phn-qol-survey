@@ -46,7 +46,6 @@ var QuestionAskedInputRadio = React.createClass({
 			<div className={choiceClassName} onClick={this.activate}>
 				<input name={this.props.name} type="radio" value={this.props.value} checked={this.state.checked} />
 				<label className="">
-					<span className="c-radioInputNumber">{this.props.number}</span>
 					{this.props.label}
 				</label>
 				<IcChoice active="" />
@@ -91,6 +90,18 @@ var AboutForm = React.createClass({
 				question.deactivate();
 		});
 	},
+	ageGroupChange: function(setValue) {
+		this.props.ageQuestions.map(function(question) {
+			if (question.props.number !== setValue)
+				question.deactivate();
+		});
+	},
+	educationGroupChange: function(setValue) {
+		this.props.educationQuestions.map(function(question) {
+			if (question.props.number !== setValue)
+				question.deactivate();
+		});
+	},
 	indigenousGroupChange: function(setValue) {
 		this.props.indigenousQuestions.map(function(question) {
 			if (question.props.number !== setValue)
@@ -124,31 +135,101 @@ var AboutForm = React.createClass({
 
 				<div className="c-question">
 					<QuestionAsked number="2" text="How old are you?" />
-					<div className="t-selectInputs">
-						<select>
-							<option value="" disabled selected>Choose from these options</option>
-							<option value="1">15</option>
-							<option value="2">15–24</option>
-							<option value="3">25–34</option>
-							<option value="4">35–44</option>
-							<option value="5">45–54</option>
-							<option value="6">55–64</option>
-							<option value="7">65+</option>
-						</select>
+					<div className="c-question-choices t-radioInputs">
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="15"
+							number={1}
+							label="15"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="15–24"
+							number={2}
+							label="15–24"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="25–34"
+							number={3}
+							label="25–34"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="35–44"
+							number={4}
+							label="35–44"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="45–54"
+							number={5}
+							label="45–54"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="55–64"
+							number={6}
+							label="55–64"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.ageGroupChange}
+							ref={(ref) => this.props.ageQuestions.push(ref)}
+							name="age"
+							value="65+"
+							number={7}
+							label="65+"
+						/>
 					</div>
 				</div>
 
 				<div className="c-question">
 					<QuestionAsked number="3" text="What is the highest education you received?" />
-					<div className="t-selectInputs">
-						<select>
-							<option value="" disabled selected>Choose from these options</option>
-							<option value="1">Primary school</option>
-							<option value="2">High (secondary) school</option>
-							<option value="3">Tafe certificate or diploma</option>
-							<option value="4">University (Tertiary)</option>
-							<option value="5">Other</option>
-						</select>
+					<div className="c-question-choices t-radioInputs">
+						<QuestionAskedInputRadio
+							updateGroup={this.educationGroupChange}
+							ref={(ref) => this.props.educationQuestions.push(ref)}
+							name="education"
+							value="Primary school"
+							number={1}
+							label="Primary school"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.educationGroupChange}
+							ref={(ref) => this.props.educationQuestions.push(ref)}
+							name="education"
+							value="High school"
+							number={2}
+							label="High school"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.educationGroupChange}
+							ref={(ref) => this.props.educationQuestions.push(ref)}
+							name="education"
+							value="Tafe certificate or diploma"
+							number={3}
+							label="Tafe certificate or diploma"
+						/>
+						<QuestionAskedInputRadio
+							updateGroup={this.educationGroupChange}
+							ref={(ref) => this.props.educationQuestions.push(ref)}
+							name="education"
+							value="University"
+							number={4}
+							label="University"
+						/>
 					</div>
 				</div>
 
