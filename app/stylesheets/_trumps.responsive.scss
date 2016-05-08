@@ -40,8 +40,10 @@
 
 // breakpoint: xs
 .xs-Grid--withGutter         { @include respond-to(xs) { margin: 0 -(space(0.5)); > .Grid-cell { padding: 0 space(0.5); } } }
-.u-xs-flex                   { display: none; @include respond-to(xs) { display: flex !important; } }
+.u-xs-flex                   { @include respond-to(xs) { display: flex !important; } }
+.u-xs-flexExpandLeft         { @include respond-to(xs) { margin-left: auto !important; } }
 .u-xs-floatRight             { @include respond-to(xs) { float: right !important; } }
+
 
 // breakpoint: sm
 .u-sm-flex                   { @include respond-to(sm) { display: flex !important; } }

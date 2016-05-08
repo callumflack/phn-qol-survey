@@ -36,7 +36,7 @@
 	// position: relative;
 	// transform: translateY(10px);
 	// transition: all map-fetch($transition, duration, fast) map-fetch($transition, type, base);
-	width: size(container, default);
+	// width: size(container, default);
 
 	@include respond-to(sm) {
 		margin: space(2) auto;

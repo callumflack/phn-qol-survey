@@ -36,7 +36,7 @@ var Registration = React.createClass({
 
 						<CloseButton modalCloseFunction={this.closeRegClick} />
 
-						<main className="o-content" role="main" deviceRegistered={this.props.deviceRegistered}>
+						<main className="o-content u-mxs-marginT4" role="main" deviceRegistered={this.props.deviceRegistered}>
 							<div className="o-container">
 
 								<h1 className="c-delimit u-headline">

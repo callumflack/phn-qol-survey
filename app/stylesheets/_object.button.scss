@@ -148,6 +148,7 @@
 	@include button;
 
 	&--md {
+		line-height: size(button-height, base);
 		text-align: center;
 		width: space(6);
 	}
@@ -169,6 +170,16 @@
 	}
 }
 
+.t-xs-button {
+	@include respond-to(xs) {
+		&--md {
+			line-height: size(button-height, base);
+			text-align: center;
+			width: space(6);
+		}
+	}
+}
+
 
 // Close button (this just positions an icon)
 // --------------------------------------------------------------------------
@@ -176,11 +187,16 @@
 .t-buttonClose {
 	color: palette(brand);
 	position: absolute;
-	right: space(1);
-	top: 31px;
+	right: space(0.5);
+	top: space(0.5);
 
 	@include on-event() {
 		outline: none;
+	}
+
+	@include respond-to(xs) {
+		right: space(1);
+		top: 31px;
 	}
 }
 
