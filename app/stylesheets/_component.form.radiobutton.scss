@@ -155,10 +155,10 @@
 	[type="radio"] + label:before,
 	[type="radio"] + label:after {
 		content: ' ';
-		height: space(1);
-		margin: 0 1px 1px;
+		height: space(0.9);
+		margin: 1px 1px 1px;
 		transition: none;
-		width: space(1);
+		width: space(0.9);
 	}
 
 	.is-active {
@@ -172,6 +172,12 @@
 		[type="radio"]:not(:checked) + label:after {
 			background-color: palette(white);
 		}
+
+		[type=radio]:checked+label:before {
+			// border: 2px solid transparent;
+			background-color: white;
+			transform: scale(.6);
+		}
 	}
 }
 
@@ -179,7 +185,8 @@
 // Component & theme classes
 // --------------------------------------------------------------------------
 
-// the typographic element that React will update
+// the typographic element inside a custom radio button
+// that React will update.
 .c-radioInputNumber {
 	background-color: transparent;
 	border: 0;
