@@ -59,15 +59,14 @@ var QolForm = React.createClass({
 				questionText = question.text,
 				answers = question.answers.slice(0);
 
-			components.push(
-				<Question
-					number={questionNumber}
-					text={questionText}
-					answers={answers}
-					key={i}
-					recordQuestionResponse={recordQuestionResponse}
-				/>
-			);
+			components.push(<Question
+				number={questionNumber}
+				text={questionText}
+				answers={answers}
+				key={i}
+				ref={(ref) => question.questionComponent = ref}
+				recordQuestionResponse={recordQuestionResponse}
+			/>);
 		});
 
 		return components;

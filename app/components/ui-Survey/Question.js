@@ -4,7 +4,8 @@ var Answer = require('./Answer.js');
 var Question = React.createClass({
 	getInitialState: function() {
 		return {
-			chosen: undefined
+			chosen: undefined,
+			error: undefined
 		};
 	},
 	getDefaultProps: function() {
@@ -12,6 +13,20 @@ var Question = React.createClass({
 			answerComponents: []
 		}
 	},
+	/**
+	 * Used to set (or unset) an error state on the Question.
+	 * @param {boolean} hasError	A boolean TRUE if the question should show
+	 * 								a validation error, FALSE if not.
+	 */
+	setErrorState: function(hasError) {
+		this.setState({ error: hasError });
+	},
+	/**
+	 * Used to toggle off the non-selected answers, and toggle on the selected
+	 * answer. This calls the supplied (ancestor) recordQuestionResponse
+	 * function.
+	 * @param {Number} newAnswerValue	The response to record for this question.
+	 */
 	updateAnswers: function(newAnswerValue) {
 		this.props.recordQuestionResponse(this.props.number, newAnswerValue);
 		this.setState({ chosen: newAnswerValue });
@@ -25,7 +40,7 @@ var Question = React.createClass({
 
 		return (
 			<div>
-				<div className="c-question">
+				<div className={"c-question" + ((this.state.error)? ' has-error' : '')}>
 
 					<p className="c-question-ask Media">
 						<span className="c-question-ask--number Media-figure">

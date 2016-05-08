@@ -73,6 +73,9 @@ var SurveyPage = React.createClass({
 						var e = new Error("Missing answer");
 						e.code = "missing_answer";
 						e.questionId = i;
+						e.questionComponent = questionData[i].questionComponent;
+						e.questionComponent.setErrorState(true);
+						console.log(e.questionComponent);	
 						return e;
 					}());
 			}
