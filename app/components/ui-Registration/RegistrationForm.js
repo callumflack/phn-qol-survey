@@ -16,10 +16,10 @@ var RegistrationForm = React.createClass({
 		// Instruct the Home component to register the device.
 		var providerCode = this.pcInput.value;
 		this.props.registerDevice(providerCode, this.validationFailCallback);
-		
+
 		// Unfocus our input
 		this.pcInput.blur();
-		
+
 		return false;
 	},
 	/**
@@ -46,25 +46,25 @@ var RegistrationForm = React.createClass({
 	handleBlur: function() {
 		// We're going to update the state ONLY IF there's no data in our input.
 		if (this.pcInput.value === "")
-			this.setState({ inputVisible: false });	
+			this.setState({ inputVisible: false });
 	},
 	render: function () {
 		var formGroupClasses = classNames({
 			'Form-group': true,
 			'u-flexGrow1': true,
-			'u-paddingRD1': true,
+			'u-xs-paddingRD1': true,
 			'is-active': this.state.inputVisible,
 			'has-error': this.state.invalidData
 		});
 
 		return (
-			<form className="u-marginT3 u-flex" method="post" name="registration-form" onSubmit={this.submitHandler}>
+			<form className="u-mxs-marginT2 u-marginT3 u-xs-flex" method="post" name="registration-form" onSubmit={this.submitHandler}>
 				<div className={formGroupClasses} onClick={this.handleClick}>
 					<label for="providerCode">Your service provider code</label>
 					<input className="Form-control required" id="code" type="text" name="providerCode" onBlur={this.handleBlur} placeholder="" ref={(ref) => this.pcInput = ref} required></input>
 				</div>
 				<div className="Form-group u-flexExpandLeft">
-					<input className="Button t-button t-button--md" type="submit" value="Register" name="submit" />
+					<input className="Button t-button t-button--full t-xs-button--md" type="submit" value="Register" name="submit" />
 				</div>
 			</form>
 		);

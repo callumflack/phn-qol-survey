@@ -14,3 +14,11 @@
 }
 
 .u-colorBrandCount  { color: palette(brand-counter) !important; }
+
+
+// Responsively
+// --------------------------------------------------------------------------
+
+@include respond-to(xs) {
+	.u-xs-flex { display: flex !important; }
+}
