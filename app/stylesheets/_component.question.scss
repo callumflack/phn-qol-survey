@@ -7,8 +7,12 @@
 
 .c-questionContext {
 	@include TextSm($mixinFont: $font-sans-medium);
-	margin: space(5) 0 space(2.25);
-	width: 80%;
+	margin: space(2.5) 0 space(1.25);
+
+	@include respond-to(xs) {
+		margin: space(5) 0 space(2.25);
+		width: 80%;
+	}
 }
 
 .c-question {
@@ -17,35 +21,53 @@
 	border: 1px solid rgba(palette(brand), 0.6);
 	border-radius: size(border-radius, base);
 	// opacity: 0.3;
-	margin-bottom: space(3);
-	padding: space(1) space(1.5);
+	margin-bottom: space(1.5);
+	padding: space(0.75) space(0.9) space(0.65);
 
 	&.is-active {
 		@include baseTransition();
 		opacity: 1;
 	}
+
+	@include respond-to(xs) {
+		margin-bottom: space(3);
+		padding: space(1) space(1.5);
+	}
 }
 
 .c-question-ask {
 	@include TextMd($mixinFont: $font-sans-regular);
-	margin-bottom: space(0.75);
+	margin-bottom: space(0.5);
+
+	@include respond-to(xs) {
+		margin-bottom: space(0.75);
+	}
 }
 
 .c-question-ask--number {
-	width: space(1);
+	width: 27px;
+
+	@include respond-to(xs) {
+		width: space(1);
+	}
 }
 
 .c-question-choices {
-	margin: 0 auto;
-	width: 83%;
+	// margin-left: 11%;
+	// width: 76%;
+
+	@include respond-to(xs) {
+		margin: 0 auto;
+		width: 83%;
+	}
 }
 
 .c-question-choices--option {
 	@include TextRg();
 	border-radius: size(border-radius, small);
 	display: flex;
-	margin-bottom: space(0.25);
-	padding: space(0.35) space(0.5);
+	margin-bottom: space(0.1);
+	padding: space(0.2) space(0.35);
 
 	input {
 		margin-right: 12px;
@@ -68,6 +90,11 @@
 		svg {
 			fill: palette(white) !important;
 		}
+	}
+
+	@include respond-to(xs) {
+		margin-bottom: space(0.25);
+		padding: space(0.35) space(0.5);
 	}
 
 	// &:not(:last-child) {
