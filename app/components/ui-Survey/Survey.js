@@ -1,12 +1,12 @@
 var React = require("react");
 var Nav = require('../ui-Nav/Nav.js');
-var AboutForm = require('../ui-SurveyAbout/Form.js');
+var AboutForm = require('./AboutForm.js');
 var questionData = require('./data/questions.js');
 
 var Registration = require("../ui-Registration/Registration.js");
 var Deregistration = require("../ui-Registration/Deregistration.js");
 
-var Form = require('./Form.js');
+var QolForm = require('./QolForm.js');
 var Score = require('./Score.js');
 
 var SurveyPage = React.createClass({
@@ -115,7 +115,7 @@ var SurveyPage = React.createClass({
 				<main className="o-content" role="main">
 					<div className="o-container">
 
-						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life.</p>
+						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>
 
 						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
@@ -126,12 +126,12 @@ var SurveyPage = React.createClass({
 							<p className="u-textXs--medium u-textCenter u-marginT"><a href="#">Cancel</a></p>
 						</div>
 
-						<Form
+						<QolForm
 							questionData={questionData}
 							recordQuestionResponse={this.recordQuestionResponse}
-							submitSurvey={this.submitSurvey}
+							startSurveyCallback={this.startSurvey}
 						/>
-						<AboutForm startSurveyCallback={this.startSurvey} />
+						<AboutForm submitSurvey={this.submitSurvey} />
 
 					</div>
 				</main>

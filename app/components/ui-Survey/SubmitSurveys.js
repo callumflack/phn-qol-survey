@@ -1,11 +1,11 @@
 var React = require("react");
 var IcSubmit = require('../ui-Icons/Icons.js').IcSubmit;
 
-var Submit = React.createClass({
+var SubmitSurveys = React.createClass({
 	submitSurvey: function(submitEvent) {
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
-		
+
 		this.props.submitSurvey();
 	},
 	render: function() {
@@ -17,7 +17,7 @@ var Submit = React.createClass({
 				<span className="c-delimit-block">
 					<button className="Button t-button" name="button" type="button" onClick={this.submitSurvey} value="Submit survey">
 						<IcSubmit align="left" />
-						Submit
+						Submit & show score
 					</button>
 				</span>
 			</div>
@@ -25,4 +25,4 @@ var Submit = React.createClass({
 	}
 });
 
-module.exports = Submit;
+module.exports = SubmitSurveys;

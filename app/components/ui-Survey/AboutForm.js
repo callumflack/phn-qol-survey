@@ -4,6 +4,7 @@ var Nav = require("../ui-Nav/Nav.js");
 var IcActive = require('../ui-Icons/Icons.js').IcActive;
 var IcChoice = require('../ui-Icons/Icons.js').IcChoice;
 var IcSubmit = require('../ui-Icons/Icons.js').IcSubmit;
+var SubmitSurveys = require('./SubmitSurveys');
 
 require('./../../stylesheets/app.scss');
 
@@ -49,29 +50,6 @@ var QuestionAskedInputRadio = React.createClass({
 					{this.props.label}
 				</label>
 				<IcChoice active="" />
-			</div>
-		)
-	}
-});
-
-var Submit = React.createClass({
-	startSurvey: function(submitEvent) {
-		submitEvent.preventDefault();
-		submitEvent.stopPropagation();
-
-		this.props.startSurveyCallback();
-	},
-	render: function() {
-		return (
-			<div className="c-delimit u-textCenter u-marginT4 u-marginB6">
-				<p className="u-textMd u-textWtMd u-colorBrandAlt u-textCenter u-marginBD6">Now on to the second part.</p>
-				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">26 easy multiple choice questions.</p>
-				<div className="c-delimit-rule c-delimit-rule--active"></div>
-				<span className="c-delimit-block">
-					<button className="Button t-button" name="button" type="button" onClick={this.startSurvey} value="Submit survey">
-						Start the survey
-					</button>
-				</span>
 			</div>
 		)
 	}
@@ -276,7 +254,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<Submit startSurveyCallback={this.props.startSurveyCallback} />
+				<SubmitSurveys submitSurvey={this.props.submitSurvey} />
 
 			</form>
 		)

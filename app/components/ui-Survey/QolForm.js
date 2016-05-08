@@ -1,11 +1,11 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
 var Question = require('./Question');
-var Submit = require('./Submit');
+var StartAboutSurvey = require('./StartAboutSurvey');
 
 require('./../../stylesheets/app.scss');
 
-var Form = React.createClass({
+var QolForm = React.createClass({
 	/**
 	 * Generates some preceding text to be placed above certain questions as
 	 * an introduction to the section.
@@ -50,11 +50,11 @@ var Form = React.createClass({
 	questionBlocks: function(questionData) {
 		var components = [];
 		var recordQuestionResponse = this.props.recordQuestionResponse;
-		
+
 		this.props.questionData.map((question, i) => {
 			var precedingText = this.questionPretext(question);
 			if (precedingText) components.push(precedingText);
-			
+
 			var questionNumber = question.number,
 				questionText = question.text,
 				answers = question.answers.slice(0);
@@ -76,11 +76,10 @@ var Form = React.createClass({
 		return (
 			<form method="post" action="" className="Survey u-marginT5">
 				{this.questionBlocks(this.props.questionData)}
-				<Submit submitSurvey={this.props.submitSurvey} />
+				<StartAboutSurvey startSurveyCallback={this.props.startSurveyCallback} />
 			</form>
 		)
 	}
 });
 
-
-module.exports = Form;
+module.exports = QolForm;
