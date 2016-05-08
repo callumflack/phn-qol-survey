@@ -31,14 +31,57 @@ var SurveyPage = React.createClass({
 			scoreOpen: false
 		};
 	},
+	/**
+	 * Validates the entire submission, then uses Fetch to send the submission
+	 * to the server.
+	 */
 	submitSurvey: function() {
+		try {
+			this.validateSurvey();
+		} catch(formError) {
+			if (formError.code = "validation") {
+				// Furnish error states.
+				var invalidQuestions = formError.questions,
+				firstInvalid = invalidQuestions[0];
+				return;
+			}
+		}
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
 		});
 	},
+	/**
+	 * Validates each survey question and the About You section responses for
+	 * correctness. If any of the data is not valid, an error is thrown.
+	 * @throws {SurveyValidationError}	Thrown if there are one or more survey
+	 * 									questions that do not have a valid
+	 * 									response.
+	 */
+	validateSurvey: function() {
+		var numQuestions = questionData.length;
+		// Survey questions.
+		if (this.props.questionsAnswered < numQuestions) {
+			var invalidQuestions = [],
+				validationError = new Error("Survey validation errors.");
+				
+			validationError.name = "validation";
+			for (var i = 0; i < numQuestions; i++) {
+				var questionResponse = this.props.questionResponses[i];
+				if (questionResponse === undefined)
+					invalidQuestions.push(function() {
+						var e = new Error("Missing answer");
+						e.code = "missing_answer";
+						e.questionId = i;
+						return e;
+					}());
+			}
+			validationError.questions = invalidQuestions;
+			throw validationError;				
+		}
+	},
 	recordQuestionResponse: function(questionId, response) {
-		this.props.questionResponses[questionId] = response;
+		this.props.questionResponses[questionId - 1] = response;
 
 		function countSet(a) {
 			var b = a.length, c = 0;
@@ -99,6 +142,19 @@ var SurveyPage = React.createClass({
 
 		this.setState({ registrationOpen: newState });
 	},
+	/**
+	 * Used to supress a form submission, as this should be processed through
+	 * AJAX. This will be handed down to the children for use when rendering
+	 * 
+	 * @param {Event} submitEvent	The Event triggered when the browser makes
+	 * 								an attempt to submit the form.
+	 */
+	supressSubmit: function(submitEvent) {
+		submitEvent.preventDefault();
+		submitEvent.stopPropagation();
+
+		this.props.startSurveyCallback();
+	},
 	render: function () {
 		return (
 			<div>
@@ -128,8 +184,12 @@ var SurveyPage = React.createClass({
 							questionData={questionData}
 							recordQuestionResponse={this.recordQuestionResponse}
 							startSurveyCallback={this.startSurvey}
+							supressSubmit={this.supressSubmit}
 						/>
-						<AboutForm submitSurvey={this.submitSurvey} />
+						<AboutForm
+							submitSurvey={this.submitSurvey}
+							supressSubmit={this.supressSubmit}
+						/>
 
 					</div>
 				</main>

@@ -89,7 +89,7 @@ var AboutForm = React.createClass({
 	},
 	render: function() {
 		return (
-			<form className="" method="post" action="">
+			<form className="" method="post" action="" onSubmit={this.props.supressSubmit}>
 				<div className="c-question">
 					<QuestionAsked number="1" text="What is your gender?" />
 					<div className="c-question-choices t-radioInputs">
