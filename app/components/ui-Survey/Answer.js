@@ -23,7 +23,6 @@ var Answer = React.createClass({
 			<div className={choiceClassName} onClick={this.handleClick}>
 				<input name={"q_" + this.props.questionNumber} value={this.props.number} type="radio" checked={this.props.selected}/>
 				<label className="">
-					<span className="c-radioInputNumber">{this.props.number + 1}</span>
 					{this.props.label}
 				</label>
 				<IconChoice active={iconActive} />
