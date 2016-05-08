@@ -175,54 +175,7 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="5" text="Where are you receiving this health service at?" />
-					<div className="t-selectInputs">
-						<select>
-							<option value="" disabled selected>Choose from these options</option>
-							<optgroup label="Torres and Cape">
-								<option value="0">Aurukun</option>
-								<option value="1">Cook</option>
-								<option value="2">Hope Vale</option>
-								<option value="3">Kowanyama</option>
-								<option value="4">Lockhart River</option>
-								<option value="5">Mapoon</option>
-								<option value="6">Napranum</option>
-								<option value="7">Northern Peninsula Area</option>
-								<option value="8">Pormpuraaw</option>
-								<option value="9">Torres</option>
-								<option value="10">Torres Strait Island</option>
-								<option value="11">Weipa</option>
-							</optgroup>
-							<optgroup label="Cairns and Hinterland">
-								<option value="0">Cairns; Douglas</option>
-								<option value="1">Cassowary Coast</option>
-								<option value="2">Croydon</option>
-								<option value="3">Etheridge</option>
-								<option value="4">Tablelands; Mareeba</option>
-								<option value="5">Wujal Wujal</option>
-								<option value="6">Yarrabah</option>
-							</optgroup>
-							<optgroup label="Townsville">
-								<option value="0">Burdekin</option>
-								<option value="1">Charters Towers</option>
-								<option value="2">Flinders</option>
-								<option value="3">Hinchinbrook</option>
-								<option value="4">Palm Island</option>
-								<option value="5">Richmond</option>
-								<option value="6">Townsville</option>
-							</optgroup>
-							<optgroup label="Mackay">
-								<option value="0">Isaac</option>
-								<option value="1">Charters Towers</option>
-								<option value="2">Mackay</option>
-								<option value="3">Whitsunday</option>
-							</optgroup>
-						</select>
-					</div>
-				</div>
-
-				<div className="c-question">
-					<QuestionAsked number="6" text="How many sessions have you had with this particular health provider?" />
+					<QuestionAsked number="5" text="How many sessions have you had with this particular health provider?" />
 					<div className="t-selectInputs">
 						<select>
 							<option value="" disabled selected>Choose from these options</option>
