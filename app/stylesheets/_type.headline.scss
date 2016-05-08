@@ -51,7 +51,6 @@
 	color: $mixinColor;
 	font-family: $mixinFont;
 	font-size: fontsize(textRg, xs);
-	// line-height: 1.35;
 
 	@include respond-to(xs) {
 		font-size: fontsize(textRg, base);
@@ -60,17 +59,6 @@
 
 
 
-
-
-@mixin headlineSecondary {
-	@include TextMd();
-	font-family: $font-sans-bold;
-}
-
-@mixin headlineTertiary {
-	@include TextSm();
-	font-family: $font-sans-bold;
-}
 
 
 // Vax Initiate.
