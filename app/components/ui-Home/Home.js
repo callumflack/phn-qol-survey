@@ -3,6 +3,7 @@ var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var Registration = require("../ui-Registration/Registration.js");
 var Deregistration = require("../ui-Registration/Deregistration.js");
+var Loading = require("../ui-Nav/Loading.js");
 var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
@@ -170,6 +171,8 @@ var Home = React.createClass({
 				</main>
 
 				{this.registrationModal()}
+
+				<Loading />
 
 			</div>
 		);
