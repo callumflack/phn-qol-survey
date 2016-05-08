@@ -140,7 +140,7 @@ var Home = React.createClass({
 							</span>
 						</h1>
 
-						<p className="u-textMd">This survey hopes to assess quality of life where it is defined as individuals perceptions of their position in life in the context of the culture and value systems in which they live and in relation to their goals, expectations, standards and concerns. It is based on the World Health Organisation’s Quality of Life Survey.</p>
+						<p className="u-textMd">You are about to complete The World Health Organization’s Quality of Life Survey. This survey hopes to assess individual's perception of their quality of life  in the context of the culture and values in which they live.</p>
 						<p className="u-textRg--light">For more information, please contact Northern Queensland Primary Health Network:</p>
 						<ul className="o-listClean u-textRg--light">
 							<li><a href="tel:1300-7746279">
