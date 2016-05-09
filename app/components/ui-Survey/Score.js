@@ -103,8 +103,8 @@ var Score = React.createClass({
 									</div>
 								</div>
 
-								<p className="u-textCenter u-marginT u-marginB2">
-									<a className="u-textXs--light" href="/"><IcReturn align="left" />Do another survey</a>
+								<p className="u-textCenter u-marginT2 u-marginB2">
+									<a className="u-textXs--light u-textWtRg" href="/"><IcReturn align="left" />Do another survey</a>
 								</p>
 
 							</div>

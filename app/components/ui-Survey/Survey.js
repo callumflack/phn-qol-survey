@@ -56,7 +56,7 @@ var SurveyPage = React.createClass({
 	 */
 	submitSurvey: function() {
 		try {
-			this.validateSurvey();
+			// this.validateSurvey();
 		} catch(formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
@@ -162,7 +162,7 @@ var SurveyPage = React.createClass({
 		);
 		this.nav.props.questionsAnswered = this.props.questionsAnswered;
 		this.nav.forceUpdate();
-		
+
 		if ( ! isNaN(response)) {
 			setTimeout(
 				() => { (questionData[questionId])?
@@ -172,10 +172,10 @@ var SurveyPage = React.createClass({
 					: null; },
 				NXT_QUESTION_SCROLL_DELAY
 			)
-		
+
 			if (questionId === questionData.length)
 				setTimeout(
-					() => { 
+					() => {
 						smoothScroll(
 							React.findDOMNode(this.participantDelimiter),
 							NXT_QUESTION_SCROLL_DURATION
@@ -308,17 +308,17 @@ var SurveyPage = React.createClass({
 							showAboutForm={this.showAboutForm}
 							supressSubmit={this.supressSubmit}
 						/>
-						
+
 						<StartAboutSurvey
 							ref={(ref) => this.participantDelimiter = ref}
 							showAboutForm={this.showAboutForm}
 						/>
-						
+
 						<AboutForm
 							ref={(ref) => this.aboutForm = ref}
 							supressSubmit={this.supressSubmit}
 						/>
-						
+
 						<SubmitSurveys
 							submitSurvey={this.submitSurvey}
 						/>
