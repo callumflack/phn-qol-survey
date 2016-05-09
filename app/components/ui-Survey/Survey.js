@@ -56,9 +56,9 @@ var SurveyPage = React.createClass({
 	 */
 	submitSurvey: function() {
 		var error = false;
-		
+
 		try {
-			// this.validateSurvey();
+			this.validateSurvey();
 		} catch(formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
@@ -132,7 +132,7 @@ var SurveyPage = React.createClass({
 				sessions: aboutForm.sessions
 			},
 			erroneousQuestions = [];
-			
+
 		if ( ! /(fe)?male/i.test(participant.gender))
 			erroneousQuestions.push(
 				function() {
