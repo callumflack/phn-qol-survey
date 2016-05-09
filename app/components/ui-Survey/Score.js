@@ -97,7 +97,7 @@ var Score = React.createClass({
 								</div>
 
 								<div className="u-well">
-									<h3 className="u-headlineSm--light u-textCenter u-marginBD1">Share your score by email or SMS</h3>
+									<h3 className="u-headlineSm--light u-textCenter u-marginBD1">Get your score by email or SMS</h3>
 									<div className="u-size9of12 Grid-cell--center">
 										<ShareScore />
 									</div>
