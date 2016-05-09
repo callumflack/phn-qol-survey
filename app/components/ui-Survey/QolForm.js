@@ -1,7 +1,6 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
 var Question = require('./Question');
-var StartAboutSurvey = require('./StartAboutSurvey');
 
 require('./../../stylesheets/app.scss');
 
@@ -75,7 +74,6 @@ var QolForm = React.createClass({
 		return (
 			<form method="post" action="" onSubmit={this.props.supressSubmit} className="Survey u-marginT5">
 				{this.questionBlocks(this.props.questionData)}
-				<StartAboutSurvey showAboutForm={this.props.showAboutForm} />
 			</form>
 		)
 	}

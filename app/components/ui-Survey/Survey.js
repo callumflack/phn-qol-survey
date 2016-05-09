@@ -1,17 +1,28 @@
 var React = require("react");
-var smoothScroll = require('../util/smoothscroll.js');
 
-var Nav = require('../ui-Nav/Nav.js');
-var AboutForm = require('./AboutForm.js');
+// Data
 var questionData = require('./data/questions.js');
 
+// Utils
+var smoothScroll = require('../util/smoothscroll.js');
+
+// Layout
+var Nav = require('../ui-Nav/Nav.js');
+
+// Forms
+var AboutForm = require('./AboutForm.js');
+var QolForm = require('./QolForm.js');
+
+// Delimiters & submission
+var StartAboutSurvey = require('./StartAboutSurvey');
+var SubmitSurveys = require('./SubmitSurveys');
+
+// Modals
 var Registration = require("../ui-Registration/Registration.js");
 var Deregistration = require("../ui-Registration/Deregistration.js");
-
-var QolForm = require('./QolForm.js');
 var Score = require('./Score.js');
 
-
+// Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
 
@@ -122,7 +133,6 @@ var SurveyPage = React.createClass({
 	 * @throws {ParticipantValidationError}	Thrown if there are issues with the
 	 * 										participant information.
 	 */
-
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId - 1] = response;
 
@@ -136,7 +146,7 @@ var SurveyPage = React.createClass({
 		this.nav.props.questionsAnswered = this.props.questionsAnswered;
 		this.nav.forceUpdate();
 		
-		if ( ! isNaN(response))
+		if ( ! isNaN(response)) {
 			setTimeout(
 				() => { (questionData[questionId])?
 					questionData[questionId].questionComponent.scrollTo(
@@ -145,6 +155,18 @@ var SurveyPage = React.createClass({
 					: null; },
 				NXT_QUESTION_SCROLL_DELAY
 			)
+		
+			if (questionId === questionData.length)
+				setTimeout(
+					() => { 
+						smoothScroll(
+							React.findDOMNode(this.participantDelimiter),
+							NXT_QUESTION_SCROLL_DURATION
+						)
+					},
+					NXT_QUESTION_SCROLL_DELAY
+				)
+		}
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
@@ -264,10 +286,19 @@ var SurveyPage = React.createClass({
 							showAboutForm={this.showAboutForm}
 							supressSubmit={this.supressSubmit}
 						/>
+						
+						<StartAboutSurvey
+							ref={(ref) => this.participantDelimiter = ref}
+							showAboutForm={this.showAboutForm}
+						/>
+						
 						<AboutForm
 							ref={(ref) => this.aboutForm = ref}
-							submitSurvey={this.submitSurvey}
 							supressSubmit={this.supressSubmit}
+						/>
+						
+						<SubmitSurveys
+							submitSurvey={this.submitSurvey}
 						/>
 
 					</div>

@@ -3,7 +3,6 @@ var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var IcActive = require('../ui-Elements/Icons.js').IcActive;
 var IcChoice = require('../ui-Elements/Icons.js').IcChoice;
-var SubmitSurveys = require('./SubmitSurveys');
 var smoothScroll = require('../util/smoothscroll.js');
 
 const NXT_QUESTION_SCROLL_DURATION = 800;
@@ -298,8 +297,6 @@ var AboutForm = React.createClass({
 						</select>
 					</div>
 				</div>
-
-				<SubmitSurveys submitSurvey={this.props.submitSurvey} />
 
 			</form>
 		)
