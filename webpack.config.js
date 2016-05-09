@@ -1,6 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
-var extractTextPlugin = require('extract-text-webpack-plugin');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var node_modules_dir = path.join(__dirname, 'node_modules');
@@ -30,7 +30,7 @@ var config = {
 		noParse: [],
 		loaders: [
 			{ test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react', 'es2015'] } },
-			{ test: /\.scss$/, loader: "style!css!postcss!sass!" },
+			{ test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader") },
 			{ test: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name].[ext]' },
 			{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=build/fonts/[name].[ext]' }
 		]
@@ -47,7 +47,7 @@ var config = {
 			compressor: { warnings: false },
 			mangle: false
 		}),
-		// new extractTextPlugin('app.css')
+		new ExtractTextPlugin('[name].css')
 	]
 };
 
