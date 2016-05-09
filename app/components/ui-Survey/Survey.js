@@ -130,22 +130,26 @@ var SurveyPage = React.createClass({
 		);
 		this.nav.props.questionsAnswered = this.props.questionsAnswered;
 		this.nav.forceUpdate();
-
-		setTimeout(
-			() => { (questionData[questionId])?
-				questionData[questionId].questionComponent.scrollTo(
-					NXT_QUESTION_SCROLL_DURATION
-				)
-				: null; },
-			NXT_QUESTION_SCROLL_DELAY
-		)
+		
+		if ( ! isNaN(response))
+			setTimeout(
+				() => { (questionData[questionId])?
+					questionData[questionId].questionComponent.scrollTo(
+						NXT_QUESTION_SCROLL_DURATION
+					)
+					: null; },
+				NXT_QUESTION_SCROLL_DELAY
+			)
 	},
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
 		this.props.questionsAnswered = 0;
 		this.props.questionResponses = (function() {
 			var a = [], b = questionData.length;
-			while(b--) a.push(undefined);
+			while(b--) {
+				a.push(undefined);
+				questionData[b].questionComponent.updateAnswers(undefined);
+			}
 			return a;
 		})();
 		questionData[0].questionComponent.scrollTo();
