@@ -21,4 +21,9 @@
 
 @include respond-to(xs) {
 	.u-xs-flex { display: flex !important; }
+	.u-xs-flexAlignItemsCenter { align-items: center !important; }
+}
+
+@include respond-to(max-xs) {
+	
 }

@@ -12,7 +12,7 @@
 	margin: 0;
 	opacity: 0;
 	outline: 0;
-	overflow: hidden;
+	overflow-x: hidden;
 	transition: z-index 0s ease 500ms, opacity 500ms ease;
 	width: 100vw;
 	z-index: map-fetch($z-index, 'below');
@@ -20,7 +20,7 @@
 
 .Modal.is-active {
 	opacity: 1;
-	overflow: hidden;
+	// overflow: hidden;
 	transition: z-index 0s ease, opacity 250ms ease;
 	z-index: map-fetch($z-index, 'modal');
 
