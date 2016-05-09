@@ -14,7 +14,7 @@ var SurveyProgress = React.createClass({
 							<div className="c-surveyProgress">
 								<p className="c-surveyProgress-score">
 									<span>{this.props.questionsAnswered} of 26 answered</span>
-									<a className="c-surveyProgress-cancel" href="#cancel-survey">Cancel this survey</a>
+									<a className="c-surveyProgress-cancel" href="#">Cancel this survey</a>
 								</p>
 
 								<SurveyProgressIndicator
