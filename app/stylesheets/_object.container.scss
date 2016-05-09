@@ -25,10 +25,14 @@
 		padding: 0;
 	}
 
-	&--specWidth {
+	&--specificWidth {
 		width: size(container, default);
 
 		@include respond-to(xs) {
+			width: size(container, small);
+		}
+
+		@include respond-to(md) {
 			width: size(container, default);
 		}
 	}

@@ -12,15 +12,16 @@
 	// display: none;
 
 	@include respond-to(max-sm) {
+		border-top: 1px solid palette(base);
 		position: relative;
-		padding-bottom: space(3);
+		padding-bottom: space(3.5);
 	}
 }
 
 .c-surveyProgress {
 	width: 100%;
 
-	@include respond-to(xs) {
+	@include respond-to(md) {
 		width: 70%;
 	}
 }
