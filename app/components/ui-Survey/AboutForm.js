@@ -71,6 +71,18 @@ var AboutForm = React.createClass({
 			sessions: undefined
 		}
 	},
+	getInitialState: function() {
+		return {
+			ageError: undefined,
+			educationError: undefined,
+			genderError: undefined,
+			indigenousError: undefined,
+			sessionsError: undefined
+		}
+	},
+	setErrorState: function(question) {
+		this.setState(JSON.parse("{" + question + "Error:true}"));
+	},
 	genderGroupChange: function(setNumber, value) {
 		this.props.genderQuestions.map(function(question) {
 			if (!!question && question.props.number !== setNumber)
@@ -124,7 +136,7 @@ var AboutForm = React.createClass({
 	render: function() {
 		return (
 			<form className="" method="post" action="" onSubmit={this.props.supressSubmit}>
-				<div className="c-question">
+				<div className={"c-question " + ((this.state.genderError)? 'has-error' : '')}>
 					<QuestionAsked
 						ref={(ref) => this.genderQuestion = ref}
 						number="1"
@@ -150,7 +162,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<div className="c-question">
+				<div className={"c-question " + ((this.state.ageError)? 'has-error' : '')}>
 					<QuestionAsked
 						ref={(ref) => this.ageQuestion = ref}
 						number="2"
@@ -216,7 +228,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<div className="c-question">
+				<div className={"c-question " + ((this.state.educationError)? 'has-error' : '')}>
 					<QuestionAsked
 						ref={(ref) => this.educationQuestion = ref}
 						number="3"
@@ -258,7 +270,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<div className="c-question">
+				<div className={"c-question " + ((this.state.indigenousError)? 'has-error' : '')}>
 					<QuestionAsked
 						ref={(ref) => this.indigenousQuestion = ref}
 						number="4"
@@ -284,7 +296,7 @@ var AboutForm = React.createClass({
 					</div>
 				</div>
 
-				<div className="c-question">
+				<div className={"c-question " + ((this.state.sessionsError)? 'has-error' : '')}>
 					<QuestionAsked
 						ref={(ref) => this.sessionsQuestion = ref}
 						number="5"

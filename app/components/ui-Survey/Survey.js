@@ -55,6 +55,8 @@ var SurveyPage = React.createClass({
 	 * to the server.
 	 */
 	submitSurvey: function() {
+		var error = false;
+		
 		try {
 			this.validateSurvey();
 		} catch(formError) {
@@ -63,7 +65,7 @@ var SurveyPage = React.createClass({
 				var invalidQuestions = formError.questions,
 				firstInvalid = invalidQuestions[0];
 				firstInvalid.questionComponent.scrollTo();
-				return;
+				error = true;
 			}
 		}
 		try {
@@ -74,9 +76,10 @@ var SurveyPage = React.createClass({
 				var invalidQuestions = formError.questions,
 				firstInvalid = invalidQuestions[0];
 				firstInvalid.questionComponent.scrollTo();
-				return;
+				error = true;
 			}
 		}
+		if (error === true) return;
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
@@ -107,7 +110,6 @@ var SurveyPage = React.createClass({
 						e.questionId = i;
 						e.questionComponent = questionData[i].questionComponent;
 						e.questionComponent.setErrorState(true);
-						console.log(e.questionComponent);
 						return e;
 					}());
 			}
@@ -137,8 +139,57 @@ var SurveyPage = React.createClass({
 					var e = new Error("Missing gender");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.genderQuestion;
+					e.questionComponent.setErrorState("gender");
+					return e;
 				}()
 			);
+		if (isNaN(participant.age))
+			erroneousQuestions.push(
+				function() {
+					var e = new Error("Missing age");
+					e.code = "missing_answer";
+					e.questionComponent = aboutForm.ageQuestion;
+					e.questionComponent.setErrorState("age");
+					return e;
+				}()
+			);
+		if ( ! participant.education)
+			erroneousQuestions.push(
+				function() {
+					var e = new Error("Missing education");
+					e.code = "missing_answer";
+					e.questionComponent = aboutForm.educationQuestion;
+					e.questionComponent.setErrorState("education");
+					return e;
+				}()
+			);
+		if ( ! participant.indigenous)
+			erroneousQuestions.push(
+				function() {
+					var e = new Error("Missing indigenous identity");
+					e.code = "missing_answer";
+					e.questionComponent = aboutForm.indigenousQuestion;
+					e.questionComponent.setErrorState("indigenous");
+					return e;
+				}()
+			);
+		if ( ! participant.sessions)
+			erroneousQuestions.push(
+				function() {
+					var e = new Error("Missing indigenous identity");
+					e.code = "missing_answer";
+					e.questionComponent = aboutForm.sessionsQuestion;
+					e.questionComponent.setErrorState("sessions");
+					return e;
+				}()
+			);
+		if (erroneousQuestions.length)
+			throw function() {
+					var e = new Error("About you errors");
+					e.code = "validation";
+					e.questions = erroneousQuestions;
+					return e;
+				}();
 	},
 	/**
 	 * Used when a user makes her answer selection. This will store the user's
