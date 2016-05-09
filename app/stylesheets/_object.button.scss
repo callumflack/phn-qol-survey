@@ -129,6 +129,7 @@
 	@include textButtonSm($mixinColor: palette(brand) );
 	background-color: transparent;
 	border-color: transparent;
+	padding: 0 0 0 space(0.75);
 	text-transform: none;
 
 	@include on-event() {
