@@ -4,6 +4,10 @@ var Nav = require("../ui-Nav/Nav.js");
 var IcActive = require('../ui-Elements/Icons.js').IcActive;
 var IcChoice = require('../ui-Elements/Icons.js').IcChoice;
 var SubmitSurveys = require('./SubmitSurveys');
+var smoothScroll = require('../util/smoothscroll.js');
+
+const NXT_QUESTION_SCROLL_DURATION = 800;
+const NXT_QUESTION_SCROLL_DELAY = 400;
 
 require('./../../stylesheets/app.scss');
 
@@ -65,33 +69,57 @@ var AboutForm = React.createClass({
 	},
 	genderGroupChange: function(setValue) {
 		this.props.genderQuestions.map(function(question) {
-			if (question.props.number !== setValue)
+			if (!!question && question.props.number !== setValue)
 				question.deactivate();
 		});
+		
+		setTimeout(() => 
+			smoothScroll(React.findDOMNode(this.ageQuestion), NXT_QUESTION_SCROLL_DURATION),
+			NXT_QUESTION_SCROLL_DELAY
+		);
+
 	},
 	ageGroupChange: function(setValue) {
 		this.props.ageQuestions.map(function(question) {
-			if (question.props.number !== setValue)
+			if (!!question && question.props.number !== setValue)
 				question.deactivate();
 		});
+		
+		setTimeout(() => 
+			smoothScroll(React.findDOMNode(this.educationQuestion), NXT_QUESTION_SCROLL_DURATION),
+			NXT_QUESTION_SCROLL_DELAY
+		);
 	},
 	educationGroupChange: function(setValue) {
 		this.props.educationQuestions.map(function(question) {
-			if (question.props.number !== setValue)
+			if (!!question && question.props.number !== setValue)
 				question.deactivate();
 		});
+		
+		setTimeout(() => 
+			smoothScroll(React.findDOMNode(this.indigenousQuestion), NXT_QUESTION_SCROLL_DURATION),
+			NXT_QUESTION_SCROLL_DELAY
+		);
 	},
 	indigenousGroupChange: function(setValue) {
 		this.props.indigenousQuestions.map(function(question) {
-			if (question.props.number !== setValue)
+			if (!!question && question.props.number !== setValue)
 				question.deactivate();
 		});
+		setTimeout(() => 
+			smoothScroll(React.findDOMNode(this.sessionsQuestion), NXT_QUESTION_SCROLL_DURATION),
+			NXT_QUESTION_SCROLL_DELAY
+		);
 	},
 	render: function() {
 		return (
 			<form className="" method="post" action="" onSubmit={this.props.supressSubmit}>
 				<div className="c-question">
-					<QuestionAsked number="1" text="What is your gender?" />
+					<QuestionAsked
+						ref={(ref) => this.genderQuestion = ref}
+						number="1"
+						text="What is your gender?"
+						/>
 					<div className="c-question-choices t-radioInputs">
 						<QuestionAskedInputRadio
 							updateGroup={this.genderGroupChange}
@@ -113,7 +141,11 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="2" text="How old are you?" />
+					<QuestionAsked
+						ref={(ref) => this.ageQuestion = ref}
+						number="2"
+						text="How old are you?"
+						/>
 					<div className="c-question-choices t-radioInputs">
 						<QuestionAskedInputRadio
 							updateGroup={this.ageGroupChange}
@@ -175,7 +207,11 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="3" text="What is the highest education you received?" />
+					<QuestionAsked
+						ref={(ref) => this.educationQuestion = ref}
+						number="3"
+						text="What is the highest education you received?" 
+						/>
 					<div className="c-question-choices t-radioInputs">
 						<QuestionAskedInputRadio
 							updateGroup={this.educationGroupChange}
@@ -213,7 +249,11 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="4" text="Do you identify as Indigenous Australian?" />
+					<QuestionAsked
+						ref={(ref) => this.indigenousQuestion = ref}
+						number="4"
+						text="Do you identify as Indigenous Australian?"
+						/>
 					<div className="c-question-choices t-radioInputs">
 						<QuestionAskedInputRadio
 							number="1"
@@ -235,7 +275,11 @@ var AboutForm = React.createClass({
 				</div>
 
 				<div className="c-question">
-					<QuestionAsked number="5" text="How many sessions have you had with this particular health provider?" />
+					<QuestionAsked
+						ref={(ref) => this.sessionsQuestion = ref}
+						number="5"
+						text="How many sessions have you had with this particular health provider?"
+						/>
 					<div className="t-selectInputs">
 						<select>
 							<option value="" disabled selected>Choose from these options</option>

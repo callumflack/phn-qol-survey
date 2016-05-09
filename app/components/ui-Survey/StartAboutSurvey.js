@@ -2,11 +2,11 @@ var React = require("react");
 var IcSubmit = require('../ui-Elements/Icons.js').IcSubmit;
 
 var StartAboutSurvey = React.createClass({
-	startSurvey: function(submitEvent) {
+	showAboutForm: function(submitEvent) {
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
-		this.props.startSurveyCallback();
-		this.props.submitSurvey();
+		console.log("Showing about form...");
+		this.props.showAboutForm();
 	},
 	render: function() {
 		return (
@@ -15,7 +15,7 @@ var StartAboutSurvey = React.createClass({
 				<p className="u-textMd u-colorBrandAlt u-textCenter u-marginB15">5 fast, easy multiple choice questions about you.</p>
 				<div className="c-delimit-rule c-delimit-rule--active"></div>
 				<span className="c-delimit-block">
-					<button className="Button t-button" name="button" type="button" onClick={this.startSurvey} value="Submit survey">
+					<button className="Button t-button" name="button" type="button" onClick={this.showAboutForm} value="Submit survey">
 						Complete the last section
 					</button>
 				</span>

@@ -40,6 +40,8 @@ var Question = React.createClass({
 	updateAnswers: function(newAnswerValue) {
 		this.props.recordQuestionResponse(this.props.number, newAnswerValue);
 		this.setState({ chosen: newAnswerValue });
+		if (newAnswerValue === undefined) return;
+		this.setState({ error: undefined });
 	},
 	render: function() {
 		var questionNumber = this.props.number;

@@ -1,4 +1,6 @@
 var React = require("react");
+var smoothScroll = require('../util/smoothscroll.js');
+
 var Nav = require('../ui-Nav/Nav.js');
 var AboutForm = require('./AboutForm.js');
 var questionData = require('./data/questions.js');
@@ -8,6 +10,7 @@ var Deregistration = require("../ui-Registration/Deregistration.js");
 
 var QolForm = require('./QolForm.js');
 var Score = require('./Score.js');
+
 
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
@@ -31,7 +34,9 @@ var SurveyPage = React.createClass({
 			deviceRegistered: deviceToken? true : false,
 			surveyInProgress: false,
 			registrationOpen: false,
-			scoreOpen: false
+			scoreOpen: false,
+			surveyForm: false,
+			participantForm: false
 		};
 	},
 	/**
@@ -188,6 +193,26 @@ var SurveyPage = React.createClass({
 			);
 		}
 	},
+	/**
+	 * Displays the survey form for the user to complete.
+	 */
+	showSurveyForm: function() {
+		// TODO: Make this turn the survey form on.
+		this.setState({ surveyForm: true });
+	},
+	/**
+	 * Makes the 'About You' section available to the user so that they can fill
+	 * it in and hit submit.
+	 * @param {Number} scrollTime	(Optional) duration of the scroll, in
+	 * 								milliseconds. Default 1200.
+	 */
+	showAboutForm: function(scrollTime) {
+		// TODO: Make this turn the about you form on.
+		this.setState({ participantForm: true });
+		var scrollTime = isNaN(scrollTime)? 1200 : scrollTime;
+		smoothScroll(React.findDOMNode(this.aboutForm), scrollTime);
+
+	},
 	toggleRegistration: function(newState) {
 		if (newState === undefined)
 			newState = !this.state.registrationOpen;
@@ -233,12 +258,14 @@ var SurveyPage = React.createClass({
 						</div>
 
 						<QolForm
+							ref={(ref) => this.surveyForm = ref}
 							questionData={questionData}
 							recordQuestionResponse={this.recordQuestionResponse}
-							startSurveyCallback={this.startSurvey}
+							showAboutForm={this.showAboutForm}
 							supressSubmit={this.supressSubmit}
 						/>
 						<AboutForm
+							ref={(ref) => this.aboutForm = ref}
 							submitSurvey={this.submitSurvey}
 							supressSubmit={this.supressSubmit}
 						/>

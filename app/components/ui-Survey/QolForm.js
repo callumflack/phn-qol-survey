@@ -75,7 +75,7 @@ var QolForm = React.createClass({
 		return (
 			<form method="post" action="" onSubmit={this.props.supressSubmit} className="Survey u-marginT5">
 				{this.questionBlocks(this.props.questionData)}
-				<StartAboutSurvey startSurveyCallback={this.props.startSurveyCallback} />
+				<StartAboutSurvey showAboutForm={this.props.showAboutForm} />
 			</form>
 		)
 	}
