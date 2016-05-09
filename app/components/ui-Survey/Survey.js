@@ -121,7 +121,24 @@ var SurveyPage = React.createClass({
 	 * 										participant information.
 	 */
 	validateParticipant: function() {
-
+		var aboutForm = this.aboutForm,
+			participant = {
+				gender: aboutForm.gender,
+				age: aboutForm.age,
+				education: aboutForm.education,
+				indigenous: aboutForm.indigenous,
+				sessions: aboutForm.sessions
+			},
+			erroneousQuestions = [];
+			
+		if ( ! /(fe)?male/i.test(participant.gender))
+			erroneousQuestions.push(
+				function() {
+					var e = new Error("Missing gender");
+					e.code = "missing_answer";
+					e.questionComponent = aboutForm.genderQuestion;
+				}()
+			);
 	},
 	/**
 	 * Used when a user makes her answer selection. This will store the user's
@@ -168,6 +185,10 @@ var SurveyPage = React.createClass({
 				)
 		}
 	},
+	/**
+	 * Begins the survey for the user, clearing all currently selected responses
+	 * and scrolling to the first question in the survey.
+	 */
 	startSurvey: function() {
 		this.setState({ surveyInProgress: true });
 		this.props.questionsAnswered = 0;
@@ -179,7 +200,7 @@ var SurveyPage = React.createClass({
 			}
 			return a;
 		})();
-		questionData[0].questionComponent.scrollTo();
+		this.showSurveyForm();
 	},
 	deregisterDevice: function() {
 		localStorage.clear();
@@ -221,6 +242,8 @@ var SurveyPage = React.createClass({
 	showSurveyForm: function() {
 		// TODO: Make this turn the survey form on.
 		this.setState({ surveyForm: true });
+		var scrollTime = isNaN(scrollTime)? 1200 : scrollTime;
+		smoothScroll(React.findDOMNode(this.surveyForm), scrollTime);
 	},
 	/**
 	 * Makes the 'About You' section available to the user so that they can fill
@@ -233,7 +256,6 @@ var SurveyPage = React.createClass({
 		this.setState({ participantForm: true });
 		var scrollTime = isNaN(scrollTime)? 1200 : scrollTime;
 		smoothScroll(React.findDOMNode(this.aboutForm), scrollTime);
-
 	},
 	toggleRegistration: function(newState) {
 		if (newState === undefined)

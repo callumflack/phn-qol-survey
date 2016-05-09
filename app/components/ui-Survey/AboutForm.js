@@ -31,10 +31,10 @@ var QuestionAskedInputRadio = React.createClass({
 			checked: undefined
 		}
 	},
-	activate: function(genderChangeEvent) {
+	activate: function() {
 		var newState = true;
 		this.setState({ checked: (newState)? true : undefined });
-		this.props.updateGroup(this.props.number)
+		this.props.updateGroup(this.props.number, this.props.value)
 	},
 	deactivate: function() {
 		this.setState({ checked: false });
@@ -63,50 +63,61 @@ var AboutForm = React.createClass({
 			ageQuestions: [],
 			educationQuestions: [],
 			genderQuestions: [],
-			indigenousQuestions: []
+			indigenousQuestions: [],
+			age: undefined,
+			education: undefined,
+			gender: undefined,
+			indigenous: undefined,
+			sessions: undefined
 		}
 	},
-	genderGroupChange: function(setValue) {
+	genderGroupChange: function(setNumber, value) {
 		this.props.genderQuestions.map(function(question) {
-			if (!!question && question.props.number !== setValue)
+			if (!!question && question.props.number !== setNumber)
 				question.deactivate();
 		});
-		
-		setTimeout(() => 
-			smoothScroll(React.findDOMNode(this.ageQuestion), NXT_QUESTION_SCROLL_DURATION),
-			NXT_QUESTION_SCROLL_DELAY
-		);
-
+		this.props.gender = value;
+		this.scrollToQuestion(this.ageQuestion);
 	},
-	ageGroupChange: function(setValue) {
+	ageGroupChange: function(setNumber, value) {
 		this.props.ageQuestions.map(function(question) {
-			if (!!question && question.props.number !== setValue)
+			if (!!question && question.props.number !== setNumber)
 				question.deactivate();
 		});
-		
-		setTimeout(() => 
-			smoothScroll(React.findDOMNode(this.educationQuestion), NXT_QUESTION_SCROLL_DURATION),
-			NXT_QUESTION_SCROLL_DELAY
-		);
+		this.props.age = value;
+		this.scrollToQuestion(this.educationQuestion);
 	},
-	educationGroupChange: function(setValue) {
+	educationGroupChange: function(setNumber, value) {
 		this.props.educationQuestions.map(function(question) {
-			if (!!question && question.props.number !== setValue)
+			if (!!question && question.props.number !== setNumber)
 				question.deactivate();
 		});
-		
-		setTimeout(() => 
-			smoothScroll(React.findDOMNode(this.indigenousQuestion), NXT_QUESTION_SCROLL_DURATION),
-			NXT_QUESTION_SCROLL_DELAY
-		);
+		this.props.education = value;
+		this.scrollToQuestion(this.indigenousQuestion);
 	},
-	indigenousGroupChange: function(setValue) {
+	indigenousGroupChange: function(setNumber, value) {
 		this.props.indigenousQuestions.map(function(question) {
-			if (!!question && question.props.number !== setValue)
+			if (!!question && question.props.number !== setNumber)
 				question.deactivate();
 		});
+		this.props.indigenous = value;
+		this.scrollToQuestion(this.sessionsQuestion);
+	},
+	sessionGroupChange: function(event) {
+		this.props.sessions = event.currentTarget.value;
+	},
+	/**
+	 * Causes the viewport to scroll to a given question (identified by a ref
+	 * to the Component rendered.);
+	 * @param {React.Component} component	The question (as a React component)
+	 * 										to scroll to.
+	 */
+	scrollToQuestion: function(component) {
 		setTimeout(() => 
-			smoothScroll(React.findDOMNode(this.sessionsQuestion), NXT_QUESTION_SCROLL_DURATION),
+			smoothScroll(
+				React.findDOMNode(component),
+				NXT_QUESTION_SCROLL_DURATION
+			),
 			NXT_QUESTION_SCROLL_DELAY
 		);
 	},
@@ -280,7 +291,7 @@ var AboutForm = React.createClass({
 						text="How many sessions have you had with this particular health provider?"
 						/>
 					<div className="t-selectInputs">
-						<select>
+						<select onChange={this.sessionGroupChange}>
 							<option value="" disabled selected>Choose from these options</option>
 							<option value="1">1</option>
 							<option value="2">2</option>
