@@ -40,7 +40,7 @@ var SurveyPage = React.createClass({
 	 */
 	submitSurvey: function() {
 		try {
-			// this.validateSurvey();
+			this.validateSurvey();
 		} catch(formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
