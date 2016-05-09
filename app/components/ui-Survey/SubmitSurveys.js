@@ -1,5 +1,5 @@
 var React = require("react");
-var IcSubmit = require('../ui-Icons/Icons.js').IcSubmit;
+var IcSubmit = require('../ui-Elements/Icons.js').IcSubmit;
 
 var SubmitSurveys = React.createClass({
 	render: function() {

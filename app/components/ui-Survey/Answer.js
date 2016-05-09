@@ -1,6 +1,6 @@
 var React = require('react');
 var classNames = require('classnames');
-var IconChoice = require('../ui-Icons/Icons.js').IcChoice;
+var IconChoice = require('../ui-Elements/Icons.js').IcChoice;
 
 var Answer = React.createClass({
 	handleClick: function(event) {

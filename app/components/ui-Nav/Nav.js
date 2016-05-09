@@ -1,9 +1,9 @@
 var React = require('react');
 var classNames = require('classnames');
 var SurveyProgress = require('./SurveyProgress.js');
-var BtnRegister = require('../ui-Buttons/NavButtons.js').BtnRegister;
-var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
-var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
+var BtnRegister = require('../ui-Elements/NavButtons.js').BtnRegister;
+var BtnLocation = require('../ui-Elements/NavButtons.js').BtnLocation;
+var BtnLogout = require('../ui-Elements/NavButtons.js').BtnLogout;
 
 var Nav = React.createClass({
 	regClick: function() {

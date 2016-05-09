@@ -1,7 +1,7 @@
 var React = require('react');
-var BtnRegister = require('../ui-Buttons/NavButtons.js').BtnRegister;
-var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
-var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
+var BtnRegister = require('../ui-Elements/NavButtons.js').BtnRegister;
+var BtnLocation = require('../ui-Elements/NavButtons.js').BtnLocation;
+var BtnLogout = require('../ui-Elements/NavButtons.js').BtnLogout;
 var SurveyProgressIndicator = require('./SurveyProgressIndicator.js');
 
 var SurveyProgress = React.createClass({

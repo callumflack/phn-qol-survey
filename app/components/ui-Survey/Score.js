@@ -1,8 +1,8 @@
 var React = require("react");
 var classNames = require('classnames');
 var ShareScore = require('./ShareScore.js');
-var CloseButton = require('../ui-Buttons/CloseButton.js');
-var IcReturn = require('../ui-Icons/Icons.js').IcReturn;
+var CloseButton = require('../ui-Elements/CloseButton.js');
+var IcReturn = require('../ui-Elements/Icons.js').IcReturn;
 
 var Score = React.createClass({
 	randomGraph: function() {

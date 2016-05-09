@@ -1,8 +1,8 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
 var AdminForm = require("../ui-Admin/AdminForm.js");
-var IcAvatar = require('../ui-Icons/Icons.js').IcAvatar;
-var IcDownload = require('../ui-Icons/Icons.js').IcDownload;
+var IcAvatar = require('../ui-Elements/Icons.js').IcAvatar;
+var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
 require('./../../stylesheets/app.scss');
 
