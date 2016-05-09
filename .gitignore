@@ -4,3 +4,4 @@ dist/
 build/*.js
 .vscode/
 .idea/
+npm-debug.log*
