@@ -32,7 +32,7 @@ var config = {
 			{ test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react', 'es2015'] } },
 			{ test: /\.scss$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader!postcss-loader!sass-loader") },
 			{ test: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name].[ext]' },
-			{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=build/fonts/[name].[ext]' }
+			{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=fonts/[name].[ext]' }
 		]
 	},
 	postcss: [
