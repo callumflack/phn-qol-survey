@@ -62,7 +62,7 @@
 		top: -16px;
 
 		@include respond-to(xs) {
-			font-size: fontsize(headerXl, base);
+			font-size: fontsize(textSm, base);
 			top: -20px;
 		}
 	}
