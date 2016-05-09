@@ -155,7 +155,7 @@ var Home = React.createClass({
 							</a></li>
 						</ul>
 
-						<div className="c-delimit u-textCenter u-marginT2">
+						<div className="c-delimit u-textCenter u-marginT2 u-marginB2">
 							<div className={delimitRuleClasses}></div>
 							<span className="c-delimit-block">
 								<StartButton deviceRegistered={this.state.deviceRegistered} />

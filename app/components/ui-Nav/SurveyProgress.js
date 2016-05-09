@@ -10,7 +10,7 @@ var SurveyProgress = React.createClass({
 			<div className="c-surveyProgressWrapper">
 				<div className="u-posAbsoluteCenter u-flex">
 					<div className="o-container o-container--specWidth u-flex">
-						<div className="u-flex u-flexAlignItemsCenter u-sizeFill">
+						<div className="u-flex u-xs-flexAlignItemsCenter u-sizeFill">
 							<div className="c-surveyProgress">
 								<p className="c-surveyProgress-score">
 									<span>{this.props.questionsAnswered} of 26 answered</span>
