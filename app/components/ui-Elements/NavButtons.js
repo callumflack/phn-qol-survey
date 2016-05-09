@@ -24,7 +24,7 @@ var ButtonLogout = React.createClass({
 	render: function(props) {
 		return (
 			<button className="Button t-buttonInvisible">
-				Logo out
+				Log out
 				<IcAvatar align="right" />
 			</button>
 		);
