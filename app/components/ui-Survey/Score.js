@@ -3,6 +3,7 @@ var classNames = require('classnames');
 var ShareScore = require('./ShareScore.js');
 var CloseButton = require('../ui-Elements/CloseButton.js');
 var IcReturn = require('../ui-Elements/Icons.js').IcReturn;
+var NavLogo = require('../ui-Elements/NavLogo.js');
 
 var Score = React.createClass({
 	randomGraph: function() {
@@ -34,7 +35,7 @@ var Score = React.createClass({
 				<div className="Modal-dialog" role="document">
 					<div className="Modal-content">
 
-						<span className="c-nav-home" href="#"><img src="images/NQPHN.png" alt="" /></span>
+						<NavLogo />
 						<CloseButton modalCloseFunction={this.closeScoreHandler} />
 
 						<main className="o-content u-marginT5" role="main" deviceRegistered={this.props.deviceRegistered}>
