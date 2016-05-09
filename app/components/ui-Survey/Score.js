@@ -47,7 +47,7 @@ var Score = React.createClass({
 
 								<div className="c-chart">
 									<div className="Grid Grid--withGutter">
-										<div className="Grid-cell u-size1of4">
+										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[0].style}>
 													<span className="c-chart-indicatorScore">
@@ -58,7 +58,7 @@ var Score = React.createClass({
 											</div>
 											<h2 className="c-chart-label">Physical health</h2>
 										</div>
-										<div className="Grid-cell u-size1of4">
+										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[1].style}>
 													<span className="c-chart-indicatorScore">
@@ -69,7 +69,7 @@ var Score = React.createClass({
 											</div>
 											<h2 className="c-chart-label">Psychological</h2>
 										</div>
-										<div className="Grid-cell u-size1of4">
+										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[2].style}>
 													<span className="c-chart-indicatorScore">
@@ -80,7 +80,7 @@ var Score = React.createClass({
 											</div>
 											<h2 className="c-chart-label">Social relationships</h2>
 										</div>
-										<div className="Grid-cell u-size1of4">
+										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
 												<div className="c-chart-indicator" style={amounts[3].style}>
 													<span className="c-chart-indicatorScore">
@@ -102,7 +102,7 @@ var Score = React.createClass({
 									</div>
 								</div>
 
-								<p className="u-textCenter u-marginT">
+								<p className="u-textCenter u-marginT u-marginB2">
 									<a className="u-textXs--light" href="/"><IcReturn align="left" />Do another survey</a>
 								</p>
 
