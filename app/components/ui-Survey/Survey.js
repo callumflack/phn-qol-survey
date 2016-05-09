@@ -40,7 +40,7 @@ var SurveyPage = React.createClass({
 	 */
 	submitSurvey: function() {
 		try {
-			this.validateSurvey();
+			// this.validateSurvey();
 		} catch(formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
@@ -80,7 +80,7 @@ var SurveyPage = React.createClass({
 		if (this.props.questionsAnswered < numQuestions) {
 			var invalidQuestions = [],
 				validationError = new Error("Survey validation errors.");
-				
+
 			validationError.name = "validation";
 			for (var i = 0; i < numQuestions; i++) {
 				var questionResponse = this.props.questionResponses[i];
@@ -91,12 +91,12 @@ var SurveyPage = React.createClass({
 						e.questionId = i;
 						e.questionComponent = questionData[i].questionComponent;
 						e.questionComponent.setErrorState(true);
-						console.log(e.questionComponent);	
+						console.log(e.questionComponent);
 						return e;
 					}());
 			}
 			validationError.questions = invalidQuestions;
-			throw validationError;				
+			throw validationError;
 		}
 	},
 	/**
@@ -105,7 +105,7 @@ var SurveyPage = React.createClass({
 	 * 										participant information.
 	 */
 	validateParticipant: function() {
-		
+
 	},
 	/**
 	 * Used when a user makes her answer selection. This will store the user's
@@ -117,7 +117,7 @@ var SurveyPage = React.createClass({
 	 * @throws {ParticipantValidationError}	Thrown if there are issues with the
 	 * 										participant information.
 	 */
-	
+
 	recordQuestionResponse: function(questionId, response) {
 		this.props.questionResponses[questionId - 1] = response;
 
@@ -197,7 +197,7 @@ var SurveyPage = React.createClass({
 	/**
 	 * Used to supress a form submission, as this should be processed through
 	 * AJAX. This will be handed down to the children for use when rendering
-	 * 
+	 *
 	 * @param {Event} submitEvent	The Event triggered when the browser makes
 	 * 								an attempt to submit the form.
 	 */
@@ -220,7 +220,7 @@ var SurveyPage = React.createClass({
 					blocked="true"
 				/>
 
-				<main className="o-content" role="main">
+			<main className="o-content u-marginT7" role="main">
 					<div className="o-container">
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>

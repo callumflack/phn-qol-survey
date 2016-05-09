@@ -1,9 +1,10 @@
 var React = require('react');
 var classNames = require('classnames');
 var SurveyProgress = require('./SurveyProgress.js');
-var BtnRegister = require('../ui-Buttons/NavButtons.js').BtnRegister;
-var BtnLocation = require('../ui-Buttons/NavButtons.js').BtnLocation;
-var BtnLogout = require('../ui-Buttons/NavButtons.js').BtnLogout;
+var BtnRegister = require('../ui-Elements/NavButtons.js').BtnRegister;
+var BtnLocation = require('../ui-Elements/NavButtons.js').BtnLocation;
+var BtnLogout = require('../ui-Elements/NavButtons.js').BtnLogout;
+var NavLogo = require('../ui-Elements/NavLogo.js');
 
 var Nav = React.createClass({
 	regClick: function() {
@@ -25,7 +26,7 @@ var Nav = React.createClass({
 		return (
 			<header className={headerStyleClasses} role="header">
 				<nav className="c-nav">
-					<span className="c-nav-home"><img src="images/NQPHN.png" alt="" /></span>
+					<NavLogo />
 					<a className="c-nav-status" onClick={this.regClick}>
 						{settingsBtn}
 					</a>

@@ -1,5 +1,5 @@
 var React = require("react");
-var IcClose = require('../ui-Icons/Icons.js').IcClose;
+var IcClose = require('./Icons.js').IcClose;
 
 var CloseButton = React.createClass({
 	render: function () {

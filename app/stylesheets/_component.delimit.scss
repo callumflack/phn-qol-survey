@@ -13,6 +13,7 @@
 	@include rule();
 	opacity: 0.6;
 	transform: translateY(16px);
+	visibility: hidden;
 
 	&--active {
 		@include rule( palette(brand-complement) );
@@ -24,6 +25,7 @@
 
 	@include respond-to(xs) {
 		transform: translateY(19px);
+		visibility: visible;
 	}
 }
 

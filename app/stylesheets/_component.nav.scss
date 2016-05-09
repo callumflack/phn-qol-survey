@@ -6,7 +6,7 @@
 
 
 .c-header {
-	position: fixed;
+	position: absolute;;
 	top: 0;
 	width: 100%;
 	z-index: 9;
@@ -14,6 +14,7 @@
 	&.is-registered {
 		background-color: palette(neutral);
 		border-bottom: 1px solid palette(base);
+		position: fixed;
 	}
 }
 
@@ -40,8 +41,13 @@
 
 	@include when-inside(".Modal") {
 		position: absolute;
-		left: 1.425rem;
-		top: 1.425rem;
+		left: space(0.9);
+		top: space(0.9);
+
+		@include respond-to(xs) {
+			left: space(1);
+			top: space(1);
+		}
 	}
 }
 

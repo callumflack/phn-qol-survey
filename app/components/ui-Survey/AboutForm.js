@@ -1,8 +1,8 @@
 var React = require("react");
 var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
-var IcActive = require('../ui-Icons/Icons.js').IcActive;
-var IcChoice = require('../ui-Icons/Icons.js').IcChoice;
+var IcActive = require('../ui-Elements/Icons.js').IcActive;
+var IcChoice = require('../ui-Elements/Icons.js').IcChoice;
 var SubmitSurveys = require('./SubmitSurveys');
 
 require('./../../stylesheets/app.scss');

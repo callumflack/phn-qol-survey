@@ -1,5 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
+var extractTextPlugin = require('extract-text-webpack-plugin');
 var autoprefixer = require('autoprefixer');
 
 var node_modules_dir = path.join(__dirname, 'node_modules');
@@ -28,21 +29,10 @@ var config = {
 	module: {
 		noParse: [],
 		loaders: [
-			{
-				loader: 'babel', // 'babel-loader' is also a legal name to reference
-				test: /\.jsx?$/,
-				exclude: /node_modules/,
-				query: {
-					presets: ['react', 'es2015']
-				}
-			},
-
-			{
-				loader: "style!css!postcss!sass!",
-				test: /\.scss$/
-			}
-
-
+			{ test: /\.jsx?$/, loader: 'babel', exclude: /node_modules/, query: { presets: ['react', 'es2015'] } },
+			{ test: /\.scss$/, loader: "style!css!postcss!sass!" },
+			{ test: /\.(png|jpg)$/, loader: 'file-loader?name=images/[name].[ext]' },
+			{ test: /\.(eot|svg|ttf|woff|woff2)$/, loader: 'file-loader?name=build/fonts/[name].[ext]' }
 		]
 	},
 	postcss: [
@@ -54,11 +44,10 @@ var config = {
 			'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
 		}),
 		new webpack.optimize.UglifyJsPlugin({
-			compressor: {
-				warnings: false
-			},
+			compressor: { warnings: false },
 			mangle: false
-		})
+		}),
+		// new extractTextPlugin('app.css')
 	]
 };
 

@@ -141,7 +141,7 @@ var Home = React.createClass({
 							</span>
 						</h1>
 
-						<p className="u-textMd">You are about to complete The World Health Organization’s Quality of Life Survey. This survey hopes to assess individual's perception of their quality of life  in the context of the culture and values in which they live.</p>
+						<p className="u-textMd">You are about to complete the World Health Organization’s Quality of Life survey. This survey hopes to assess an individual's perception of their quality of life in the context of the culture and values in which they live.</p>
 						<p className="u-textRg--light">For more information, please contact Northern Queensland Primary Health Network:</p>
 						<ul className="o-listClean u-textRg--light">
 							<li><a href="tel:1300-7746279">
@@ -155,7 +155,7 @@ var Home = React.createClass({
 							</a></li>
 						</ul>
 
-						<div className="c-delimit u-textCenter u-marginT2">
+						<div className="c-delimit u-textCenter u-marginT2 u-marginB2">
 							<div className={delimitRuleClasses}></div>
 							<span className="c-delimit-block">
 								<StartButton deviceRegistered={this.state.deviceRegistered} />

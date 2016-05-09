@@ -29,9 +29,42 @@
 		opacity: 1;
 	}
 
+	&.has-error {
+		border-color: palette(bad-news);
+		border-bottom-left-radius: 0;
+		border-bottom-right-radius: 0;
+		margin-bottom: space(2.5);
+		position: relative;
+
+		&:after {
+			@include TextSm($mixinFont: $font-sans-medium);
+			background-color: palette(bad-news);
+			border: 1px solid palette(bad-news);
+			border-bottom-left-radius: size(border-radius, base);
+			border-bottom-right-radius: size(border-radius, base);
+			bottom: space(-1);
+			color: palette(white);
+			content: 'Please make a choice';
+			display: block;
+			left: -1px;
+			padding: 4px space(1.25);
+			position: absolute;
+			right: -1px;
+		}
+	}
+
 	@include respond-to(xs) {
 		margin-bottom: space(3);
 		padding: space(1) space(1.5);
+
+		&.has-error {
+			margin-bottom: space(4.5);
+
+			&:after {
+				bottom: -30px;
+				padding: 4px space(3.25);
+			}
+		}
 	}
 }
 

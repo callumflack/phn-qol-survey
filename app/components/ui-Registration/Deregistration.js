@@ -1,6 +1,6 @@
 var React = require("react");
 var classNames = require('classnames');
-var IcClose = require('../ui-Icons/Icons.js').IcClose;
+var IcClose = require('../ui-Elements/Icons.js').IcClose;
 
 // Close btn in same file to study flow of state/props
 var CloseButton = React.createClass({
