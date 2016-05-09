@@ -108,8 +108,7 @@
 .u-textXs         { @include TextXs(); }
 .u-textXs--medium { @include TextXs( palette(medium) ); }
 .u-textXs--muted  { @include TextXs( palette(muted) ); }
-.u-textXs--light  { @include TextXs( $mixinFont: $font-sans-medium, $mixinColor: palette(brand-counter) ); }
-// .u-textXs--light  { @include TextXs( $mixinColor: palette(brand-counter) ); }
+.u-textXs--light  { @include TextXs( palette(brand-counter) ); }
 
 .u-textSm        { @include TextSm(); }
 .u-textSm--light { @include TextSm( palette(brand-counter) ); }

@@ -81,7 +81,10 @@
 .u-marginRL      { margin-right   : space(12)   !important; }
 
 @include respond-to(max-xs) {
+	.u-mxs-marginTD2  { margin-top: space(1/2) !important; }
 	.u-mxs-marginT    { margin-top: space(1) !important; }
+	.u-mxs-marginT13  { margin-top: space(1.333333333) !important; }
+	.u-mxs-marginT15  { margin-top: space(1.5) !important; }
 	.u-mxs-marginT2   { margin-top: space(2) !important; }
 	.u-mxs-marginT25  { margin-top: space(2.5) !important; }
 	.u-mxs-marginT3   { margin-top: space(3) !important; }

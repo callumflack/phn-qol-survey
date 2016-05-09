@@ -111,6 +111,7 @@
 	background-color: transparent;
 	border-color: currentColor;
 	border-width: 1px;
+	line-height: size(button-height, concise) !important;
 
 	@include on-event() {
 	}
@@ -194,6 +195,7 @@
 	position: fixed;
 	right: space(0.5);
 	top: space(0.5);
+	z-index: map-fetch($z-index, first);
 
 	@include on-event() {
 		outline: none;
