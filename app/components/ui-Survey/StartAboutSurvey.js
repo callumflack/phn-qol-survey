@@ -5,7 +5,7 @@ var StartAboutSurvey = React.createClass({
 	showAboutForm: function(submitEvent) {
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
-		console.log("Showing about form...");
+
 		this.props.showAboutForm();
 	},
 	render: function() {

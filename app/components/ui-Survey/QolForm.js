@@ -20,13 +20,13 @@ var QolForm = React.createClass({
 		var qNumber = question.number;
 
 		if (qNumber === 3)
-			return (<div className="c-questionContext">The following questions ask about how much you have experienced certain things in the last two weeks.</div>);
+			return (<div key="a" className="c-questionContext">The following questions ask about how much you have experienced certain things in the last two weeks.</div>);
 		if (qNumber === 10)
-			return (<div className="c-questionContext">The following questions ask about how completely you experience or were able to do certain things in the last two weeks.</div>);
+			return (<div key="b" className="c-questionContext">The following questions ask about how completely you experience or were able to do certain things in the last two weeks.</div>);
 		if (qNumber === 16)
-			return (<div className="c-questionContext">The following questions ask you to say how good or satisfied you have felt about various aspects of your life over the last two weeks.</div>);
+			return (<div key="c" className="c-questionContext">The following questions ask you to say how good or satisfied you have felt about various aspects of your life over the last two weeks.</div>);
 		if (qNumber === 26)
-			return (<div className="c-questionContext">The following question refers to how often you have felt or experienced certain things in the last two weeks.</div>);
+			return (<div key="d" className="c-questionContext">The following question refers to how often you have felt or experienced certain things in the last two weeks.</div>);
 
 		// Superflous code, but may help readability:
 		// Functions that don't have a return statement return undefined anyway,

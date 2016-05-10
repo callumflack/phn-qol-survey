@@ -15,10 +15,6 @@ var Answer = React.createClass({
 		var iconActive = classNames({
 			'is-active': this.props.selected
 		});
-
-		this.props.activate = this.activate;
-		this.props.deactivate = this.deactivate;
-
 		return (
 			<div className={choiceClassName} onClick={this.handleClick}>
 				<input name={"q_" + this.props.questionNumber} value={this.props.number} type="radio" checked={this.props.selected}/>

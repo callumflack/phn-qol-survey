@@ -29,7 +29,7 @@ var Question = React.createClass({
 	 */
 	scrollTo: function(scrollTime) {
 		var scrollTime = isNaN(scrollTime)? 1800 : scrollTime;
-		smoothScroll(React.findDOMNode(this.props.questionComponent), scrollTime);
+		smoothScroll(React.findDOMNode(this.refs.thisQuestion), scrollTime);
 	},
 	/**
 	 * Used to toggle off the non-selected answers, and toggle on the selected
@@ -54,7 +54,7 @@ var Question = React.createClass({
 		var chosen = this.state.chosen;
 
 		return (
-			<div ref={(ref) => this.props.questionComponent = ref}>
+			<div ref="thisQuestion">
 				<div className={"c-question" + ((this.state.error)? ' has-error' : '')}>
 
 					<p className="c-question-ask Media">

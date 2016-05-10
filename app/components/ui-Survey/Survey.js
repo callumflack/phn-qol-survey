@@ -257,11 +257,12 @@ var SurveyPage = React.createClass({
 			var b = a.length, c = 0;
 			while (b--) c+= (a[b] !== undefined)? 1 : 0; return c;
 		}
+		
 		this.props.questionsAnswered = countSet(
 			this.props.questionResponses
 		);
-		this.nav.props.questionsAnswered = this.props.questionsAnswered;
-		this.nav.forceUpdate();
+
+		this.nav.updateSurveyProgress(this.props.questionsAnswered);
 
 		if ( ! isNaN(response)) {
 			setTimeout(
@@ -389,7 +390,7 @@ var SurveyPage = React.createClass({
 					blocked="true"
 				/>
 
-			<main className="o-content u-marginT7" role="main">
+				<main className="o-content u-marginT7" role="main">
 					<div className="o-container">
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>

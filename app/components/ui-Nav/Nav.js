@@ -10,6 +10,10 @@ var Nav = React.createClass({
 	regClick: function() {
 		this.props.toggleRegistration(true);
 	},
+	updateSurveyProgress: function(questionsAnswered) {
+		this.props.questionsAnswered = questionsAnswered;
+		this.forceUpdate();
+	},
 	render: function() {
 		var headerStyleClasses = classNames({
 			'c-header': true,
