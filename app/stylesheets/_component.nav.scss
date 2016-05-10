@@ -23,7 +23,7 @@
 	height: rem(80);
 	padding: space(0.9);
 	position: relative;
-	z-index: 9;
+	// z-index: 9;
 
 	@include respond-to(xs) {
 		height: rem(110);
