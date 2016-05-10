@@ -69,21 +69,69 @@ var SurveyPage = React.createClass({
 			}
 		}
 		try {
-			// this.validateParticipant();
+			this.validateParticipant();
 		} catch (formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
 				var invalidQuestions = formError.questions,
 				firstInvalid = invalidQuestions[0];
-				firstInvalid.questionComponent.scrollTo();
+				this.aboutForm.scrollToQuestion(firstInvalid.questionComponent);
 				error = true;
 			}
 		}
 		if (error === true) return;
+		var scores = this.calculateScores();
+		
+		this.scoresModal.setScores(scores);
+		
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
 		});
+	},
+	/**
+	 * Calculates each of the domain scores (as averages) 
+	 */
+	calculateScores: function() {
+		var scores = {
+				physical: [],
+				psychologocial: [],
+				social: [],
+				environment: []
+			},
+			numQuestions = questionData.length;
+
+		for (var i = 0; i < numQuestions; i++) {
+			var questionResponse = this.props.questionResponses[i] + 1;
+			switch (i) {
+				case 2: case 3: case 25:
+					// Negatively framed questions
+					questionResponse = 5 - questionResponse;
+					break;
+				case 2: case 3: case 9: case 14: case 15: case 16: case 17:
+					scores.physical.push(questionResponse);
+					break;
+				case 4: case 5: case 6: case 10: case 18: case 25:
+					scores.psychologocial.push(questionResponse);
+					break;
+				case 19: case 20: case 21:
+					scores.social.push(questionResponse);
+					break;
+				case 7: case 8: case 11: case 12: case 13: case 22: case 23:
+				case 24:
+					scores.environment.push(questionResponse);
+					break;
+			}
+		}
+		var average = (a) => 
+			{ var t=0, i=0; for (;i<a.length;i++) t+=a[i]; return t/a.length; } 
+		
+		return {
+			physical: average(scores.physical),
+			psychologocial: average(scores.psychologocial),
+			social: average(scores.social),
+			environment: average(scores.environment)
+		}
 	},
 	/**
 	 * Validates the survey question responses provided by the user. If there
@@ -125,11 +173,11 @@ var SurveyPage = React.createClass({
 	validateParticipant: function() {
 		var aboutForm = this.aboutForm,
 			participant = {
-				gender: aboutForm.gender,
-				age: aboutForm.age,
-				education: aboutForm.education,
-				indigenous: aboutForm.indigenous,
-				sessions: aboutForm.sessions
+				gender: aboutForm.props.gender,
+				age: aboutForm.props.age,
+				education: aboutForm.props.education,
+				indigenous: aboutForm.props.indigenous,
+				sessions: aboutForm.props.sessions
 			},
 			erroneousQuestions = [];
 
@@ -139,17 +187,17 @@ var SurveyPage = React.createClass({
 					var e = new Error("Missing gender");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.genderQuestion;
-					e.questionComponent.setErrorState("gender");
+					aboutForm.setErrorState("gender");
 					return e;
 				}()
 			);
-		if (isNaN(participant.age))
+		if ( !participant.age)
 			erroneousQuestions.push(
 				function() {
 					var e = new Error("Missing age");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.ageQuestion;
-					e.questionComponent.setErrorState("age");
+					aboutForm.setErrorState("age");
 					return e;
 				}()
 			);
@@ -159,7 +207,7 @@ var SurveyPage = React.createClass({
 					var e = new Error("Missing education");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.educationQuestion;
-					e.questionComponent.setErrorState("education");
+					aboutForm.setErrorState("education");
 					return e;
 				}()
 			);
@@ -169,20 +217,21 @@ var SurveyPage = React.createClass({
 					var e = new Error("Missing indigenous identity");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.indigenousQuestion;
-					e.questionComponent.setErrorState("indigenous");
+					aboutForm.setErrorState("indigenous");
 					return e;
 				}()
 			);
 		if ( ! participant.sessions)
 			erroneousQuestions.push(
 				function() {
-					var e = new Error("Missing indigenous identity");
+					var e = new Error("Missing sessions number");
 					e.code = "missing_answer";
 					e.questionComponent = aboutForm.sessionsQuestion;
-					e.questionComponent.setErrorState("sessions");
+					aboutForm.setErrorState("sessions");
 					return e;
 				}()
 			);
+
 		if (erroneousQuestions.length)
 			throw function() {
 					var e = new Error("About you errors");
@@ -380,6 +429,7 @@ var SurveyPage = React.createClass({
 				{this.registrationModal()}
 
 				<Score
+					ref={(ref) => this.scoresModal = ref}
 					scoreOpen={this.state.scoreOpen}
 					closeScoreHandler={this.closeScoreHandler}
 				/>

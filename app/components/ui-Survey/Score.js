@@ -6,10 +6,37 @@ var IcReturn = require('../ui-Elements/Icons.js').IcReturn;
 var NavLogo = require('../ui-Elements/NavLogo.js');
 
 var Score = React.createClass({
-	randomGraph: function() {
-		var amount = 34 + Math.round(Math.random()*20),
+	getDefaultProps: function() {
+		var graphValue = function(value) {
+			var amount = value * 20,
+				properties = {
+					style: { height: (amount + "%") },
+					magnitude: amount
+				}
+			return properties;
+		};
+
+		return {
+			physicalScore: graphValue(0),
+			psychologocialScore: graphValue(0),
+			socialScore: graphValue(0),
+			environmentScore: graphValue(0)
+		}
+	},
+	setScores: function(scores) {
+		this.props.physicalScore = this.graphValue(scores.physical);
+		this.props.psychologocialScore = this.graphValue(scores.psychologocial);
+		this.props.socialScore = this.graphValue(scores.social);
+		this.props.environmentScore = this.graphValue(scores.environment);
+	},
+	/**
+	 * A lightweight object pairing the CSS style property (height) with the
+	 * numeric magnitude for the graph.
+	 */
+	graphValue: function(value) {
+		var amount = value * 20,
 			properties = {
-				style: { height: amount + "%" },
+				style: { height: (amount + "%") },
 				magnitude: amount
 			}
 		return properties;
@@ -22,14 +49,6 @@ var Score = React.createClass({
 			'Modal': true,
 			'is-active': this.props.scoreOpen,
 		});
-
-		var amounts = [
-			this.randomGraph(),
-			this.randomGraph(),
-			this.randomGraph(),
-			this.randomGraph()
-		];
-
 		return (
 			<div className={modalClasses} tabindex="-1" role="dialog" aria-labelledby="">
 				<div className="Modal-dialog" role="document">
@@ -50,9 +69,9 @@ var Score = React.createClass({
 									<div className="Grid Grid--withGutter">
 										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={amounts[0].style}>
+												<div className="c-chart-indicator" style={this.props.physicalScore.style}>
 													<span className="c-chart-indicatorScore">
-														{amounts[0].magnitude}
+														{this.props.physicalScore.magnitude}
 														<span className="c-chart-indicatorMark">%</span>
 													</span>
 												</div>
@@ -61,9 +80,9 @@ var Score = React.createClass({
 										</div>
 										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={amounts[1].style}>
+												<div className="c-chart-indicator" style={this.props.psychologocialScore.style}>
 													<span className="c-chart-indicatorScore">
-														{amounts[1].magnitude}
+														{this.props.psychologocialScore.magnitude}
 														<span className="c-chart-indicatorMark">%</span>
 													</span>
 												</div>
@@ -72,9 +91,9 @@ var Score = React.createClass({
 										</div>
 										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={amounts[2].style}>
+												<div className="c-chart-indicator" style={this.props.socialScore.style}>
 													<span className="c-chart-indicatorScore">
-														{amounts[2].magnitude}
+														{this.props.socialScore.magnitude}
 														<span className="c-chart-indicatorMark">%</span>
 													</span>
 												</div>
@@ -83,9 +102,9 @@ var Score = React.createClass({
 										</div>
 										<div className="Grid-cell u-size1of2 u-xs-size1of4">
 											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={amounts[3].style}>
+												<div className="c-chart-indicator" style={this.props.environmentScore.style}>
 													<span className="c-chart-indicatorScore">
-														{amounts[3].magnitude}
+														{this.props.environmentScore.magnitude}
 														<span className="c-chart-indicatorMark">%</span>
 													</span>
 												</div>

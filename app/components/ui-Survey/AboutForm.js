@@ -63,12 +63,7 @@ var AboutForm = React.createClass({
 			ageQuestions: [],
 			educationQuestions: [],
 			genderQuestions: [],
-			indigenousQuestions: [],
-			age: undefined,
-			education: undefined,
-			gender: undefined,
-			indigenous: undefined,
-			sessions: undefined
+			indigenousQuestions: []
 		}
 	},
 	getInitialState: function() {
@@ -81,7 +76,7 @@ var AboutForm = React.createClass({
 		}
 	},
 	setErrorState: function(question) {
-		this.setState(JSON.parse("{" + question + "Error:true}"));
+		this.setState(JSON.parse('{"' + question + 'Error":true}'));
 	},
 	genderGroupChange: function(setNumber, value) {
 		this.props.genderQuestions.map(function(question) {
@@ -89,6 +84,7 @@ var AboutForm = React.createClass({
 				question.deactivate();
 		});
 		this.props.gender = value;
+		this.setState({genderError: undefined});
 		this.scrollToQuestion(this.ageQuestion);
 	},
 	ageGroupChange: function(setNumber, value) {
@@ -97,6 +93,7 @@ var AboutForm = React.createClass({
 				question.deactivate();
 		});
 		this.props.age = value;
+		this.setState({ageError: undefined});
 		this.scrollToQuestion(this.educationQuestion);
 	},
 	educationGroupChange: function(setNumber, value) {
@@ -105,6 +102,7 @@ var AboutForm = React.createClass({
 				question.deactivate();
 		});
 		this.props.education = value;
+		this.setState({educationError: undefined});
 		this.scrollToQuestion(this.indigenousQuestion);
 	},
 	indigenousGroupChange: function(setNumber, value) {
@@ -113,10 +111,12 @@ var AboutForm = React.createClass({
 				question.deactivate();
 		});
 		this.props.indigenous = value;
+		this.setState({indigenousError: undefined});
 		this.scrollToQuestion(this.sessionsQuestion);
 	},
 	sessionGroupChange: function(event) {
 		this.props.sessions = event.currentTarget.value;
+		this.setState({sessionsError: undefined});
 	},
 	/**
 	 * Causes the viewport to scroll to a given question (identified by a ref
@@ -134,6 +134,8 @@ var AboutForm = React.createClass({
 		);
 	},
 	render: function() {
+		this.props.ageQuestions.length = 0;
+
 		return (
 			<form className="" method="post" action="" onSubmit={this.props.supressSubmit}>
 				<div className={"c-question " + ((this.state.genderError)? 'has-error' : '')}>
