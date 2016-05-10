@@ -20,7 +20,9 @@ var Nav = React.createClass({
 		if (this.props.deviceRegistered) {
 			settingsBtn = <BtnLocation location={this.props.region} />;
 		} else if (location.hash === '#admin') {
-			settingsBtn = "";
+			settingsBtn = <BtnLogout />;
+		} else if (location.hash === '#admin' && this.props.loggedIn) {
+			settingsBtn = <BtnLogout />;
 		} else {
 			settingsBtn = <BtnRegister />;
 		}
