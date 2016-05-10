@@ -41,7 +41,7 @@ var Registration = React.createClass({
 
 								<h1 className="c-delimit u-headline">
 									<div className="c-delimit-rule"></div>
-									<span className="c-delimit-block">Register</span>
+									<span className="c-delimit-block u-mxs-size11of12">Register as a PHN Service Provider</span>
 								</h1>
 
 								<div className="u-size9of12 Grid-cell--center">
