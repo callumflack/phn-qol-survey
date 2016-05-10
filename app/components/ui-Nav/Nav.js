@@ -16,12 +16,17 @@ var Nav = React.createClass({
 			'is-registered': this.props.blocked
 		});
 
-		var settingsBtn = (this.props.deviceRegistered)?
-						<BtnLocation location={this.props.region} />
-						: <BtnRegister />,
-			surveyProgress = (this.props.surveyInProgress)?
-						<SurveyProgress questionsAnswered={this.props.questionsAnswered} />
-						: "";
+		var settingsBtn;
+		if (this.props.deviceRegistered) {
+			settingsBtn = <BtnLocation location={this.props.region} />;
+		} else if (location.hash === '#admin') {
+			settingsBtn = "";
+		} else {
+			settingsBtn = <BtnRegister />;
+		}
+
+		var surveyProgress = (this.props.surveyInProgress)?
+			<SurveyProgress questionsAnswered={this.props.questionsAnswered} /> : "";
 
 		return (
 			<header className={headerStyleClasses} role="header">

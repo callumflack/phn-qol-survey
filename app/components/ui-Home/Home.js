@@ -141,7 +141,7 @@ var Home = React.createClass({
 							</span>
 						</h1>
 
-						<p className="u-textMd">You are about to complete the World Health Organization’s Quality of Life survey. This survey hopes to assess an individual's perception of their quality of life in the context of the culture and values in which they live.</p>
+						<p className="u-textMd">You are about to complete the World Health Organization’s Quality of Life survey. This survey hopes to assess an individual's perception of their quality of life in the context of the culture and values in which they live. This survey will not record any personally identifiable information.</p>
 						<p className="u-textRg--light">For more information, please contact Northern Queensland Primary Health Network:</p>
 						<ul className="o-listClean u-textRg--light">
 							<li><a href="tel:1300-7746279">
