@@ -125,7 +125,7 @@ var AboutForm = React.createClass({
 	 * 										to scroll to.
 	 */
 	scrollToQuestion: function(component) {
-		setTimeout(() => 
+		setTimeout(() =>
 			smoothScroll(
 				React.findDOMNode(component),
 				NXT_QUESTION_SCROLL_DURATION
@@ -232,7 +232,7 @@ var AboutForm = React.createClass({
 					<QuestionAsked
 						ref={(ref) => this.educationQuestion = ref}
 						number="3"
-						text="What is the highest education you received?" 
+						text="What is the highest education you received?"
 						/>
 					<div className="c-question-choices t-radioInputs">
 						<QuestionAskedInputRadio
@@ -300,7 +300,7 @@ var AboutForm = React.createClass({
 					<QuestionAsked
 						ref={(ref) => this.sessionsQuestion = ref}
 						number="5"
-						text="How many sessions have you had with this particular health provider?"
+						text="Including this session, how many sessions have you had with this particular health provider?"
 						/>
 					<div className="t-selectInputs">
 						<select onChange={this.sessionGroupChange}>
@@ -317,6 +317,7 @@ var AboutForm = React.createClass({
 							<option value="10">10</option>
 							<option value="11">11</option>
 							<option value="12">12</option>
+							<option value="12+">12+</option>
 						</select>
 					</div>
 				</div>
