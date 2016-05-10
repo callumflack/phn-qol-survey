@@ -82,7 +82,10 @@ var SurveyPage = React.createClass({
 		if (error === true) return;
 		var scores = this.calculateScores();
 		
-		this.scoresModal.setScores(scores);
+		this.physicalScore = scores.physical;
+		this.psychScore = scores.psychologocial;
+		this.socialScore = scores.social;
+		this.environmentScore = scores.environment;
 		
 		this.setState({
 			registrationOpen: false,
@@ -433,6 +436,10 @@ var SurveyPage = React.createClass({
 					ref={(ref) => this.scoresModal = ref}
 					scoreOpen={this.state.scoreOpen}
 					closeScoreHandler={this.closeScoreHandler}
+					physical={this.physicalScore}
+					psych={this.psychScore}
+					social={this.socialScore}
+					environment={this.environmentScore}
 				/>
 
 			</div>

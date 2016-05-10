@@ -4,42 +4,17 @@ var ShareScore = require('./ShareScore.js');
 var CloseButton = require('../ui-Elements/CloseButton.js');
 var IcReturn = require('../ui-Elements/Icons.js').IcReturn;
 var NavLogo = require('../ui-Elements/NavLogo.js');
+var ChartColumn = require('./ChartColumn.js');
 
 var Score = React.createClass({
 	getDefaultProps: function() {
-		var graphValue = function(value) {
-			var amount = value * 20,
-				properties = {
-					style: { height: (amount + "%") },
-					magnitude: amount
-				}
-			return properties;
-		};
-
 		return {
-			physicalScore: graphValue(0),
-			psychologocialScore: graphValue(0),
-			socialScore: graphValue(0),
-			environmentScore: graphValue(0)
+			deviceRegistered: true,
+			physical: undefined,
+			psych: undefined,
+			social: undefined,
+			environment: undefined
 		}
-	},
-	setScores: function(scores) {
-		this.props.physicalScore = this.graphValue(scores.physical);
-		this.props.psychologocialScore = this.graphValue(scores.psychologocial);
-		this.props.socialScore = this.graphValue(scores.social);
-		this.props.environmentScore = this.graphValue(scores.environment);
-	},
-	/**
-	 * A lightweight object pairing the CSS style property (height) with the
-	 * numeric magnitude for the graph.
-	 */
-	graphValue: function(value) {
-		var amount = value * 20,
-			properties = {
-				style: { height: (amount + "%") },
-				magnitude: amount
-			}
-		return properties;
 	},
 	closeScoreHandler: function() {
 		this.props.closeScoreHandler();
@@ -49,6 +24,7 @@ var Score = React.createClass({
 			'Modal': true,
 			'is-active': this.props.scoreOpen,
 		});
+
 		return (
 			<div className={modalClasses} tabindex="-1" role="dialog" aria-labelledby="">
 				<div className="Modal-dialog" role="document">
@@ -67,50 +43,26 @@ var Score = React.createClass({
 
 								<div className="c-chart">
 									<div className="Grid Grid--withGutter">
-										<div className="Grid-cell u-size1of2 u-xs-size1of4">
-											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={this.props.physicalScore.style}>
-													<span className="c-chart-indicatorScore">
-														{this.props.physicalScore.magnitude}
-														<span className="c-chart-indicatorMark">%</span>
-													</span>
-												</div>
-											</div>
-											<h2 className="c-chart-label">Physical health</h2>
-										</div>
-										<div className="Grid-cell u-size1of2 u-xs-size1of4">
-											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={this.props.psychologocialScore.style}>
-													<span className="c-chart-indicatorScore">
-														{this.props.psychologocialScore.magnitude}
-														<span className="c-chart-indicatorMark">%</span>
-													</span>
-												</div>
-											</div>
-											<h2 className="c-chart-label">Psychological</h2>
-										</div>
-										<div className="Grid-cell u-size1of2 u-xs-size1of4">
-											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={this.props.socialScore.style}>
-													<span className="c-chart-indicatorScore">
-														{this.props.socialScore.magnitude}
-														<span className="c-chart-indicatorMark">%</span>
-													</span>
-												</div>
-											</div>
-											<h2 className="c-chart-label">Social relationships</h2>
-										</div>
-										<div className="Grid-cell u-size1of2 u-xs-size1of4">
-											<div className="c-chart-bar">
-												<div className="c-chart-indicator" style={this.props.environmentScore.style}>
-													<span className="c-chart-indicatorScore">
-														{this.props.environmentScore.magnitude}
-														<span className="c-chart-indicatorMark">%</span>
-													</span>
-												</div>
-											</div>
-											<h2 className="c-chart-label">Environment</h2>
-										</div>
+										<ChartColumn
+											key="1"
+											label="Physical"
+											magnitude={this.props.physical}
+										/>
+										<ChartColumn
+											key="2"
+											label="Psychological"
+											magnitude={this.props.psych}
+										/>
+										<ChartColumn
+											key="3"
+											label="Social relationships"
+											magnitude={this.props.social}
+										/>
+										<ChartColumn
+											key="4"
+											label="Environment"
+											magnitude={this.props.environment}
+										/>
 
 									</div>
 								</div>
