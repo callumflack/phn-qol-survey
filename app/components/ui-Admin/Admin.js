@@ -1,7 +1,8 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
-var AdminForm = require("../ui-Admin/AdminForm.js");
-var DownloadButtons = require("../ui-Admin/DownloadButtons.js");
+var AdminForm = require("./AdminForm.js");
+var DownloadButtons = require("./DownloadButtons.js");
+var LogOutModal = require("./LogOutModal.js");
 var IcAvatar = require('../ui-Elements/Icons.js').IcAvatar;
 var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
@@ -44,6 +45,9 @@ var Admin = React.createClass({
 
 					</div>
 				</main>
+
+				<LogOutModal />
+				
 			</div>
 		);
 	}
