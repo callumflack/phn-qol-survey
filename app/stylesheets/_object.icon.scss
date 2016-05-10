@@ -80,8 +80,10 @@
 	}
 
 	&--textAlign {
-		vertical-align: sub;
-		// transform: translateY(-1px);
+		// vertical-align: sub;
+		line-height: inherit;
+		transform: translateY(-2px);
+		vertical-align: middle;
 	}
 
 	&--textLgAlign {
@@ -90,7 +92,7 @@
 
 	&--buttonAlign {
 		line-height: inherit;
-		// transform: translateY(-1px);
+		transform: translateY(-2px);
 		vertical-align: middle;
 	}
 
