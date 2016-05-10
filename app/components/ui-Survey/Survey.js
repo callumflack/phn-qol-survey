@@ -254,6 +254,7 @@ var SurveyPage = React.createClass({
 	 * 										participant information.
 	 */
 	recordQuestionResponse: function(questionId, response) {
+		if ( ! this.state.surveyInProgress) this.setState({ surveyInProgress: true });
 		this.props.questionResponses[questionId - 1] = response;
 
 		function countSet(a) {
