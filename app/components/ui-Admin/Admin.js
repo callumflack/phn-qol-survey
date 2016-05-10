@@ -1,7 +1,8 @@
 var React = require("react");
 var Nav = require("../ui-Nav/Nav.js");
-var AdminForm = require("../ui-Admin/AdminForm.js");
-var DownloadButtons = require("../ui-Admin/DownloadButtons.js");
+var AdminForm = require("./AdminForm.js");
+var DownloadButtons = require("./DownloadButtons.js");
+var LogOutModal = require("./LogOutModal.js");
 var IcAvatar = require('../ui-Elements/Icons.js').IcAvatar;
 var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
@@ -9,15 +10,15 @@ require('./../../stylesheets/app.scss');
 
 var Admin = React.createClass({
 	render: function () {
+		var adminContent = (this.props.loggedIn)?
+			<AdminForm /> : <DownloadButtons />;
+
 		return (
 			<div>
 
 				<Nav
-					deviceRegistered={false}
-					region={this.props.region}
-					toggleRegistration={false}
+					loggedIn={this.props.loggedIn}
 					ref={(ref) => this.nav = ref}
-					surveyInProgress={false}
 				/>
 
 				<main className="o-content" role="main">
@@ -35,16 +36,18 @@ var Admin = React.createClass({
 						</p>
 
 						<div className="Grid Grid--withGutter Grid--alignCenter">
-							<div className="Grid-cell u-size7of12 u-marginT2">
+							<div className="Grid-cell u-size11of12 u-sm-size7of12 u-marginT2">
 
-								<AdminForm />
-								<DownloadButtons />
+								{adminContent}
 
 							</div>
 						</div>
 
 					</div>
 				</main>
+
+				<LogOutModal />
+				
 			</div>
 		);
 	}
