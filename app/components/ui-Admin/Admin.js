@@ -11,7 +11,9 @@ require('./../../stylesheets/app.scss');
 var Admin = React.createClass({
 	render: function () {
 		var adminContent = (this.props.loggedIn)?
-			<AdminForm /> : <DownloadButtons />;
+			// this duplicate argument is to enable Callum to design quicker.
+			// <AdminForm /> : <DownloadButtons />;
+			<DownloadButtons /> : <AdminForm />;
 
 		return (
 			<div>
@@ -47,7 +49,7 @@ var Admin = React.createClass({
 				</main>
 
 				<LogOutModal />
-				
+
 			</div>
 		);
 	}
