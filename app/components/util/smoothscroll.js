@@ -31,7 +31,7 @@ if(document.querySelectorAll === void 0 || window.pageYOffset === void 0 || hist
 var getTop = function(element) {
     // return value of html.getBoundingClientRect().top ... IE : 0, other browsers : -pageYOffset
     if(element.nodeName === 'HTML') return -window.pageYOffset
-    return element.getBoundingClientRect().top + window.pageYOffset - 200;
+    return element.getBoundingClientRect().top + window.pageYOffset - 180;
 }
 // ease in out function thanks to:
 // http://blog.greweb.fr/2012/02/bezier-curve-based-easing-functions-from-concept-to-implementation/

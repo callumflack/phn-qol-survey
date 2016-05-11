@@ -25,6 +25,7 @@ var Score = require('./Score.js');
 // Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
+const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
 
 var SurveyPage = React.createClass({
 	getDefaultProps: function() {
@@ -55,10 +56,12 @@ var SurveyPage = React.createClass({
 	 * to the server.
 	 */
 	submitSurvey: function() {
-		var error = false;
+		var error = false,
+			surveyResponses,
+			participant;
 
 		try {
-			this.validateSurvey();
+			surveyResponses = this.validateSurvey();
 		} catch(formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
@@ -69,7 +72,7 @@ var SurveyPage = React.createClass({
 			}
 		}
 		try {
-			this.validateParticipant();
+			participant = this.validateParticipant();
 		} catch (formError) {
 			if (formError.code = "validation") {
 				// Furnish error states.
@@ -80,6 +83,49 @@ var SurveyPage = React.createClass({
 			}
 		}
 		if (error === true) return;
+		
+		this.sendSubmission(surveyResponses, participant);
+	},
+	/**
+	 * Initiates the AJAX post to the server, requesting the storage of both the
+	 * survey question responses and the participant data.
+	 * @param {Number[]} surveyResponses	An array of responses, each element
+	 * 										corresponding to the ordered set of
+	 * 										questions and responses 0..4.
+	 * @param {Participant} participant	The participant information gathered
+	 * 									from the About You section.
+	 */
+	sendSubmission: function(surveyResponses, participant) {
+		var headers = new Headers();
+
+		headers.set('Content-Type', 'application/json');
+		headers.set('Accept', 'application/json');
+		headers.set('Authorization', localStorage.getItem('deviceToken'));
+		
+		return fetch(
+			SURVEY_SUBMIT_URL,
+			{
+				method: "POST",
+				mode: "cors",
+				headers: headers,
+				body: JSON.stringify({
+					survey: surveyResponses,
+					participant: participant
+				})
+			})
+			.then((response) => {
+				this.showScores();
+			})
+			.catch((err) => {
+				console.error(err);
+				console.error("Error sending submission!");
+			});
+	},
+	/**
+	 * Displays the score modal, funishing it with score data based on the
+	 * survey answers selected.
+	 */
+	showScores: function() {
 		var scores = this.calculateScores();
 		
 		this.physicalScore = scores.physical;
@@ -87,10 +133,11 @@ var SurveyPage = React.createClass({
 		this.socialScore = scores.social;
 		this.environmentScore = scores.environment;
 		
+		
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
-		});
+		});	
 	},
 	/**
 	 * Calculates each of the domain scores (as averages) 
@@ -145,7 +192,8 @@ var SurveyPage = React.createClass({
 	 * 									response.
 	 */
 	validateSurvey: function() {
-		var numQuestions = questionData.length;
+		var numQuestions = questionData.length,
+			responses = [];
 		// Survey questions.
 		if (this.props.questionsAnswered < numQuestions) {
 			var invalidQuestions = [],
@@ -167,6 +215,11 @@ var SurveyPage = React.createClass({
 			validationError.questions = invalidQuestions;
 			throw validationError;
 		}
+		
+		for (var i = 0; i < numQuestions; i++)
+			responses.push(this.props.questionResponses[i]);
+		
+		return responses;
 	},
 	/**
 	 * Validates the 'About You' information provided by the user.
@@ -177,10 +230,11 @@ var SurveyPage = React.createClass({
 		var aboutForm = this.aboutForm,
 			participant = {
 				gender: aboutForm.props.gender,
-				age: aboutForm.props.age,
+				ageGroup: aboutForm.props.age,
+				region: localStorage.getItem("phnRegion"),
 				education: aboutForm.props.education,
 				indigenous: aboutForm.props.indigenous,
-				sessions: aboutForm.props.sessions
+				sessionNumber: aboutForm.props.sessions
 			},
 			erroneousQuestions = [];
 
@@ -194,7 +248,7 @@ var SurveyPage = React.createClass({
 					return e;
 				}()
 			);
-		if ( !participant.age)
+		if ( !participant.ageGroup)
 			erroneousQuestions.push(
 				function() {
 					var e = new Error("Missing age");
@@ -224,7 +278,7 @@ var SurveyPage = React.createClass({
 					return e;
 				}()
 			);
-		if ( ! participant.sessions)
+		if ( ! participant.sessionNumber)
 			erroneousQuestions.push(
 				function() {
 					var e = new Error("Missing sessions number");
@@ -242,6 +296,8 @@ var SurveyPage = React.createClass({
 					e.questions = erroneousQuestions;
 					return e;
 				}();
+				
+		return participant;
 	},
 	/**
 	 * Used when a user makes her answer selection. This will store the user's

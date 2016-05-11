@@ -16,6 +16,8 @@
 	transition: z-index 0s ease 500ms, opacity 500ms ease;
 	width: 100vw;
 	z-index: map-fetch($z-index, 'below');
+	
+	transform: scale(0);
 }
 
 .Modal.is-active {
@@ -23,6 +25,8 @@
 	// overflow: hidden;
 	transition: z-index 0s ease, opacity 250ms ease;
 	z-index: map-fetch($z-index, 'modal');
+
+	transform: scale(1);
 
 	@include respond-to(xs) {
 		overflow-x: hidden;
