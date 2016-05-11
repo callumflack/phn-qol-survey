@@ -5,7 +5,7 @@ var IcAvatar = require('./Icons.js').IcAvatar;
 // https://medium.com/@joshblack/stateless-components-in-react-0-14-f9798f8b992d#.m8u4jzys8
 const ButtonRegister = (props) =>
 	<button className="Button t-buttonSecondary">
-		<IcSettings align="left" />
+		<IcSettings left={true} />
 		Register
 	</button>;
 
@@ -14,7 +14,7 @@ var ButtonLocation = React.createClass({
 		return (
 			<button className="Button t-buttonInvisible">
 				{this.props.location}
-				<IcSettings align="right" />
+				<IcSettings right={true} />
 			</button>
 		);
 	}
