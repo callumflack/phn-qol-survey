@@ -112,6 +112,7 @@
 	border-color: currentColor;
 	border-width: 1px;
 	line-height: size(button-height, concise) !important;
+	padding-top: 1px;
 
 	@include on-event() {
 	}
