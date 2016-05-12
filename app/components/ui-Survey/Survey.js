@@ -25,7 +25,9 @@ var Score = require('./Score.js');
 // Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
-const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+//const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
+const SURVEY_SHARE_URL = "http://localhost:3000/share";
 
 var SurveyPage = React.createClass({
 	getDefaultProps: function() {
@@ -37,7 +39,8 @@ var SurveyPage = React.createClass({
 				var a = [], b = questionData.length;
 				while(b--) a.push(undefined);
 				return a;
-			})()
+			})(),
+			submissionId: undefined
 		}
 	},
 	getInitialState: function() {
@@ -46,7 +49,7 @@ var SurveyPage = React.createClass({
 			deviceRegistered: deviceToken? true : false,
 			surveyInProgress: false,
 			registrationOpen: false,
-			scoreOpen: false,
+			scoreOpen: true,
 			surveyForm: false,
 			participantForm: false
 		};
@@ -113,7 +116,9 @@ var SurveyPage = React.createClass({
 					participant: participant
 				})
 			})
+			.then((response) => response.json())
 			.then((response) => {
+				this.props.submissionId = response.submission.submissionId;
 				this.showScores();
 			})
 			.catch((err) => {
@@ -437,6 +442,28 @@ var SurveyPage = React.createClass({
 
 		this.props.startSurveyCallback();
 	},
+	/**
+	 * Makes a request to the server to forward an SMS with the user's score
+	 * details. The phone number must be supplied for this to work.
+	 * @param {String} phoneNumber	The phone number to send the SMS message.
+	 * @throws {Error}	Thrown if the phone number is not a valid Australian
+	 * 					phone number or there is some other system error.
+	 */
+	sendSms: function(phoneNumber) {
+		var scores = this.calculateScores();
+		
+	},
+	/**
+	 * Makes a request to the server to forward an SMS with the user's score
+	 * details. The phone number must be supplied for this to work.
+	 * @param {String} phoneNumber	The phone number to send the SMS message.
+	 * @throws {Error}	Thrown if the email address isn't valid or there is
+	 * 					some other system error.
+	 */
+	sendEmail: function(email) {
+		var scores = this.calculateScores();
+		
+	},
 	render: function () {
 		return (
 			<div>
@@ -497,6 +524,8 @@ var SurveyPage = React.createClass({
 					psych={this.psychScore}
 					social={this.socialScore}
 					environment={this.environmentScore}
+					sendEmail={this.sendEmail}
+					sendSms={this.sendSms}
 				/>
 
 			</div>

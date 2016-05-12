@@ -12,40 +12,90 @@ var ShareScore = React.createClass({
 		// this.props.registerDevice(providerCode, this.validationFailCallback);
 
 		// Unfocus our input
-		this.pcInput.blur();
+		this.smsInput.blur();
 
 		return false;
 	},
 	getInitialState: function() {
 		return {
-			inputVisible: false,
+			emailInputVisibile: false,
+			smsInputVisibile: false,
+			emailSent: false,
+			smsSent: false,
 			invalidData: false
 		};
 	},
-	handleClick: function(event) {
+	emailHandleClick: function(event) {
 		this.setState({
-			inputVisible: true
-		}, this.focusAfterClick);
+				emailInputVisibile: true
+			},
+			function() {
+				if (this.state.emailInputVisibile)
+					this.emailInput.focus();
+			}
+		);
 	},
-	focusAfterClick: function() {
-		if (this.state.inputVisible)
-			this.pcInput.focus();
+	smsHandleClick: function(event) {
+		this.setState({
+				smsInputVisibile: true
+			},
+			function() {
+				if (this.state.smsInputVisibile)
+					this.smsInput.focus();
+			}
+		);
 	},
-	handleBlur: function() {
+	emailHandleBlur: function() {
 		// We're going to update the state ONLY IF there's no data in our input.
-		if (this.pcInput.value === "")
-			this.setState({ inputVisible: false });
+		if (this.emailInput.value === "")
+			this.setState({ emailInputVisibile: false });
+	},
+	smsHandleBlur: function() {
+		// We're going to update the state ONLY IF there's no data in our input.
+		if (this.smsInput.value === "")
+			this.setState({ smsInputVisibile: false });
+	},
+	emailFormSubmit: function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		
+		try { this.props.sendEmail(this.emailInput.value); }
+		catch(e) { return false; }
+
+		this.emailInput.blur();
+		this.setState({ emailSent: true });
+		return false;
+	},
+	smsFormSubmit: function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+
+		try { this.props.sendSms(this.smsInput.value); }
+		catch(e) { return false; }
+
+		this.smsInput.blur();
+		this.setState({ smsSent: true });
+		return false;
 	},
 	render: function () {
-		var formGroupClasses = classNames({
-			'Form-group': true,
-			'Form-group--sm': true,
-			'u-flexGrow1': true,
-			'u-xs-paddingRD1': true,
-			'u-marginBD1': true,
-			'is-active': this.state.inputVisible,
-			'has-error': this.state.invalidData
-		});
+		var smsFormGroupClasses = classNames({
+				'Form-group': true,
+				'Form-group--sm': true,
+				'u-flexGrow1': true,
+				'u-xs-paddingRD1': true,
+				'u-marginBD1': true,
+				'is-active': this.state.smsInputVisibile,
+				'has-error': this.state.invalidData
+			}),
+			emailFormGroupClasses = classNames({
+				'Form-group': true,
+				'Form-group--sm': true,
+				'u-flexGrow1': true,
+				'u-xs-paddingRD1': true,
+				'u-marginBD1': true,
+				'is-active': this.state.emailInputVisibile,
+				'has-error': this.state.invalidData
+			});
 
 		return (
 			<div>
@@ -53,46 +103,48 @@ var ShareScore = React.createClass({
 				className="u-xs-flex u-mxs-marginT"
 				method="post"
 				name="ShareScoreByEmailForm"
-				onSubmit={this.submitHandler}>
-				<div className={formGroupClasses} onClick={this.handleClick}>
+				onSubmit={this.emailFormSubmit}>
+				<div className={emailFormGroupClasses} onClick={this.emailHandleClick}>
 					<label for="input">Add an email</label>
 					<input
 						className="Form-control"
 						id="input"
-						type="text"
+						type="email"
 						name=""
 						placeholder=""
-						onBlur={this.handleBlur}
-						ref={(ref) => this.pcInput = ref}
+						onFocus={this.emailHandleClick}
+						onBlur={this.emailHandleBlur}
+						ref={(ref) => this.emailInput = ref}
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary u-colorBrandCount"
-						type="submit" value="Send" name="" />
+						type="submit" value="Send" name="" disabled={(this.state.emailSent)? true : undefined} />
 				</div>
 			</form>
 			<form
 				className="u-xs-flex u-mxs-marginT13 u-mxs-marginB u-marginTD2"
 				method="post"
 				name="ShareScoreBySMSForm"
-				onSubmit={this.submitHandler}>
-				<div className={formGroupClasses} onClick={this.handleClick}>
+				onSubmit={this.smsFormSubmit}>
+				<div className={smsFormGroupClasses} onClick={this.smsHandleClick}>
 					<label for="input">And/or add a mobile number</label>
 					<input
 						className="Form-control"
 						id="input"
-						type="text"
+						type="tel"
 						name=""
 						placeholder=""
-						onBlur={this.handleBlur}
-						ref={(ref) => this.pcInput = ref}
+						onFocus={this.smsHandleClick}
+						onBlur={this.smsHandleBlur}
+						ref={(ref) => this.smsInput = ref}
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary u-colorBrandCount"
-						type="submit" value="Send" name="" />
+						type="submit" value="Send" name="" disabled={(this.state.smsSent)? true : undefined} />
 				</div>
 			</form>
 			</div>
