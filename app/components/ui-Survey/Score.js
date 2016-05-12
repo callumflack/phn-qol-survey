@@ -70,7 +70,10 @@ var Score = React.createClass({
 								<div className="u-well">
 									<h3 className="u-headlineSm--light u-textCenter u-marginBD1">Get your score by email or SMS</h3>
 									<div className="u-size9of12 Grid-cell--center">
-										<ShareScore />
+										<ShareScore
+											sendEmail={this.props.sendEmail}
+											sendSms={this.props.sendSms}
+										/>
 									</div>
 								</div>
 
