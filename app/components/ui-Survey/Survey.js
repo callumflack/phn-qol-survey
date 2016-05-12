@@ -100,7 +100,7 @@ var SurveyPage = React.createClass({
 
 		headers.set('Content-Type', 'application/json');
 		headers.set('Accept', 'application/json');
-		headers.set('Authorization', localStorage.getItem('deviceToken'));
+		headers.set('Device-Token', localStorage.getItem('deviceToken'));
 		
 		return fetch(
 			SURVEY_SUBMIT_URL,
