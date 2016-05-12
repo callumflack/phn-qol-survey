@@ -8,7 +8,8 @@ var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
 
-const DEVICE_REG_URL = "https://phn-qol-survey-development.herokuapp.com/device";
+//const DEVICE_REG_URL = "https://phn-qol-survey-development.herokuapp.com/device";
+const DEVICE_REG_URL = "http://localhost:3000/device";
 
 var Home = React.createClass({
 	getDefaultProps: function() {

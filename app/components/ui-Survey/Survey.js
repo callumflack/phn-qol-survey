@@ -25,7 +25,8 @@ var Score = require('./Score.js');
 // Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
-const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+//const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
 
 var SurveyPage = React.createClass({
 	getDefaultProps: function() {
