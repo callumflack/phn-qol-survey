@@ -25,8 +25,8 @@ var Score = require('./Score.js');
 // Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
-//const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
-const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
+const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+//const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
 const SURVEY_SHARE_URL = "http://localhost:3000/share";
 
 var SurveyPage = React.createClass({
@@ -49,7 +49,7 @@ var SurveyPage = React.createClass({
 			deviceRegistered: deviceToken? true : false,
 			surveyInProgress: false,
 			registrationOpen: false,
-			scoreOpen: true,
+			scoreOpen: false,
 			surveyForm: false,
 			participantForm: false
 		};
