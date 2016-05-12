@@ -20,7 +20,7 @@ label {
 input:not([type="radio"]),
 input:not([type="submit"]),
 input:not(".Button"),
-input[type="text"],
+input[type="text"], input[type="email"], input[type="tel"], 
 textarea {
 	@include TextSm();
 	color: palette(medium);
@@ -74,7 +74,7 @@ textarea {
 
 // REFACTOR: text inputs only so I don't override radio btn component styles…
 
-input[type="text"] {
+input[type="text"], input[type="email"], input[type="tel"] {
 	@include TextMd();
 	color: rgba( palette(brand-counter), 0.7 );
 	background: transparent;
