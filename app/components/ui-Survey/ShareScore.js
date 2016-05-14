@@ -22,7 +22,8 @@ var ShareScore = React.createClass({
 			smsInputVisibile: false,
 			emailSent: false,
 			smsSent: false,
-			invalidData: false
+			invalidSms: false,
+			invalidEmail: false
 		};
 	},
 	emailHandleClick: function(event) {
@@ -70,6 +71,15 @@ var ShareScore = React.createClass({
 		event.preventDefault();
 		event.stopPropagation();
 
+		var phoneNum = this.smsInput.value;
+		
+		phoneNum = phoneNum.replace(/\s/g, "");
+		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(phoneNum)
+			|| phoneNum.length > 11) {
+			this.setState({ invalidSms: true });
+			return false;
+		}
+
 		try { this.props.sendSms(this.smsInput.value); }
 		catch(e) { return false; }
 
@@ -85,7 +95,7 @@ var ShareScore = React.createClass({
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
 				'is-active': this.state.smsInputVisibile,
-				'has-error': this.state.invalidData
+				'has-error': this.state.invalidSms
 			}),
 			emailFormGroupClasses = classNames({
 				'Form-group': true,
@@ -139,6 +149,7 @@ var ShareScore = React.createClass({
 						onFocus={this.smsHandleClick}
 						onBlur={this.smsHandleBlur}
 						ref={(ref) => this.smsInput = ref}
+						disabled={(this.state.smsSent)? true : undefined}
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">

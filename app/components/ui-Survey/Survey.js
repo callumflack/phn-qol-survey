@@ -25,7 +25,10 @@ var Score = require('./Score.js');
 // Constants
 const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
+
 const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
+
 //const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
 const SURVEY_SHARE_URL = "http://localhost:3000/share";
 
@@ -450,8 +453,28 @@ var SurveyPage = React.createClass({
 	 * 					phone number or there is some other system error.
 	 */
 	sendSms: function(phoneNumber) {
-		var scores = this.calculateScores();
+		var submissionId = this.props.submissionId,
+			headers = new Headers();
+
+		headers.set('Content-Type', 'application/json');
+		headers.set('Accept', 'application/json');
+		headers.set('Device-Token', localStorage.getItem('deviceToken'));
 		
+		return fetch(
+			SEND_SCORES_URL,
+			{
+				method: "POST",
+				mode: "cors",
+				headers: headers,
+				body: JSON.stringify({
+					submissionId: submissionId,
+					address: phoneNumber
+				})
+			})
+			.catch((err) => {
+				console.error(err);
+				console.error("Error sending submission!");
+			});
 	},
 	/**
 	 * Makes a request to the server to forward an SMS with the user's score
