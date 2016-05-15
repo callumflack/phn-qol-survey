@@ -197,9 +197,9 @@ var ShareScore = React.createClass({
 					<label for="input">Add an email</label>
 					<input
 						className="Form-control"
-						id="input"
+						id="emailInput"
 						type="email"
-						name=""
+						name="email"
 						placeholder=""
 						onFocus={this.emailHandleClick}
 						onBlur={this.emailHandleBlur}
@@ -210,7 +210,7 @@ var ShareScore = React.createClass({
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
 						type="submit" name=""
-						value={(this.state.smsSent)? "Sent" : "Send"}
+						value={(this.state.emailSent)? "Sent" : "Send"}
 						disabled={(this.state.emailSent)? true : undefined} />
 					<span className="Form-iconWrapper"><IcSuccess /></span>
 					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
@@ -225,9 +225,9 @@ var ShareScore = React.createClass({
 					<label for="input">And/or add a mobile number</label>
 					<input
 						className="Form-control"
-						id="input"
+						id="smsInput"
 						type="tel"
-						name=""
+						name="sms"
 						placeholder=""
 						onFocus={this.smsHandleClick}
 						onBlur={this.smsHandleBlur}
