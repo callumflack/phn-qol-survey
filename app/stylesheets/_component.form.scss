@@ -74,14 +74,18 @@ textarea {
 
 
 
-
+// Inputs
 // REFACTOR: text inputs only so I don't override radio btn component styles…
+// --------------------------------------------------------------------------
+
+$color-placeholder: rgba( palette(brand-counter), 0.7 );
 
 input[type="text"],
 input[type="email"],
 input[type="tel"] {
 	@include TextMd();
-	color: rgba( palette(brand-counter), 0.7 );
+	@include baseTransition();
+	color: $color-placeholder;
 	background: transparent;
 	border: 0;
 	border-bottom: 1px solid transparent;
@@ -92,7 +96,6 @@ input[type="tel"] {
 	line-height: size(button-height, base);
 	padding: 0;
 	resize: none;
-	transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
 	width: 100%;
 	-webkit-appearance: none;
 
@@ -101,7 +104,7 @@ input[type="tel"] {
 	}
 
 	@include respond-to(max-xs) {
-		// font-size: 16px;
+		// font-size: 16px; // must be at least 16px to prevent iOS default zoom-in
 	}
 
 	&:-webkit-autofill {
@@ -109,8 +112,6 @@ input[type="tel"] {
 		-webkit-text-fill-color: palette(medium);
 		background-clip: padding-box;
 	}
-
-	$color-placeholder: rgba( palette(brand-counter), 0.7 );
 
 	&::-webkit-input-placeholder { color: $color-placeholder; }
 	&:-moz-placeholder           { color: $color-placeholder; }
