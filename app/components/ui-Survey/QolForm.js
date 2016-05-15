@@ -74,6 +74,7 @@ var QolForm = React.createClass({
 	render: function() {
 		var formClasses = classNames({
 			'u-marginT5': true,
+			'u-sm-marginT7': true,
 			'FirstForm': true,
 			// 'is-active': this.state.surveyInProgress
 			'is-active': true

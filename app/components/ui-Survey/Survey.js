@@ -507,7 +507,7 @@ var SurveyPage = React.createClass({
 					blocked="true"
 				/>
 
-			<main className="o-content u-marginT5" role="main">
+			<main className="o-content u-marginT5 u-sm-marginT7" role="main">
 					<div className="o-container">
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>
