@@ -9,8 +9,12 @@ var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 require('./../../stylesheets/app.scss');
 
 // Development
-var ADMIN_LOGIN_URL = "http://localhost:3000/admin/login";
-var ADMIN_DOWNLOAD_URL = "http://localhost:3000/admin/download";
+var ADMIN_LOGIN_URL = "https://phn-qol-survey-development.herokuapp.com/admin/login";
+var ADMIN_DOWNLOAD_URL = "https://phn-qol-survey-development.herokuapp.com/admin/download";
+
+// Development
+// var ADMIN_LOGIN_URL = "http://localhost:3000/admin/login";
+// var ADMIN_DOWNLOAD_URL = "http://localhost:3000/admin/download";
 
 var ADMIN_TIMEOUT = 1000*60*5;
 
