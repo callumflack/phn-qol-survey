@@ -449,10 +449,11 @@ var SurveyPage = React.createClass({
 	 * Makes a request to the server to forward an SMS with the user's score
 	 * details. The phone number must be supplied for this to work.
 	 * @param {String} phoneNumber	The phone number to send the SMS message.
+	 * @param {Function} callback	Called when the SMS API request is answered.
 	 * @throws {Error}	Thrown if the phone number is not a valid Australian
 	 * 					phone number or there is some other system error.
 	 */
-	sendSms: function(phoneNumber) {
+	sendSms: function(phoneNumber, callback) {
 		var submissionId = this.props.submissionId,
 			headers = new Headers();
 
@@ -471,21 +472,24 @@ var SurveyPage = React.createClass({
 					address: phoneNumber
 				})
 			})
+			.then(callback)
 			.catch((err) => {
 				console.error(err);
 				console.error("Error sending submission!");
+				callback(err);
 			});
 	},
 	/**
 	 * Makes a request to the server to forward an SMS with the user's score
 	 * details. The phone number must be supplied for this to work.
 	 * @param {String} phoneNumber	The phone number to send the SMS message.
+	 * @param {Function} callback	Called when the email API request is met.
 	 * @throws {Error}	Thrown if the email address isn't valid or there is
 	 * 					some other system error.
 	 */
-	sendEmail: function(email) {
+	sendEmail: function(email, callback) {
 		var scores = this.calculateScores();
-		
+		callback(new Error("Not implemented"));
 	},
 	render: function () {
 		return (

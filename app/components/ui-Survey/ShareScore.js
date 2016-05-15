@@ -1,6 +1,8 @@
 var React = require("react");
 var classNames = require('classnames');
 
+var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
 		// Supress the click (and prevent navigation).
@@ -22,8 +24,10 @@ var ShareScore = React.createClass({
 			smsInputVisibile: false,
 			emailSent: false,
 			smsSent: false,
-			invalidSms: false,
-			invalidEmail: false
+			smsInvalid: false,
+			emailInvalid: false,
+			smsPending: false,
+			emailPending: false
 		};
 	},
 	emailHandleClick: function(event) {
@@ -60,31 +64,87 @@ var ShareScore = React.createClass({
 		event.preventDefault();
 		event.stopPropagation();
 		
-		try { this.props.sendEmail(this.emailInput.value); }
-		catch(e) { return false; }
+		var emailAddress = this.smsInput.value,
+			shareScore = this;
+		
+		emailAddress = emailAddress.replace(/\s/g, "");
+		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(emailAddress)
+			|| emailAddress.length === 0) {
+			this.setState({ smsInvalid: true });
+			return false;
+		}
+		
+		try { this.props.sendEmail(
+				this.emailInput.value,
+				function (result) { 
+					var success = result.ok? true : false;
+					shareScore.setState({ 
+						emailSent: success,
+						emailInvalid: !success,
+						emailPending: false
+					});
+				}
+			); 
+		}
+		catch(e) {
+			this.setState({ 
+				emailSent: false,
+				emailInvalid: true,
+				emailPending: false
+			});
+			return false;
+		}
 
 		this.emailInput.blur();
-		this.setState({ emailSent: true });
 		return false;
 	},
 	smsFormSubmit: function(event) {
 		event.preventDefault();
 		event.stopPropagation();
 
-		var phoneNum = this.smsInput.value;
+		var phoneNum = this.smsInput.value,
+			shareScore = this;
 		
 		phoneNum = phoneNum.replace(/\s/g, "");
 		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(phoneNum)
 			|| phoneNum.length > 11) {
-			this.setState({ invalidSms: true });
+			this.setState({ 
+				smsSent: false,
+				smsInvalid: true,
+				smsPending: false
+			});
+			return false;
+		}
+		
+		this.setState({ 
+			smsSent: false,
+			smsInvalid: false,
+			smsPending: true
+		});
+		
+		try { 
+			this.props.sendSms(
+				this.smsInput.value,
+				function (result) {
+					var success = result.ok? true : false;
+					shareScore.setState({ 
+						smsSent: success,
+						smsInvalid: !success,
+						smsPending: false
+					});
+				}
+			);
+		}
+		catch(e) {
+			this.setState({ 
+				smsSent: false,
+				smsInvalid: true,
+				smsPending: false
+			}); 
 			return false;
 		}
 
-		try { this.props.sendSms(this.smsInput.value); }
-		catch(e) { return false; }
-
 		this.smsInput.blur();
-		this.setState({ smsSent: true });
 		return false;
 	},
 	render: function () {
@@ -94,8 +154,16 @@ var ShareScore = React.createClass({
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
-				'is-active': this.state.smsInputVisibile,
-				'has-error': this.state.invalidSms
+				'is-active': this.state.smsInputVisibile
+			}),
+			smsFormClasses = classNames({
+				'u-xs-flex': true,
+				'u-mxs-marginT13': true,
+				'u-mxs-marginB': true,
+				'u-marginTD2': true,
+				'has-error': this.state.smsInvalid,
+				'is-pending': this.state.smsPending,
+				'is-successful': this.state.smsSent
 			}),
 			emailFormGroupClasses = classNames({
 				'Form-group': true,
@@ -103,14 +171,20 @@ var ShareScore = React.createClass({
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
-				'is-active': this.state.emailInputVisibile,
-				'has-error': this.state.invalidData
+				'is-active': this.state.emailInputVisibile
+			}),
+			emailFormClasses = classNames({
+				'u-xs-flex': true,
+				'u-mxs-marginT': true,
+				'has-error': this.state.emailInvalid,
+				'is-pending': this.state.emailPending,
+				'is-successful': this.state.emailSent
 			});
 
 		return (
 			<div>
 			<form
-				className="u-xs-flex u-mxs-marginT"
+				className={emailFormClasses}
 				method="post"
 				name="ShareScoreByEmailForm"
 				onSubmit={this.emailFormSubmit}>
@@ -134,7 +208,7 @@ var ShareScore = React.createClass({
 				</div>
 			</form>
 			<form
-				className="u-xs-flex u-mxs-marginT13 u-mxs-marginB u-marginTD2"
+				className={smsFormClasses}
 				method="post"
 				name="ShareScoreBySMSForm"
 				onSubmit={this.smsFormSubmit}>
