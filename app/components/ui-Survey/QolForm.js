@@ -1,4 +1,5 @@
 var React = require("react");
+var classNames = require('classnames');
 var Nav = require("../ui-Nav/Nav.js");
 var Question = require('./Question');
 
@@ -71,8 +72,15 @@ var QolForm = React.createClass({
 		return components;
 	},
 	render: function() {
+		var formClasses = classNames({
+			'u-marginT5': true,
+			'FirstForm': true,
+			// 'is-active': this.state.surveyInProgress
+			'is-active': true
+		});
+
 		return (
-			<form method="post" action="" onSubmit={this.props.supressSubmit} className="Survey u-marginT5">
+			<form method="post" action="" onSubmit={this.props.supressSubmit} className={formClasses}>
 				{this.questionBlocks(this.props.questionData)}
 			</form>
 		)
