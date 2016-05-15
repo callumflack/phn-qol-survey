@@ -20,7 +20,9 @@ label {
 input:not([type="radio"]),
 input:not([type="submit"]),
 input:not(".Button"),
-input[type="text"], input[type="email"], input[type="tel"], 
+input[type="text"],
+input[type="email"],
+input[type="tel"],
 textarea {
 	@include TextSm();
 	color: palette(medium);
@@ -189,5 +191,18 @@ input[type="text"], input[type="email"], input[type="tel"] {
 
 	input.Form-control {
 		border-color: palette(bad-news);
+	}
+}
+
+
+// Make the first form invisible until we scroll/click
+// --------------------------------------------------------------------------
+
+.FirstForm {
+	@include baseTransition();
+	opacity: 0;
+
+	&.is-active {
+		opacity: 1;
 	}
 }
