@@ -29,6 +29,24 @@ var IconSettings = React.createClass({
 	}
 });
 
+var IconSuccess = React.createClass({
+	render: function(props) {
+		var iconClasses = classNames({
+			'Icon': true,
+			'Icon--md': true,
+			'Icon--buttonAlign': true
+		});
+
+		return (
+			<svg className={iconClasses} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Submission success Icon</title>
+				<path d="M0 0h24v24H0z" fill="none"/>
+				<path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+			</svg>
+		);
+	}
+});
+
 var IconAvatar = React.createClass({
 	render: function() {
 		return (
@@ -103,6 +121,7 @@ var IconReturn = React.createClass({
 
 module.exports = {
 	IcSettings: IconSettings,
+	IcSuccess: IconSuccess,
 	IcAvatar: IconAvatar,
 	IcChoice: IconChoice,
 	IcSubmit: IconSubmit,
