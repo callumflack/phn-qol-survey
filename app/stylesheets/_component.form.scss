@@ -1,7 +1,8 @@
 
 
 // --------------------------------------------------------------------------
-// FORM
+// 	 FORM
+// 	 Large refactor required…
 // --------------------------------------------------------------------------
 
 
@@ -76,7 +77,9 @@ textarea {
 
 // REFACTOR: text inputs only so I don't override radio btn component styles…
 
-input[type="text"], input[type="email"], input[type="tel"] {
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
 	@include TextMd();
 	color: rgba( palette(brand-counter), 0.7 );
 	background: transparent;
@@ -116,16 +119,17 @@ input[type="text"], input[type="email"], input[type="tel"] {
 }
 
 
-// Floating label pattern
-// Usually requires JS unless you're using React…
+
+// Form
 // --------------------------------------------------------------------------
 
-/* uncss:ignore */
-.Form-group {
-	position: relative;
+.Form {
+	.Form-group {
+		position: relative;
 
-	&:not(:last-child) {
-		margin: 0 0 space(1.1);
+		&:not(:last-child) {
+			margin: 0 0 space(1.1);
+		}
 	}
 
 	label {
@@ -138,59 +142,144 @@ input[type="text"], input[type="email"], input[type="tel"] {
 		transition: all map-fetch($transition, duration, fast) map-fetch($transition, type, fine);
 		z-index: 99;
 	}
-
-	input.Form-control,
-	textarea.Form-control {
-	}
-
-	&--sm {
-		// line-height: size(button-height, base);
-		line-height: 38px;
-
-		label {
-			@include TextRg();
-			color: palette(brand-counter);
-		}
-
-		input.Form-control {
-			line-height: inherit;
-		}
-	}
-
-	// retain theme typography alignment
-	// input.Button {
-	//     padding-top: 2px;
-	// }
-
-	// /* uncss:ignore */
-	// &.is-active > label:not(.has-error) {
-	//     // color: palette(charcoal);
-	//     // font-size: rem($sizeTextSm * 0.65);
-	//     opacity: 0;
-	//     transform: translateY(rem(-10));
-	// }
 }
 
-.Form-group.is-active {
-	label {
-		font-size: fontsize(textXs, base);
-		opacity: 1;
-		transform: translate(1px, -16px);
+// Smaller form
+.Form--sm {
+	.Form-group {
+		// line-height: size(button-height, base);
+		line-height: 38px;
 	}
 
-	input.Form-control {
+	label {
+		@include TextRg();
+		color: palette(brand-counter);
+	}
+
+	[type="text"],
+	[type="email"],
+	[type="tel"] {
+		line-height: inherit;
+	}
+}
+
+// An icon wrapper used to style icon states in forms.
+.Form-iconWrapper {
+	color: transparent;
+	line-height: size(button-height, concise);
+	position: absolute;
+	right: 33%;
+}
+
+// An icon wrapper used to style icon states in forms.
+.Form-loadingWrapper {
+	left: 0;
+	line-height: size(button-height, concise);
+	position: absolute;
+	right: 0;
+	top: 2px;
+
+	.sk-spinner-pulse {
+		background-color: transparent;
+		height: size(button-height, concise);
+		margin: auto;
+		width: size(button-height, concise);
+	}
+}
+
+
+// Form states
+// --------------------------------------------------------------------------
+// Three states:
+// - is-pending
+// - has-error
+// - is-succcessful
+// Alt method: &.is-active > label:not(.has-error)
+
+// Common submitting/submitted state styles
+.Form.is-active,
+.Form.is-pending,
+.Form.is-successful {
+	label {
+		font-size: 70%;
+		transform: translate(1px, -18px);
+	}
+}
+
+// Active state styles
+.Form.is-active {
+	// Floating label pattern, React manages state
+	label {
+		color: palette(brand-complement);
+		// opacity: 1;
+	}
+
+	[type="text"],
+	[type="email"],
+	[type="tel"] {
 		border-color: rgba( palette(brand-complement), 1 );
 		color: palette(brand-complement);
 	}
 }
 
-.Form-group.has-error {
+// Error state styles
+.Form.has-error {
 	label {
 		color: palette(bad-news);
 	}
 
-	input.Form-control {
-		border-color: palette(bad-news);
+	[type="text"],
+	[type="email"],
+	[type="tel"] {
+		border-color: palette(bad-news) !important;
+		color: palette(bad-news) !important;
+	}
+
+	[type="submit"], {
+		opacity: 0.4;
+	}
+}
+
+// Common submitting/submitted state styles
+.Form.is-pending,
+.Form.is-successful {
+	label {
+		color: palette(brand-complement);
+	}
+
+	[type="text"],
+	[type="email"],
+	[type="tel"] {
+		border-color: palette(brand-complement);
+		color: palette(brand-complement);
+	}
+}
+
+// Submitting state styles
+.Form.is-pending {
+	[class*="t-buttonSecondary"] {
+		// background-color: palette(brand-complement);
+		border-color: palette(brand-complement);
+		color: transparent;
+	}
+
+	.sk-spinner-pulse {
+		background-color: palette(brand-complement);
+	}
+}
+
+// Submitted state styles
+.Form.is-successful {
+	[class*="t-buttonSecondary"] {
+		background-color: palette(brand-complement);
+		border-color: palette(brand-complement);
+		color: palette(white);
+	}
+
+	// Turn this off for now.
+	// Need better control of x-position.
+	.Form-iconWrapper {
+		// color: palette(white);
 	}
 }
 

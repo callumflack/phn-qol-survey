@@ -21,6 +21,7 @@ $spinkit-spinner-margin: 40px auto !default;
 $spinkit-size: 40px !default;
 $spinkit-spinner-color: palette(brand);
 
+// Bounce
 .sk-three-bounce {
 	$animationDuration: 1.4s;
 	$delayRange: 0.32s;
@@ -51,5 +52,24 @@ $spinkit-spinner-color: palette(brand);
 		transform: scale(0);
 	} 40% {
 		transform: scale(1.0);
+	}
+}
+
+// Pulse
+.sk-spinner-pulse {
+	width: $spinkit-size * 0.5;
+	height: $spinkit-size * 0.5;
+	margin: $spinkit-spinner-margin;
+	background-color: $spinkit-spinner-color;
+	border-radius: 100%;
+	animation: sk-pulseScaleOut 1.0s infinite ease-in-out;
+}
+
+@keyframes sk-pulseScaleOut {
+	0% {
+		transform: scale(0);
+	} 100% {
+		transform: scale(1.0);
+		opacity: 0;
 	}
 }
