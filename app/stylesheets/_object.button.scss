@@ -29,8 +29,12 @@
 
 	@include on-event() {
 		// background-color: rgba( palette(brand-complement), 0.5 );
-		opacity: 0.5;
+		// opacity: 0.7;
 		outline: none !important;
+	}
+
+	&:hover {
+		opacity: 0.7;
 	}
 }
 
@@ -105,22 +109,27 @@
 	}
 }
 
-@mixin buttonSecondary() {
+@mixin buttonSecondary(
+	$mixinColor: palette(brand)
+) {
 	@include buttonBase();
 	@include textButtonSm();
 	background-color: transparent;
 	border-color: currentColor;
 	border-width: 1px;
+	color: $mixinColor;
 	line-height: size(button-height, concise) !important;
 	padding-top: 1px;
 
 	@include on-event() {
+		// background-color: $mixinColor;
+		// color: palette(white) !important;
 	}
 }
 
-.t-buttonSecondary {
-	@include buttonSecondary();
-}
+.t-buttonSecondary             { @include buttonSecondary(); }
+.t-buttonSecondary--complement { @include buttonSecondary( palette(brand-complement) ); }
+.t-buttonSecondary--counter    { @include buttonSecondary( palette(brand-counter) ); }
 
 
 // Invisible button (for holding the touch space & layout)

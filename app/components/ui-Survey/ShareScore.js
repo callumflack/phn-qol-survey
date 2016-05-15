@@ -1,7 +1,8 @@
 var React = require("react");
 var classNames = require('classnames');
+var IcSuccess = require('../ui-Elements/Icons.js').IcSuccess;
 
-var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var EMAIL_REGEX = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
 
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
@@ -63,31 +64,31 @@ var ShareScore = React.createClass({
 	emailFormSubmit: function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		
+
 		var emailAddress = this.smsInput.value,
 			shareScore = this;
-		
+
 		emailAddress = emailAddress.replace(/\s/g, "");
 		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(emailAddress)
 			|| emailAddress.length === 0) {
 			this.setState({ smsInvalid: true });
 			return false;
 		}
-		
+
 		try { this.props.sendEmail(
 				this.emailInput.value,
-				function (result) { 
+				function (result) {
 					var success = result.ok? true : false;
-					shareScore.setState({ 
+					shareScore.setState({
 						emailSent: success,
 						emailInvalid: !success,
 						emailPending: false
 					});
 				}
-			); 
+			);
 		}
 		catch(e) {
-			this.setState({ 
+			this.setState({
 				emailSent: false,
 				emailInvalid: true,
 				emailPending: false
@@ -104,30 +105,30 @@ var ShareScore = React.createClass({
 
 		var phoneNum = this.smsInput.value,
 			shareScore = this;
-		
+
 		phoneNum = phoneNum.replace(/\s/g, "");
 		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(phoneNum)
 			|| phoneNum.length > 11) {
-			this.setState({ 
+			this.setState({
 				smsSent: false,
 				smsInvalid: true,
 				smsPending: false
 			});
 			return false;
 		}
-		
-		this.setState({ 
+
+		this.setState({
 			smsSent: false,
 			smsInvalid: false,
 			smsPending: true
 		});
-		
-		try { 
+
+		try {
 			this.props.sendSms(
 				this.smsInput.value,
 				function (result) {
 					var success = result.ok? true : false;
-					shareScore.setState({ 
+					shareScore.setState({
 						smsSent: success,
 						smsInvalid: !success,
 						smsPending: false
@@ -136,11 +137,11 @@ var ShareScore = React.createClass({
 			);
 		}
 		catch(e) {
-			this.setState({ 
+			this.setState({
 				smsSent: false,
 				smsInvalid: true,
 				smsPending: false
-			}); 
+			});
 			return false;
 		}
 
@@ -150,32 +151,36 @@ var ShareScore = React.createClass({
 	render: function () {
 		var smsFormGroupClasses = classNames({
 				'Form-group': true,
-				'Form-group--sm': true,
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
 				'is-active': this.state.smsInputVisibile
 			}),
 			smsFormClasses = classNames({
+				'Form': true,
+				'Form--sm': true,
 				'u-xs-flex': true,
 				'u-mxs-marginT13': true,
 				'u-mxs-marginB': true,
 				'u-marginTD2': true,
+				'is-active': this.state.smsInputVisibile,
 				'has-error': this.state.smsInvalid,
 				'is-pending': this.state.smsPending,
 				'is-successful': this.state.smsSent
 			}),
 			emailFormGroupClasses = classNames({
 				'Form-group': true,
-				'Form-group--sm': true,
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
 				'is-active': this.state.emailInputVisibile
 			}),
 			emailFormClasses = classNames({
+				'Form': true,
+				'Form--sm': true,
 				'u-xs-flex': true,
 				'u-mxs-marginT': true,
+				'is-active': this.state.emailInputVisibile,
 				'has-error': this.state.emailInvalid,
 				'is-pending': this.state.emailPending,
 				'is-successful': this.state.emailSent
@@ -203,8 +208,12 @@ var ShareScore = React.createClass({
 				</div>
 				<div className="Form-group u-flexExpandLeft">
 					<input
-						className="Button t-button--full t-xs-button--md t-buttonSecondary u-colorBrandCount"
-						type="submit" value="Send" name="" disabled={(this.state.emailSent)? true : undefined} />
+						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
+						type="submit" name=""
+						value={(this.state.smsSent)? "Sent" : "Send"}
+						disabled={(this.state.emailSent)? true : undefined} />
+					<span className="Form-iconWrapper"><IcSuccess /></span>
+					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			<form
@@ -228,8 +237,12 @@ var ShareScore = React.createClass({
 				</div>
 				<div className="Form-group u-flexExpandLeft">
 					<input
-						className="Button t-button--full t-xs-button--md t-buttonSecondary u-colorBrandCount"
-						type="submit" value="Send" name="" disabled={(this.state.smsSent)? true : undefined} />
+						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
+						type="submit" name=""
+						value={(this.state.smsSent)? "Sent" : "Send"}
+						disabled={(this.state.smsSent)? true : undefined} />
+					<span className="Form-iconWrapper"><IcSuccess /></span>
+					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			</div>
