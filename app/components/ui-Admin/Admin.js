@@ -10,7 +10,9 @@ require('./../../stylesheets/app.scss');
 
 // Development
 var ADMIN_LOGIN_URL = "http://localhost:3000/admin/login";
-var ADMIN_TIMEOUT = 1000*60*15;
+var ADMIN_DOWNLOAD_URL = "http://localhost:3000/admin/download";
+
+var ADMIN_TIMEOUT = 1000*60*5;
 
 var Admin = React.createClass({
 	getInitialState: function() {
@@ -28,7 +30,8 @@ var Admin = React.createClass({
 		return {
 			loggedIn: loggedIn,
 			logoutOpen: false,
-			loginPending: false
+			loginPending: false,
+			downloadPending: false
 		};
 	},
 	logoutClick: function() {
@@ -100,11 +103,16 @@ var Admin = React.createClass({
 				});
 			}
 	},
+	downloadData: function() {
+		window.location = ADMIN_DOWNLOAD_URL + "?token=" + localStorage.getItem('adminToken');
+	},
 	render: function () {
 		var adminContent = (this.state.loggedIn)?
 			// this duplicate argument is to enable Callum to design quicker.
 			// <AdminForm /> : <DownloadButtons />;
-			<DownloadButtons /> 
+			<DownloadButtons
+				downloadData={this.downloadData}
+			/> 
 			    : <AdminForm
 					loggedIn={this.state.loggedIn}
 					loginPending={this.state.loginPending}

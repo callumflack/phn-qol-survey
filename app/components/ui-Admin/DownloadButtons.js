@@ -7,13 +7,8 @@ var DownloadButtons = React.createClass({
 		return (
 			<div>
 				<div className="u-textCenter">
-					<button className="Button t-button t-button--full" type="submit" value="" name="">
+					<button className="Button t-button t-button--full" type="submit" value="" onClick={this.props.downloadData} name="">
 						<IcDownload align="left" />Survey data
-					</button>
-				</div>
-				<div className="u-textCenter u-marginT">
-					<button className="Button t-button t-button--full" type="submit" value="" name="">
-						<IcDownload align="left" />Registered providers
 					</button>
 				</div>
 			</div>
