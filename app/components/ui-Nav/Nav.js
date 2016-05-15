@@ -14,6 +14,9 @@ var Nav = React.createClass({
 		this.props.questionsAnswered = questionsAnswered;
 		this.forceUpdate();
 	},
+	logoutClick: function() {
+		this.props.logoutClick();
+	},
 	render: function() {
 		var headerStyleClasses = classNames({
 			'c-header': true,
@@ -24,7 +27,7 @@ var Nav = React.createClass({
 		if (this.props.deviceRegistered) {
 			settingsBtn = <a className="c-nav-status" onClick={this.regClick}><BtnLocation location={this.props.region} /></a>;
 		} else if (this.props.loggedIn) {
-			settingsBtn = <BtnLogout />;
+			settingsBtn = <BtnLogout logoutClick={this.logoutClick} />;
 		} else if (this.props.loggedIn !== undefined && this.props.loggedIn === false) {
 			settingsBtn = "";
 		} else {

@@ -8,12 +8,97 @@ var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
 require('./../../stylesheets/app.scss');
 
+// Development
+var ADMIN_LOGIN_URL = "http://localhost:3000/admin/login";
+var ADMIN_TIMEOUT = 1000*60*15;
+
 var Admin = React.createClass({
 	getInitialState: function() {
+		var adminLogon = localStorage.getItem('adminLogon'),
+			adminToken = localStorage.getItem('adminToken'),
+			loggedIn = false;
+
+		if (adminLogon)
+			adminLogon = parseInt(adminLogon);
+		if ( ! isNaN(adminLogon))
+			loggedIn = adminLogon + ADMIN_TIMEOUT > Date.now();
+
+		loggedIn = loggedIn && adminToken !== undefined;
+			
 		return {
-			loggedIn: false,
+			loggedIn: loggedIn,
+			logoutOpen: false,
 			loginPending: false
 		};
+	},
+	logoutClick: function() {
+		this.setState({ logoutOpen: true });
+	},
+	logoutClose: function() {
+		this.setState({ logoutOpen: false });
+	},
+	logout: function() {
+		localStorage.removeItem('adminToken');
+		localStorage.removeItem('adminLogon');
+		this.setState({
+			loggedIn: false,
+			logoutOpen: false,
+			loginPending: false
+		});
+	},
+	sendLogin: function(username, password, callback) {
+		var submissionId = this.props.submissionId,
+			headers = new Headers(),
+			admin = this;
+
+		headers.set('Content-Type', 'application/json');
+		headers.set('Accept', 'application/json');
+		
+		this.setState({
+			loggedIn: false,
+			logoutOpen: false,
+			loginPending: true
+		});
+		
+		return fetch(
+			ADMIN_LOGIN_URL,
+			{
+				method: "POST",
+				mode: "cors",
+				headers: headers,
+				body: JSON.stringify({
+					username: username,
+					password: password
+				})
+			})
+			.then((response) => response.json())
+			.then(storeAdminToken)
+			.catch((err) => {
+				console.error(err);
+				console.error("Error sending submission!");
+				callback(err);
+				admin.setState({
+					loggedIn: false,
+					loginPending: false
+				});
+			});
+			
+			function storeAdminToken(response) {
+				if (response.errors) {
+					callback(response.errors);
+					admin.setState({
+						loggedIn: false,
+						loginPending: false
+					});
+					return;
+				}
+				localStorage.setItem('adminToken', response.adminToken);
+				localStorage.setItem('adminLogon', Date.now())
+				admin.setState({
+					loggedIn: true,
+					loginPending: false
+				});
+			}
 	},
 	render: function () {
 		var adminContent = (this.state.loggedIn)?
@@ -22,7 +107,8 @@ var Admin = React.createClass({
 			<DownloadButtons /> 
 			    : <AdminForm
 					loggedIn={this.state.loggedIn}
-					loginPending={this.state.loginPending}		
+					loginPending={this.state.loginPending}
+					sendLogin={this.sendLogin}
 					/>;
 
 		return (
@@ -30,6 +116,7 @@ var Admin = React.createClass({
 
 				<Nav
 					loggedIn={this.state.loggedIn}
+					logoutClick={this.logoutClick}
 					ref={(ref) => this.nav = ref}
 				/>
 
@@ -44,7 +131,7 @@ var Admin = React.createClass({
 						</h1>
 
 						<p className="u-textMd u-textCenter u-size11of12 Grid-cell--center">
-							Download a spreadsheet of survey submissions  from all registered devices in the last three months.
+							Download a spreadsheet of survey submissions from all registered devices in the last three months.
 						</p>
 
 						<div className="Grid Grid--withGutter Grid--alignCenter">
@@ -58,7 +145,11 @@ var Admin = React.createClass({
 					</div>
 				</main>
 
-				<LogOutModal />
+				<LogOutModal
+					logoutOpen={this.state.logoutOpen}
+					closeModal={this.logoutClose}
+					logout={this.logout}
+				/>
 
 			</div>
 		);

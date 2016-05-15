@@ -24,6 +24,7 @@ input:not(".Button"),
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="password"],
 textarea {
 	@include TextSm();
 	color: palette(medium);
@@ -82,7 +83,8 @@ $color-placeholder: rgba( palette(brand-counter), 0.7 );
 
 input[type="text"],
 input[type="email"],
-input[type="tel"] {
+input[type="tel"],
+input[type="password"] {
 	@include TextMd();
 	@include baseTransition();
 	color: $color-placeholder;
@@ -231,7 +233,8 @@ input[type="tel"] {
 
 	[type="text"],
 	[type="email"],
-	[type="tel"] {
+	[type="tel"],
+	[type="password"] {
 		border-color: palette(bad-news) !important;
 		color: palette(bad-news) !important;
 	}
@@ -250,7 +253,8 @@ input[type="tel"] {
 
 	[type="text"],
 	[type="email"],
-	[type="tel"] {
+	[type="tel"],
+	[type="password"] {
 		border-color: palette(brand-complement);
 		color: palette(brand-complement);
 	}

@@ -23,7 +23,7 @@ var ButtonLocation = React.createClass({
 var ButtonLogout = React.createClass({
 	render: function(props) {
 		return (
-			<button className="Button t-buttonInvisible">
+			<button className="Button t-buttonInvisible" onClick={this.props.logoutClick}>
 				Log out
 				<IcAvatar align="right" />
 			</button>

@@ -5,12 +5,12 @@ var CloseButton = require('../ui-Elements/CloseButton.js');
 // Modal
 var LogOutModal = React.createClass({
 	closeModal: function() {
-		this.props.modalActive = false;
+		this.props.closeModal();
 	},
 	render: function () {
 		var modalClasses = classNames({
 			'Modal': true,
-			'is-active': this.props.modalActive
+			'is-active': this.props.logoutOpen
 		});
 
 		return (
@@ -30,7 +30,7 @@ var LogOutModal = React.createClass({
 
 								<p className="u-textCenter u-marginT15">
 									<button className="Button t-button--brand t-button--md u-marginR" onClick={this.closeModal} type="submit">No</button>
-									<button className="Button t-button--rev t-button--md u-colorBrand" onClick={this.props.logOut} type="submit">Yes</button>
+									<button className="Button t-button--rev t-button--md u-colorBrand" onClick={this.props.logout} type="submit">Yes</button>
 								</p>
 
 							</div>
