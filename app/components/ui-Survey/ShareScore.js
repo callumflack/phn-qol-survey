@@ -207,13 +207,12 @@ var ShareScore = React.createClass({
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
+					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
 						type="submit" name=""
 						value={(this.state.smsSent)? "Sent" : "Send"}
 						disabled={(this.state.emailSent)? true : undefined} />
-					<span className="Form-iconWrapper"><IcSuccess /></span>
-					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			<form
@@ -236,13 +235,12 @@ var ShareScore = React.createClass({
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
+					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
 						type="submit" name=""
 						value={(this.state.smsSent)? "Sent" : "Send"}
 						disabled={(this.state.smsSent)? true : undefined} />
-					<span className="Form-iconWrapper"><IcSuccess /></span>
-					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			</div>
