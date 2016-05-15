@@ -89,7 +89,7 @@ var SurveyPage = React.createClass({
 			}
 		}
 		if (error === true) return;
-		
+
 		this.sendSubmission(surveyResponses, participant);
 	},
 	/**
@@ -107,7 +107,7 @@ var SurveyPage = React.createClass({
 		headers.set('Content-Type', 'application/json');
 		headers.set('Accept', 'application/json');
 		headers.set('Device-Token', localStorage.getItem('deviceToken'));
-		
+
 		return fetch(
 			SURVEY_SUBMIT_URL,
 			{
@@ -135,20 +135,20 @@ var SurveyPage = React.createClass({
 	 */
 	showScores: function() {
 		var scores = this.calculateScores();
-		
+
 		this.physicalScore = scores.physical;
 		this.psychScore = scores.psychologocial;
 		this.socialScore = scores.social;
 		this.environmentScore = scores.environment;
-		
-		
+
+
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
-		});	
+		});
 	},
 	/**
-	 * Calculates each of the domain scores (as averages) 
+	 * Calculates each of the domain scores (as averages)
 	 */
 	calculateScores: function() {
 		var scores = {
@@ -181,9 +181,9 @@ var SurveyPage = React.createClass({
 					break;
 			}
 		}
-		var average = (a) => 
-			{ var t=0, i=0; for (;i<a.length;i++) t+=a[i]; return t/a.length; } 
-		
+		var average = (a) =>
+			{ var t=0, i=0; for (;i<a.length;i++) t+=a[i]; return t/a.length; }
+
 		return {
 			physical: average(scores.physical),
 			psychologocial: average(scores.psychologocial),
@@ -223,10 +223,10 @@ var SurveyPage = React.createClass({
 			validationError.questions = invalidQuestions;
 			throw validationError;
 		}
-		
+
 		for (var i = 0; i < numQuestions; i++)
 			responses.push(this.props.questionResponses[i]);
-		
+
 		return responses;
 	},
 	/**
@@ -304,7 +304,7 @@ var SurveyPage = React.createClass({
 					e.questions = erroneousQuestions;
 					return e;
 				}();
-				
+
 		return participant;
 	},
 	/**
@@ -325,7 +325,7 @@ var SurveyPage = React.createClass({
 			var b = a.length, c = 0;
 			while (b--) c+= (a[b] !== undefined)? 1 : 0; return c;
 		}
-		
+
 		this.props.questionsAnswered = countSet(
 			this.props.questionResponses
 		);
@@ -459,7 +459,7 @@ var SurveyPage = React.createClass({
 		headers.set('Content-Type', 'application/json');
 		headers.set('Accept', 'application/json');
 		headers.set('Device-Token', localStorage.getItem('deviceToken'));
-		
+
 		return fetch(
 			SEND_SCORES_URL,
 			{
@@ -485,7 +485,7 @@ var SurveyPage = React.createClass({
 	 */
 	sendEmail: function(email) {
 		var scores = this.calculateScores();
-		
+
 	},
 	render: function () {
 		return (
@@ -500,11 +500,11 @@ var SurveyPage = React.createClass({
 					blocked="true"
 				/>
 
-				<main className="o-content u-marginT7" role="main">
+			<main className="o-content u-marginT5" role="main">
 					<div className="o-container">
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>
-						<div className="c-delimit u-textCenter u-marginT2 u-marginB6">
+						<div className="c-delimit u-textCenter u-marginT2">
 							<div className="c-delimit-rule c-delimit-rule--active"></div>
 							<span className="c-delimit-block">
 								<button className="Button t-button" type="button" onClick={this.startSurvey} name="button">Let's begin</button>

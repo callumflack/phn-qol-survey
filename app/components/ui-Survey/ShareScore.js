@@ -59,7 +59,7 @@ var ShareScore = React.createClass({
 	emailFormSubmit: function(event) {
 		event.preventDefault();
 		event.stopPropagation();
-		
+
 		try { this.props.sendEmail(this.emailInput.value); }
 		catch(e) { return false; }
 
@@ -72,7 +72,7 @@ var ShareScore = React.createClass({
 		event.stopPropagation();
 
 		var phoneNum = this.smsInput.value;
-		
+
 		phoneNum = phoneNum.replace(/\s/g, "");
 		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(phoneNum)
 			|| phoneNum.length > 11) {
