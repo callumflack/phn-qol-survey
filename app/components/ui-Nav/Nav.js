@@ -25,6 +25,8 @@ var Nav = React.createClass({
 			settingsBtn = <a className="c-nav-status" onClick={this.regClick}><BtnLocation location={this.props.region} /></a>;
 		} else if (this.props.loggedIn) {
 			settingsBtn = <BtnLogout />;
+		} else if (this.props.loggedIn !== undefined && this.props.loggedIn === false) {
+			settingsBtn = "";
 		} else {
 			settingsBtn = <a className="c-nav-status" onClick={this.regClick}><BtnRegister /></a>;
 		}

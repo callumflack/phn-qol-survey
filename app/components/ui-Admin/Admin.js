@@ -16,10 +16,14 @@ var Admin = React.createClass({
 		};
 	},
 	render: function () {
-		var adminContent = (this.props.loggedIn)?
+		var adminContent = (this.state.loggedIn)?
 			// this duplicate argument is to enable Callum to design quicker.
 			// <AdminForm /> : <DownloadButtons />;
-			<DownloadButtons /> : <AdminForm />;
+			<DownloadButtons /> 
+			    : <AdminForm
+					loggedIn={this.state.loggedIn}
+					loginPending={this.state.loginPending}		
+					/>;
 
 		return (
 			<div>
