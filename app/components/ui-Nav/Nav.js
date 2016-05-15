@@ -22,13 +22,11 @@ var Nav = React.createClass({
 
 		var settingsBtn;
 		if (this.props.deviceRegistered) {
-			settingsBtn = <BtnLocation location={this.props.region} />;
-		} else if (location.hash === '#admin') {
-			settingsBtn = "";
-		} else if (location.hash === '#admin' && this.props.loggedIn) {
+			settingsBtn = <a className="c-nav-status" onClick={this.regClick}><BtnLocation location={this.props.region} /></a>;
+		} else if (this.props.loggedIn) {
 			settingsBtn = <BtnLogout />;
 		} else {
-			settingsBtn = <BtnRegister />;
+			settingsBtn = <a className="c-nav-status" onClick={this.regClick}><BtnRegister /></a>;
 		}
 
 		var surveyProgress = (this.props.surveyInProgress)?
@@ -38,9 +36,7 @@ var Nav = React.createClass({
 			<header className={headerStyleClasses} role="header">
 				<nav className="c-nav">
 					<NavLogo />
-					<a className="c-nav-status" onClick={this.regClick}>
-						{settingsBtn}
-					</a>
+					{settingsBtn}
 				</nav>
 
 				{surveyProgress}

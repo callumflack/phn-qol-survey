@@ -9,6 +9,12 @@ var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 require('./../../stylesheets/app.scss');
 
 var Admin = React.createClass({
+	getInitialState: function() {
+		return {
+			loggedIn: false,
+			loginPending: false
+		};
+	},
 	render: function () {
 		var adminContent = (this.props.loggedIn)?
 			// this duplicate argument is to enable Callum to design quicker.
@@ -19,7 +25,7 @@ var Admin = React.createClass({
 			<div>
 
 				<Nav
-					loggedIn={this.props.loggedIn}
+					loggedIn={this.state.loggedIn}
 					ref={(ref) => this.nav = ref}
 				/>
 
