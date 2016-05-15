@@ -491,8 +491,30 @@ var SurveyPage = React.createClass({
 	 * 					some other system error.
 	 */
 	sendEmail: function(email, callback) {
-		var scores = this.calculateScores();
-		callback(new Error("Not implemented"));
+		var submissionId = this.props.submissionId,
+			headers = new Headers();
+
+		headers.set('Content-Type', 'application/json');
+		headers.set('Accept', 'application/json');
+		headers.set('Device-Token', localStorage.getItem('deviceToken'));
+
+		return fetch(
+			SEND_SCORES_URL,
+			{
+				method: "POST",
+				mode: "cors",
+				headers: headers,
+				body: JSON.stringify({
+					submissionId: submissionId,
+					address: email
+				})
+			})
+			.then(callback)
+			.catch((err) => {
+				console.error(err);
+				console.error("Error sending submission!");
+				callback(err);
+			});
 	},
 	render: function () {
 		return (

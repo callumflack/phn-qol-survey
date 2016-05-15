@@ -2,7 +2,7 @@ var React = require("react");
 var classNames = require('classnames');
 var IcSuccess = require('../ui-Elements/Icons.js').IcSuccess;
 
-var EMAIL_REGEX = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
@@ -65,13 +65,17 @@ var ShareScore = React.createClass({
 		event.preventDefault();
 		event.stopPropagation();
 
-		var emailAddress = this.smsInput.value,
+		var emailAddress = this.emailInput.value,
 			shareScore = this;
 
 		emailAddress = emailAddress.replace(/\s/g, "");
-		if (! /^[0-9]{10}|\+61[0-9]{8,9}|00[0-9]{8,9}$/.test(emailAddress)
+		if (! EMAIL_REGEX.test(emailAddress)
 			|| emailAddress.length === 0) {
-			this.setState({ smsInvalid: true });
+			this.setState({
+				emailSent: false,
+				emailInvalid: true,
+				emailPending: false
+			});
 			return false;
 		}
 
@@ -204,6 +208,7 @@ var ShareScore = React.createClass({
 						onFocus={this.emailHandleClick}
 						onBlur={this.emailHandleBlur}
 						ref={(ref) => this.emailInput = ref}
+						disabled={(this.state.emailSent)? true : undefined}
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
