@@ -40,6 +40,7 @@
 
 
 // Primary button
+// NB: line-heights get applied in the text mixin
 // --------------------------------------------------------------------------
 
 @mixin textButton() {
@@ -69,6 +70,7 @@
 	@include button;
 }
 
+// Coloring
 .t-button--brand {
 	@include button;
 	background-color: palette(brand);
@@ -84,6 +86,7 @@
 
 
 // Secondary buttons
+// NB: line-heights get applied in the text mixin
 // --------------------------------------------------------------------------
 
 @mixin textButtonSm(
@@ -95,7 +98,7 @@
 	font-family: $font-sans-medium;
 	font-size: fontsize(textXs, xs);
 	letter-spacing: 0.05em;
-	line-height: size(button-height, concise);
+	line-height: size(button-height, concise) !important;
 	text-transform: uppercase;
 
 	@include respond-to(xs) {
@@ -118,7 +121,6 @@
 	border-color: currentColor;
 	border-width: 1px;
 	color: $mixinColor;
-	line-height: size(button-height, concise) !important;
 	padding-top: 1px;
 
 	@include on-event() {
@@ -133,6 +135,7 @@
 
 
 // Invisible button (for holding the touch space & layout)
+// NB: line-heights get applied in the text mixin
 // --------------------------------------------------------------------------
 
 @mixin buttonInvisible () {
@@ -154,6 +157,7 @@
 
 
 // Button sizes
+// NB: these include line-height manipulations
 // --------------------------------------------------------------------------
 
 .t-button {

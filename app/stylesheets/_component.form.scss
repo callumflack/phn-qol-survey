@@ -32,7 +32,7 @@ textarea {
 	border: 1px solid transparent;
 	border-radius: size(border-radius, base);
 	display: inline-block;
-	line-height: size(button-height, base);
+	line-height: size(button-height, basePlus);
 	padding: 0 space(2/3);
 	resize: none;
 	transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
@@ -95,7 +95,7 @@ input[type="password"] {
 	// border-radius: size(border-radius, base);
 	display: inline-block;
 	// font-family: $font-sans-regular;
-	line-height: size(button-height, base);
+	line-height: size(button-height, basePlus);
 	padding: 0;
 	resize: none;
 	width: 100%;
@@ -126,15 +126,26 @@ input[type="password"] {
 // Form
 // --------------------------------------------------------------------------
 
-.Form {
-	.Form-group {
-		position: relative;
+// A form group consists of a label and input, Btn optional.
+.Form .Form-group {
+	position: relative;
 
-		&:not(:last-child) {
-			margin: 0 0 space(1.1);
-		}
+	&:not(:last-child) {
+		margin: 0 0 space(1.1);
 	}
 
+	@include when-inside(".Form--sm") {
+		line-height: size(button-height, concisePlus);
+	}
+}
+
+// Smaller form
+.Form--sm {
+
+}
+
+// Form label & text input
+.Form {
 	label {
 		@include TextMd();
 		color: rgba( palette(brand-counter), 0.7 );
@@ -145,48 +156,58 @@ input[type="password"] {
 		transition: all map-fetch($transition, duration, fast) map-fetch($transition, type, fine);
 		z-index: map-fetch($z-index, first);
 	}
-}
 
-// Smaller form
-.Form--sm {
-	.Form-group {
-		// line-height: size(button-height, base);
-		line-height: 38px;
-	}
+	// Small form
+	&.Form--sm {
+		label {
+			@include TextRg();
+			color: palette(brand-counter);
+		}
 
-	label {
-		@include TextRg();
-		color: palette(brand-counter);
-	}
-
-	[type="text"],
-	[type="email"],
-	[type="tel"] {
-		line-height: inherit;
+		[type="text"],
+		[type="email"],
+		[type="tel"] {
+			line-height: size(button-height, concisePlus);
+		}
 	}
 }
 
 // An icon wrapper used to style icon states in forms.
 .Form-iconWrapper {
 	color: transparent;
-	line-height: size(button-height, concise);
+	line-height: size(button-height, concisePlus);
 	position: absolute;
 	right: 33%;
 }
 
 // An icon wrapper used to style icon states in forms.
 .Form-loadingWrapper {
+	display: none;
+	height: size(button-height, basePlus);
 	left: 0;
-	line-height: size(button-height, concise);
 	position: absolute;
 	right: 0;
-	top: 2px;
+	top: 0;
+
+	&.is-active {
+		display: block;
+	}
 
 	.sk-spinner-pulse {
 		background-color: transparent;
-		height: size(button-height, concise);
+		height: size(button-height, basePlus);
 		margin: auto;
-		width: size(button-height, concise);
+		width: size(button-height, basePlus);
+	}
+
+	@include when-inside(".Form--sm") {
+		height: size(button-height, concisePlus) ;
+
+		.sk-spinner-pulse {
+			height: size(button-height, concisePlus) ;
+			width: size(button-height, concisePlus) ;
+		}
+
 	}
 }
 
@@ -199,10 +220,8 @@ input[type="password"] {
 // - is-succcessful
 // Alt method: &.is-active > label:not(.has-error)
 
-// Common submitting/submitted state styles
-.Form.is-active,
-.Form.is-pending,
-.Form.is-successful {
+// An active form group moves the label out of the input
+.Form-group.is-active {
 	label {
 		font-size: 70%;
 		transform: translate(1px, -18px);
@@ -262,14 +281,15 @@ input[type="password"] {
 
 // Submitting state styles
 .Form.is-pending {
-	[class*="t-buttonSecondary"] {
+	[class*="t-button"] {
 		// background-color: palette(brand-complement);
 		border-color: palette(brand-complement);
 		color: transparent;
 	}
 
 	.sk-spinner-pulse {
-		background-color: palette(brand-complement);
+		// requires adding a class by color based on state
+		background-color: currentColor;
 	}
 }
 
@@ -283,13 +303,14 @@ input[type="password"] {
 
 	// Turn this off for now.
 	// Need better control of x-position.
+	// May even not be req'd.
 	.Form-iconWrapper {
 		// color: palette(white);
 	}
 }
 
 
-// Make the first form invisible until we scroll/click
+// TODO: Make the first form invisible until we get a scroll/click state.
 // --------------------------------------------------------------------------
 
 .FirstForm {
