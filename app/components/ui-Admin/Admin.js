@@ -8,6 +8,7 @@ var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
 require('./../../stylesheets/app.scss');
 
+// Production
 var ADMIN_LOGIN_URL = "https://phn-qol-survey.herokuapp.com/admin/login";
 var ADMIN_DOWNLOAD_URL = "https://phn-qol-survey.herokuapp.com/admin/download";
 
@@ -19,7 +20,7 @@ var ADMIN_DOWNLOAD_URL = "https://phn-qol-survey.herokuapp.com/admin/download";
 // var ADMIN_LOGIN_URL = "https://phn-qol-survey-development.herokuapp.com/admin/login";
 // var ADMIN_DOWNLOAD_URL = "https://phn-qol-survey-development.herokuapp.com/admin/download";
 
-// Development
+// Local development
 // var ADMIN_LOGIN_URL = "http://localhost:3000/admin/login";
 // var ADMIN_DOWNLOAD_URL = "http://localhost:3000/admin/download";
 
@@ -119,8 +120,6 @@ var Admin = React.createClass({
 	},
 	render: function () {
 		var adminContent = (this.state.loggedIn)?
-			// this duplicate argument is to enable Callum to design quicker.
-			// <AdminForm /> : <DownloadButtons />;
 			<DownloadButtons
 				downloadData={this.downloadData}
 			/> :
