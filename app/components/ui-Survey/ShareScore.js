@@ -2,7 +2,7 @@ var React = require("react");
 var classNames = require('classnames');
 var IcSuccess = require('../ui-Elements/Icons.js').IcSuccess;
 
-var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var EMAIL_REGEX = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
 
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
@@ -153,12 +153,27 @@ var ShareScore = React.createClass({
 		return false;
 	},
 	render: function () {
-		var smsFormGroupClasses = classNames({
+		var emailFormClasses = classNames({
+				'Form': true,
+				'Form--sm': true,
+				'u-xs-flex': true,
+				'u-mxs-marginT': true,
+				'is-active': this.state.emailInputVisibile,
+				'has-error': this.state.emailInvalid,
+				'is-pending': this.state.emailPending,
+				'is-successful': this.state.emailSent
+			}),
+			emailFormGroupClasses = classNames({
 				'Form-group': true,
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
-				'is-active': this.state.smsInputVisibile
+				'is-active': this.state.emailInputVisibile
+			}),
+			emailFormLoadingClasses = classNames({
+				'Form-loadingWrapper': true,
+				'is-active': this.state.emailPending,
+				'u-colorBrandAlt': this.state.emailPending
 			}),
 			smsFormClasses = classNames({
 				'Form': true,
@@ -172,22 +187,17 @@ var ShareScore = React.createClass({
 				'is-pending': this.state.smsPending,
 				'is-successful': this.state.smsSent
 			}),
-			emailFormGroupClasses = classNames({
+			smsFormGroupClasses = classNames({
 				'Form-group': true,
 				'u-flexGrow1': true,
 				'u-xs-paddingRD1': true,
 				'u-marginBD1': true,
-				'is-active': this.state.emailInputVisibile
+				'is-active': this.state.smsInputVisibile
 			}),
-			emailFormClasses = classNames({
-				'Form': true,
-				'Form--sm': true,
-				'u-xs-flex': true,
-				'u-mxs-marginT': true,
-				'is-active': this.state.emailInputVisibile,
-				'has-error': this.state.emailInvalid,
-				'is-pending': this.state.emailPending,
-				'is-successful': this.state.emailSent
+			smsFormLoadingClasses = classNames({
+				'Form-loadingWrapper': true,
+				'is-active': this.state.smsPending,
+				'u-colorBrandAlt': this.state.smsPending
 			});
 
 		return (
@@ -212,12 +222,12 @@ var ShareScore = React.createClass({
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
-					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
 						type="submit" name=""
 						value={(this.state.emailSent)? "Sent" : "Send"}
 						disabled={(this.state.emailSent)? true : undefined} />
+					<span className={emailFormLoadingClasses}><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			<form
@@ -240,12 +250,12 @@ var ShareScore = React.createClass({
 						required />
 				</div>
 				<div className="Form-group u-flexExpandLeft">
-					<span className="Form-loadingWrapper"><div className="sk-spinner-pulse"></div></span>
 					<input
 						className="Button t-button--full t-xs-button--md t-buttonSecondary--counter"
 						type="submit" name=""
 						value={(this.state.smsSent)? "Sent" : "Send"}
 						disabled={(this.state.smsSent)? true : undefined} />
+					<span className={smsFormLoadingClasses}><div className="sk-spinner-pulse"></div></span>
 				</div>
 			</form>
 			</div>
