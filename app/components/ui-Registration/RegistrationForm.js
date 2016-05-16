@@ -12,10 +12,17 @@ var RegistrationForm = React.createClass({
 		// Supress the click (and prevent navigation).
 		submitEvent.preventDefault();
 		submitEvent.stopPropagation();
+		
+		if (this.state.registrationPending) return false;
 
 		// Instruct the Home component to register the device.
 		var providerCode = this.pcInput.value;
 		this.props.registerDevice(providerCode, this.validationFailCallback);
+
+		this.setState({ 
+			invalidData: false,
+			registrationPending: true
+		});
 
 		// Unfocus our input
 		this.pcInput.blur();
@@ -26,12 +33,16 @@ var RegistrationForm = React.createClass({
 	 * Lets our user know that their value for the provider code is invalid.
 	 */
 	validationFailCallback: function() {
-		this.setState({ invalidData: true });
+		this.setState({ 
+			invalidData: true,
+			registrationPending: false
+		});
 	},
 	getInitialState: function() {
 		return {
 			inputVisible: false,
-			invalidData: false
+			invalidData: false,
+			registrationPending: false
 		};
 	},
 	handleClick: function(event) {
@@ -55,7 +66,7 @@ var RegistrationForm = React.createClass({
 			'u-mxs-marginT2': true,
 			'u-marginT3': true,
 			'has-error': this.state.invalidData,
-			'is-pending': this.props.registrationPending
+			'is-pending': this.state.registrationPending
 		}),
 		formGroupClasses = classNames({
 			'Form-group': true,
@@ -65,8 +76,8 @@ var RegistrationForm = React.createClass({
 		}),
 		formLoadingClasses = classNames({
 			'Form-loadingWrapper': true,
-			'is-active': this.props.registrationPending,
-			'u-colorWhite': tthis.props.registrationPending
+			'is-active': this.state.registrationPending,
+			'u-colorWhite': this.state.registrationPending
 		});
 
 		return (
