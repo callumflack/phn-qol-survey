@@ -75,7 +75,7 @@ var AdminForm = React.createClass({
 		return (
 			<form onSubmit={this.submitLogin} className={formClasses} action="" method="post" name="registration-form Admin-form">
 				<div className={"Form-group" + (this.state.usernameInputVisible? ' is-active' : '')}>
-					<label for="username">Username</label>
+					<label htmlFor="username">Username</label>
 					<input
 						className="Form-control"
 						id="username"
@@ -88,7 +88,7 @@ var AdminForm = React.createClass({
 					/>
 				</div>
 				<div className={"Form-group" + (this.state.passwordInputVisible? ' is-active' : '')}>
-					<label for="password">Password</label>
+					<label htmlFor="password">Password</label>
 					<input
 						className="Form-control"
 						id="password"
