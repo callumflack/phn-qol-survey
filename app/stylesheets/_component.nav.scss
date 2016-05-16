@@ -66,4 +66,5 @@
 	height: 100%;
 	margin-left: auto;
 	position: relative;
+	z-index: map-fetch($z-index, first);
 }
