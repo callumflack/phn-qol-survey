@@ -30,7 +30,7 @@ var Admin = React.createClass({
 			loggedIn = adminLogon + ADMIN_TIMEOUT > Date.now();
 
 		loggedIn = loggedIn && adminToken !== undefined;
-			
+
 		return {
 			loggedIn: loggedIn,
 			logoutOpen: false,
@@ -60,13 +60,13 @@ var Admin = React.createClass({
 
 		headers.set('Content-Type', 'application/json');
 		headers.set('Accept', 'application/json');
-		
+
 		this.setState({
 			loggedIn: false,
 			logoutOpen: false,
 			loginPending: true
 		});
-		
+
 		return fetch(
 			ADMIN_LOGIN_URL,
 			{
@@ -89,7 +89,7 @@ var Admin = React.createClass({
 					loginPending: false
 				});
 			});
-			
+
 			function storeAdminToken(response) {
 				if (response.errors) {
 					callback(response.errors);
@@ -116,12 +116,12 @@ var Admin = React.createClass({
 			// <AdminForm /> : <DownloadButtons />;
 			<DownloadButtons
 				downloadData={this.downloadData}
-			/> 
-			    : <AdminForm
-					loggedIn={this.state.loggedIn}
-					loginPending={this.state.loginPending}
-					sendLogin={this.sendLogin}
-					/>;
+			/> :
+			<AdminForm
+				loggedIn={this.state.loggedIn}
+				loginPending={this.state.loginPending}
+				sendLogin={this.sendLogin}
+			/>;
 
 		return (
 			<div>
