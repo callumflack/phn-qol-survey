@@ -27,8 +27,16 @@ const NXT_QUESTION_SCROLL_DURATION = 800;
 const NXT_QUESTION_SCROLL_DELAY = 400;
 
 // Production
-const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
-const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
+// const SURVEY_SUBMIT_URL = "https://phn-qol-survey.herokuapp.com/survey";
+// const SEND_SCORES_URL = "https://phn-qol-survey.herokuapp.com/share";
+
+// Staging
+const SURVEY_SUBMIT_URL = "https://phn-qol-survey-staging.herokuapp.com/survey";
+const SEND_SCORES_URL = "https://phn-qol-survey-staging.herokuapp.com/share";
+
+// Development
+// const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+// const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
 
 // Development
 // const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
