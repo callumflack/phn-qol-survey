@@ -8,6 +8,7 @@ var IcDownload = require('../ui-Elements/Icons.js').IcDownload;
 
 require('./../../stylesheets/app.scss');
 
+// Production
 // var ADMIN_LOGIN_URL = "https://phn-qol-survey.herokuapp.com/admin/login";
 // var ADMIN_DOWNLOAD_URL = "https://phn-qol-survey.herokuapp.com/admin/download";
 
