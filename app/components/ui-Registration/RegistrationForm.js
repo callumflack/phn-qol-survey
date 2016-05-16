@@ -76,13 +76,8 @@ var RegistrationForm = React.createClass({
 		}),
 		formLoadingClasses = classNames({
 			'Form-loadingWrapper': true,
-<<<<<<< HEAD
-			'is-active': this.props.registrationPending,
-			'u-colorWhite': this.props.registrationPending
-=======
 			'is-active': this.state.registrationPending,
 			'u-colorWhite': this.state.registrationPending
->>>>>>> development
 		});
 
 		return (
