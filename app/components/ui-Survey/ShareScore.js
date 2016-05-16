@@ -2,7 +2,7 @@ var React = require("react");
 var classNames = require('classnames');
 var IcSuccess = require('../ui-Elements/Icons.js').IcSuccess;
 
-var EMAIL_REGEX = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
+var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
