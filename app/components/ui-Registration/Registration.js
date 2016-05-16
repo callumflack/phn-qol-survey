@@ -48,6 +48,7 @@ var Registration = React.createClass({
 									<RegistrationForm
 										registrationOpen={this.props.registrationOpen}
 										registerDevice={this.props.registerDevice}
+										registrationPending={this.props.registrationPending}
 									/>
 								</div>
 

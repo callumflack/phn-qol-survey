@@ -55,8 +55,7 @@ var RegistrationForm = React.createClass({
 			'u-mxs-marginT2': true,
 			'u-marginT3': true,
 			'has-error': this.state.invalidData,
-			'is-pending': this.state.emailPending,
-			'is-successful': this.state.emailSent
+			'is-pending': this.props.registrationPending
 		}),
 		formGroupClasses = classNames({
 			'Form-group': true,
@@ -66,15 +65,25 @@ var RegistrationForm = React.createClass({
 		}),
 		formLoadingClasses = classNames({
 			'Form-loadingWrapper': true,
-			'is-active': this.state.emailPending,
-			'u-colorWhite': this.state.emailPending
+			'is-active': this.props.registrationPending,
+			'u-colorWhite': tthis.props.registrationPending
 		});
 
 		return (
 			<form className={formClasses} method="post" name="registration-form" onSubmit={this.submitHandler}>
 				<div className={formGroupClasses} onClick={this.handleClick}>
 					<label for="providerCode">Your service provider code</label>
-					<input className="Form-control required" id="code" type="text" name="providerCode" onBlur={this.handleBlur} placeholder="" ref={(ref) => this.pcInput = ref} required></input>
+					<input 
+						className="Form-control required"
+						id="providerCode"
+						type="text"
+						name="providerCode"
+						onFocus={this.handleClick}
+						onBlur={this.handleBlur}
+						placeholder=""
+						ref={(ref) => this.pcInput = ref}
+						required
+					></input>
 				</div>
 				<div className="Form-group u-flexExpandLeft">
 					<input className="Button t-button t-button--full t-xs-button--md" type="submit" value="Register" name="submit" />
