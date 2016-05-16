@@ -9,10 +9,10 @@ var StartButton = require("./StartButton.js");
 require('./../../stylesheets/app.scss');
 
 // Development
-// const DEVICE_REG_URL = "https://phn-qol-survey.herokuapp.com/device";
+const DEVICE_REG_URL = "https://phn-qol-survey.herokuapp.com/device";
 
 // Development
-const DEVICE_REG_URL = "https://phn-qol-survey-staging.herokuapp.com/device";
+// const DEVICE_REG_URL = "https://phn-qol-survey-staging.herokuapp.com/device";
 
 // Development
 // const DEVICE_REG_URL = "https://phn-qol-survey-development.herokuapp.com/device";
