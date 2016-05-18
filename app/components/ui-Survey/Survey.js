@@ -169,7 +169,6 @@ var SurveyPage = React.createClass({
 		this.socialScore = scores.social;
 		this.environmentScore = scores.environment;
 
-
 		this.setState({
 			registrationOpen: false,
 			scoreOpen: true
@@ -408,7 +407,10 @@ var SurveyPage = React.createClass({
 		setTimeout(() => { window.location = "/"}, 400);
 	},
 	closeScoreHandler: function() {
-		this.setState( { scoreOpen: false });
+		// this.setState({
+		// 	scoreOpen: false
+		// });
+		window.location = "/"
 	},
 	registrationModal: function() {
 		if ( ! this.state.deviceRegistered) {
