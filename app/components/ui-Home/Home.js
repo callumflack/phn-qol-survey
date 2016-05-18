@@ -8,7 +8,16 @@ var StartButton = require("./StartButton.js");
 
 require('./../../stylesheets/app.scss');
 
+// Production
+// const DEVICE_REG_URL = "https://phn-qol-survey.herokuapp.com/device";
+
+// Staging
+// const DEVICE_REG_URL = "https://phn-qol-survey-staging.herokuapp.com/device";
+
+// Development
 const DEVICE_REG_URL = "https://phn-qol-survey-development.herokuapp.com/device";
+
+// Local development
 //const DEVICE_REG_URL = "http://localhost:3000/device";
 
 var Home = React.createClass({
@@ -22,6 +31,7 @@ var Home = React.createClass({
 		var deviceToken = localStorage.getItem('deviceToken');
 		return {
 			deviceRegistered: deviceToken? true : false,
+			registrationPending: false,
 			registrationOpen: false,
 			isSurveying: false
 		};
@@ -36,7 +46,8 @@ var Home = React.createClass({
 		localStorage.clear();
 		this.setState({
 			deviceRegistered: false,
-			registrationOpen: false
+			registrationOpen: false,
+			registrationPending: false
 		});
 	},
 	/**
@@ -51,7 +62,7 @@ var Home = React.createClass({
 				providerCode: providerCode
 			},
 			headers = new Headers();
-
+		
 		headers.set('Content-Type', 'application/json');
 		headers.set('Accept', 'application/json');
 		return fetch(
@@ -79,15 +90,19 @@ var Home = React.createClass({
 						this.setState(
 							{
 								deviceRegistered: true,
+								registrationPending: false,
 								registrationOpen: false
 							}
 						);
 					});
 			})
 			.catch((err) => {
+				this.setState({ registrationPending: false });
 				console.log("Error!");
 				console.log(err);
 			});
+			
+			this.setState({ deviceRegistered: false, registrationPending: true });
 	},
 	/**
 	 * Used to decide which registaration modal to show.
@@ -98,6 +113,7 @@ var Home = React.createClass({
 				<Registration
 					registerDevice={this.registerDevice}
 					registrationOpen={this.state.registrationOpen}
+					registrationPending={this.state.registrationPending}
 					region={this.props.region}
 					toggleRegistration={this.toggleRegistration}
 					ref={(ref) => this.registration = ref}

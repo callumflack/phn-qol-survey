@@ -31,14 +31,14 @@ const NXT_QUESTION_SCROLL_DELAY = 400;
 // const SEND_SCORES_URL = "https://phn-qol-survey.herokuapp.com/share";
 
 // Staging
-const SURVEY_SUBMIT_URL = "https://phn-qol-survey-staging.herokuapp.com/survey";
-const SEND_SCORES_URL = "https://phn-qol-survey-staging.herokuapp.com/share";
+// const SURVEY_SUBMIT_URL = "https://phn-qol-survey-staging.herokuapp.com/survey";
+// const SEND_SCORES_URL = "https://phn-qol-survey-staging.herokuapp.com/share";
 
 // Development
-// const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
-// const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
+const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
 
-// Development
+// Local development
 // const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
 // const SEND_SCORES_URL = "http://localhost:3000/share";
 
@@ -54,18 +54,32 @@ var SurveyPage = React.createClass({
 				while(b--) a.push(undefined);
 				return a;
 			})(),
+			participant: {
+				age: undefined,
+				education: undefined,
+				gender: undefined,
+				indigenous: undefined,
+				sessions: undefined
+			},
 			submissionId: undefined
 		}
 	},
+	setAge: function(age) { this.props.participant.age = age },
+	setEducation: function(education) { this.props.participant.education = education },
+	setGender: function(gender) { this.props.participant.gender = gender },
+	setIndigenous: function(indigenous) { this.props.participant.indigenous = indigenous },
+	setSessions: function(sessions) { this.props.participant.sessions = sessions },
 	getInitialState: function() {
 		var deviceToken = localStorage.getItem('deviceToken');
 		return {
 			deviceRegistered: deviceToken? true : false,
+			registrationPending: false,
 			surveyInProgress: false,
 			registrationOpen: false,
 			scoreOpen: false,
 			surveyForm: false,
-			participantForm: false
+			participantForm: false,
+			submitPending: false
 		};
 	},
 	/**
@@ -95,12 +109,13 @@ var SurveyPage = React.createClass({
 				// Furnish error states.
 				var invalidQuestions = formError.questions,
 				firstInvalid = invalidQuestions[0];
-				this.aboutForm.scrollToQuestion(firstInvalid.questionComponent);
+				if (surveyResponses) // Survey questions passed validation.
+					this.aboutForm.scrollToQuestion(firstInvalid.questionComponent);
 				error = true;
 			}
 		}
 		if (error === true) return;
-
+		this.setState({ submitPending: true });
 		this.sendSubmission(surveyResponses, participant);
 	},
 	/**
@@ -134,10 +149,12 @@ var SurveyPage = React.createClass({
 			.then((response) => {
 				this.props.submissionId = response.submission.submissionId;
 				this.showScores();
+				this.setState({ submitPending: false });
 			})
 			.catch((err) => {
 				console.error(err);
 				console.error("Error sending submission!");
+				this.setState({ submitPending: false });
 			});
 	},
 	/**
@@ -151,7 +168,6 @@ var SurveyPage = React.createClass({
 		this.psychScore = scores.psychologocial;
 		this.socialScore = scores.social;
 		this.environmentScore = scores.environment;
-
 
 		this.setState({
 			registrationOpen: false,
@@ -391,7 +407,10 @@ var SurveyPage = React.createClass({
 		setTimeout(() => { window.location = "/"}, 400);
 	},
 	closeScoreHandler: function() {
-		this.setState( { scoreOpen: false });
+		// this.setState({
+		// 	scoreOpen: false
+		// });
+		window.location = "/"
 	},
 	registrationModal: function() {
 		if ( ! this.state.deviceRegistered) {
@@ -565,10 +584,12 @@ var SurveyPage = React.createClass({
 						<AboutForm
 							ref={(ref) => this.aboutForm = ref}
 							supressSubmit={this.supressSubmit}
+							participant={this.props.participant}
 						/>
 
 						<SubmitSurveys
 							submitSurvey={this.submitSurvey}
+							submitPending={this.state.submitPending}
 						/>
 
 					</div>
