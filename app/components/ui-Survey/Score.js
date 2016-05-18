@@ -17,7 +17,9 @@ var Score = React.createClass({
 		}
 	},
 	closeScoreHandler: function() {
-		this.props.closeScoreHandler();
+		// Switching this off... Instead we'll be redirecting home.
+		//this.props.closeScoreHandler();
+		window.location = '/';
 	},
 	render: function () {
 		var modalClasses = classNames({
