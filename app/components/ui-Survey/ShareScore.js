@@ -79,6 +79,12 @@ var ShareScore = React.createClass({
 			return false;
 		}
 
+		this.setState({
+			emailSent: false,
+			emailInvalid: false,
+			emailPending: true
+		});
+		
 		try { this.props.sendEmail(
 				this.emailInput.value,
 				function (result) {
