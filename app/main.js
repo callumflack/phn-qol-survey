@@ -1,6 +1,7 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var fetch = require('fetch');
+var Promise = Promise || require('es6-promise').Promise;
 
 var resolveRoute = function () {
 
