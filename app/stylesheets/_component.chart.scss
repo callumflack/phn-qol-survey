@@ -41,48 +41,65 @@
 	top: auto;
 	height: 44%;
 
-	.c-chart-indicatorScore {
-		color: palette(white);
-		display: inline-block;
-		font-family: $font-sans-medium;
-		font-size: fontsize(headerXl, xs);
-		text-align: center;
-		width: 100%;
+    &--comparison {
+        background-color: palette(brand-shade);
+        border-top: 1px dotted rgba(palette(brand), 0.3);
+        height: 80%;
+    }
+}
 
-		@include respond-to(xs) {
-			font-size: fontsize(headerXl, base);
-		}
+.c-chart-indicatorScore {
+	color: palette(white);
+	display: inline-block;
+	font-family: $font-sans-medium;
+	font-size: fontsize(headerXl, xs);
+	text-align: center;
+	width: 100%;
+
+	@include respond-to(xs) {
+		font-size: fontsize(headerXl, base);
 	}
+}
 
-	.c-chart-indicatorMark {
-		font-family: $font-sans-regular;
-		font-size: fontsize(textSm, xs);
-		left: 2px;
-		position: relative;
-		top: -16px;
+.c-chart-indicatorMark {
+	font-family: $font-sans-regular;
+	font-size: fontsize(textSm, xs);
+	left: 2px;
+	position: relative;
+	top: -16px;
 
-		@include respond-to(xs) {
-			font-size: fontsize(textSm, base);
-			top: -20px;
-		}
+	@include respond-to(xs) {
+		font-size: fontsize(textSm, base);
+		top: -20px;
 	}
 }
 
 .c-chart-label {
 	// @include TextSm($mixinFont: $font-sans-medium);
-	margin-bottom: space(0.7);
-	margin-top: space(0.4);
-	text-align: center;
-
 	color: palette(brand);
 	font-family: $font-sans-medium;
 	font-size: fontsize(textXs, xs);
-	letter-spacing: 0.05em;
-	text-transform: uppercase;
+	letter-spacing: 0.02em;
+    margin-bottom: space(0.7);
+    margin-top: space(0.4);
+    text-align: center;
 
 	@include respond-to(xs) {
-		margin-bottom: space(0.75);
+		margin-bottom: space(0.15);
 		margin-top: space(0.5);
 		font-size: fontsize(textXs, base);
 	}
 }
+
+.c-chart-label--comparison {
+    font-family: $font-sans-regular;
+    font-size: fontsize(textSs, xs);
+    margin-bottom: 0;
+    text-align: center;
+
+    @include respond-to(xs) {
+        font-size: fontsize(textSs, base);
+    }
+}
+
+//.u-linkUnderline { border-bottom: 1px solid; }

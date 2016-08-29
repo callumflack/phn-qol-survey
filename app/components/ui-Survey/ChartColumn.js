@@ -22,6 +22,8 @@ var ChartColumn = React.createClass({
         return (
             <div className="Grid-cell u-size1of2 u-xs-size1of4">
                 <div className="c-chart-bar">
+                    <div className="c-chart-indicator c-chart-indicator--comparison" >
+                    </div>
                     <div className="c-chart-indicator" style={this.convertToStyle()}>
                         <span className="c-chart-indicatorScore">
                             {this.toFixed()}
@@ -30,6 +32,7 @@ var ChartColumn = React.createClass({
                     </div>
                 </div>
                 <h2 className="c-chart-label">{this.props.label}</h2>
+                <p className="c-chart-label--comparison">Average {this.props.magnitudeave}%</p>
             </div>
         );
     }

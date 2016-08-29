@@ -43,6 +43,7 @@ $palette: (
 	brand                      : #003E6A,
 	brand-complement           : #6EBE44,
 	brand-counter              : #887E73,
+	brand-shade                : #E3EAF0,
 	warning                    : #FFD40C,
 	bad-news                   : #C60C0C,
 	good-news                  : brand-complement
@@ -175,6 +176,10 @@ $size: (
 	),
 
 	font: (
+		textSs: (
+			xs            : rem(10),
+			base          : rem(11)
+		),
 		textXs: (
 			xs            : rem(11),
 			base          : rem(13)

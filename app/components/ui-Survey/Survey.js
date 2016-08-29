@@ -35,12 +35,12 @@ const NXT_QUESTION_SCROLL_DELAY = 400;
 // const SEND_SCORES_URL = "https://phn-qol-survey-staging.herokuapp.com/share";
 
 // Development
-const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
-const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
+// const SURVEY_SUBMIT_URL = "https://phn-qol-survey-development.herokuapp.com/survey";
+// const SEND_SCORES_URL = "https://phn-qol-survey-development.herokuapp.com/share";
 
 // Local development
-// const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
-// const SEND_SCORES_URL = "http://localhost:3000/share";
+const SURVEY_SUBMIT_URL = "http://localhost:3000/survey";
+const SEND_SCORES_URL = "http://localhost:3000/share";
 
 
 var SurveyPage = React.createClass({
@@ -556,7 +556,7 @@ var SurveyPage = React.createClass({
 					blocked="true"
 				/>
 
-			<main className="o-content u-marginT5 u-sm-marginT7" role="main">
+    			<main className="o-content u-marginT5 u-sm-marginT7" role="main">
 					<div className="o-container">
 						<p className="u-textMd u-textWtRg">This survey asks how you feel about your quality of life, as well as a little about who you are.</p>
 						<p className="u-textMd u-colorBrandCount">Please answer each question by assessing your life over the last 2 weeks.</p>

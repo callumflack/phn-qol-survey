@@ -153,6 +153,12 @@
 
 .t-buttonInvisible {
 	@include buttonInvisible();
+
+    &--caps {
+        @include buttonInvisible();
+        padding: 0;
+        text-transform: uppercase;
+    }
 }
 
 
@@ -211,11 +217,24 @@
 	top: space(0.5);
 	z-index: map-fetch($z-index, first);
 
+    // type
+    font-family: $font-sans-medium;
+	font-size: fontsize(textXs, xs);
+	letter-spacing: 0.05em;
+	text-transform: uppercase;
+
+    > label {
+        display: block;
+    }
+
 	@include on-event() {
 		outline: none;
 	}
 
 	@include respond-to(xs) {
+        font-size: fontsize(textXs, base);
+        //margin-bottom: space(0.75);
+        //margin-top: space(0.5);
 		right: space(1);
 		top: 31px;
 	}

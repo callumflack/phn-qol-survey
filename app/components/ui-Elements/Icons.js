@@ -119,6 +119,63 @@ var IconReturn = React.createClass({
 	}
 });
 
+var IconCloseSm = React.createClass({
+    render: function() {
+        return (
+            <svg className={"Icon Icon--" + this.props.size + " Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+                <title id="title">Close icon</title>
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+        );
+    }
+});
+
+var IconFeedback = React.createClass({
+	render: function() {
+		return (
+            <svg className={"Icon Icon--" + this.props.size + " Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Feedback icon</title>
+                <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"/>
+				<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+		);
+	}
+});
+
+var IconShare = React.createClass({
+	render: function() {
+		return (
+			<svg className={"Icon Icon--" + this.props.size + " Icon--buttonAlign Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+				<title id="title">Share icon</title>
+                <path d="M3,19.5c2.5-3.5,6-5.1,11-5.1v4.1l7-7-7-7v4C7,9.5,4,14.5,3,19.5Z"/>
+				<path d="M0 0h24v24H0z" fill="none"/>
+			</svg>
+		);
+	}
+});
+
+// const IconShare = () => {
+//     IconShare.propTypes = {
+//         // left: React.PropTypes.bool
+//     }
+//     IconShare.classNames = ({
+//         'Icon': true,
+//         'Icon--buttonAlign': true,
+//         'Icon--left': true
+//     });
+//
+//     return
+//         <svg className={classNames} viewBox="0 0 24 24" aria-labelledby="title">
+//             <title id="title">Share icon</title>
+//             <path d="M3,19.5c2.5-3.5,6-5.1,11-5.1v4.1l7-7-7-7v4C7,9.5,4,14.5,3,19.5Z"/>
+//             <path d="M0 0h24v24H0z" fill="none"/>
+//         </svg>;
+// };
+
+
+
+
 module.exports = {
 	IcSettings: IconSettings,
 	IcSuccess: IconSuccess,
@@ -127,5 +184,8 @@ module.exports = {
 	IcSubmit: IconSubmit,
 	IcDownload: IconDownload,
 	IcClose: IconClose,
-	IcReturn: IconReturn
+	IcCloseSm: IconCloseSm,
+	IcReturn: IconReturn,
+	IcFeedback: IconFeedback,
+	IcShare: IconShare
 }

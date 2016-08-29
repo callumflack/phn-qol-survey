@@ -9,6 +9,7 @@ var CloseButton = React.createClass({
 		return (
 			<button className="t-buttonClose" onClick={this.close} aria-label="close">
 				<IcClose size="super" />
+                <label>Finish</label>
 			</button>
 		);
 	}
