@@ -50,10 +50,10 @@
 	@include headlineTemplate();
 	color: $mixinColor;
 	font-family: $mixinFont;
-	font-size: fontsize(textRg, xs);
+	font-size: fontsize(headerSm, xs);
 
 	@include respond-to(xs) {
-		font-size: fontsize(textRg, base);
+		font-size: fontsize(headerSm, base);
 	}
 }
 

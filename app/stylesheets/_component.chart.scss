@@ -11,12 +11,12 @@
 // .u-size11of12 { width: 91.66666666666666% !important;
 
 .c-chart {
-	margin: space(1.25) auto space(1);
+	margin: 0 auto space(1);
 	width: 80%;
 
 	@include respond-to(xs) {
 		width: 87.5%;
-		margin: space(2) auto space(1.5);
+		margin: 0 auto space(1.5);
 	}
 }
 

@@ -2,7 +2,7 @@ var React = require("react");
 var classNames = require('classnames');
 var IcSuccess = require('../ui-Elements/Icons.js').IcSuccess;
 
-var EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+var EMAIL_REGEX = "/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/";
 
 var ShareScore = React.createClass({
 	submitHandler: function(submitEvent) {
@@ -84,7 +84,7 @@ var ShareScore = React.createClass({
 			emailInvalid: false,
 			emailPending: true
 		});
-		
+
 		try { this.props.sendEmail(
 				this.emailInput.value,
 				function (result) {
@@ -214,7 +214,7 @@ var ShareScore = React.createClass({
 				name="ShareScoreByEmailForm"
 				onSubmit={this.emailFormSubmit}>
 				<div className={emailFormGroupClasses} onClick={this.emailHandleClick}>
-					<label for="input">Add an email</label>
+					<label for="input">Send to an email</label>
 					<input
 						className="Form-control"
 						id="emailInput"
@@ -242,7 +242,7 @@ var ShareScore = React.createClass({
 				name="ShareScoreBySMSForm"
 				onSubmit={this.smsFormSubmit}>
 				<div className={smsFormGroupClasses} onClick={this.smsHandleClick}>
-					<label for="input">And/or add a mobile number</label>
+					<label for="input">Send to a mobile number</label>
 					<input
 						className="Form-control"
 						id="smsInput"

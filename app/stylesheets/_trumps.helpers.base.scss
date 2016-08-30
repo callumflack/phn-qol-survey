@@ -10,7 +10,7 @@
 .u-well {
 	background-color: rgba( palette(neutral), 1 );
 	border-radius: size(border-radius, base);
-	padding: space(0.75) space(0.5) space(0.6);
+	padding: space(1.5) space(0.5);
 }
 
 .u-fullViewportHeight { height: 100vh; }
@@ -27,3 +27,71 @@
 @include respond-to(max-xs) {
 	.u-mxs-size11of12 { width: 91.66666666666666% !important; }
 }
+
+
+// Hacks 160830
+// --------------------------------------------------------------------------
+
+.artboard {
+    margin-top: space(1.25);
+    outline: 0;
+    overflow-x: hidden;
+    position: relative;
+
+    @include respond-to(xs) {
+        margin-top: space(2);
+    }
+}
+
+.layer1,
+.layer2 {
+    backface-visibility: hidden;
+    background-color: palette(background);
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    outline: 0;
+	//overflow-x: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transform: translateX( size(container, default) );
+	transition: z-index 0s ease, opacity 250ms ease, transform 500ms ease;
+    z-index: -1;
+
+    &.is-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: z-index 250ms ease, opacity 500ms ease, transform 500ms ease;
+    	z-index: 9;
+    }
+}
+
+
+//.Modal {
+//	@include posFixed();
+//	background-color: palette(brand);
+//	backface-visibility: hidden;
+//	margin: 0;
+//	opacity: 0;
+//	outline: 0;
+//	overflow-x: hidden;
+//	// transform: scale(0.9);
+//	transition: z-index 0s ease, opacity 250ms ease;
+//	width: 100vw;
+//	z-index: map-fetch($z-index, 'below');
+//}
+//
+//.Modal.is-active {
+//	cursor: pointer; // 1
+//	opacity: 1;
+//	// overflow: hidden;
+//	// transform: scale(1);
+//	transition: z-index 0s ease, opacity 500ms ease;
+//	z-index: map-fetch($z-index, 'modal');
+//
+//	@include respond-to(xs) {
+//		overflow-x: hidden;
+//		overflow-y: auto;
+//	}
+//}

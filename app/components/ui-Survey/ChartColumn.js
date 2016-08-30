@@ -12,9 +12,15 @@ var ChartColumn = React.createClass({
         value = Math.round(value);
         return value;
     },
-    convertToStyle: function() {
+    styleScore: function() {
         var styleString = {
             height: this.toFixed() + "%"
+        };
+        return styleString;
+    },
+    styleAverage: function() {
+        var styleString = {
+            height: this.props.magnitudeAverage + "%"
         };
         return styleString;
     },
@@ -22,9 +28,9 @@ var ChartColumn = React.createClass({
         return (
             <div className="Grid-cell u-size1of2 u-xs-size1of4">
                 <div className="c-chart-bar">
-                    <div className="c-chart-indicator c-chart-indicator--comparison" >
+                    <div className="c-chart-indicator c-chart-indicator--comparison" style={this.styleAverage()}>
                     </div>
-                    <div className="c-chart-indicator" style={this.convertToStyle()}>
+                    <div className="c-chart-indicator" style={this.styleScore()}>
                         <span className="c-chart-indicatorScore">
                             {this.toFixed()}
                             <span className="c-chart-indicatorMark">%</span>
@@ -32,7 +38,7 @@ var ChartColumn = React.createClass({
                     </div>
                 </div>
                 <h2 className="c-chart-label">{this.props.label}</h2>
-                <p className="c-chart-label--comparison">Average {this.props.magnitudeave}%</p>
+                <p className="c-chart-label--comparison">Average {this.props.magnitudeAverage}%</p>
             </div>
         );
     }

@@ -96,5 +96,6 @@ $linkRuleNone:  linear-gradient(to bottom, rgba(palette(dark),0) 50%,  rgba(pale
 
 // Underlined link
 .u-linkUnderline {
-    text-decoration: underline !important;
+    //text-decoration: underline !important;
+    border-bottom: 1px solid currentColor;
 }

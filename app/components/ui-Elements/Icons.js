@@ -155,24 +155,59 @@ var IconShare = React.createClass({
 	}
 });
 
-// const IconShare = () => {
-//     IconShare.propTypes = {
-//         // left: React.PropTypes.bool
-//     }
-//     IconShare.classNames = ({
-//         'Icon': true,
-//         'Icon--buttonAlign': true,
-//         'Icon--left': true
-//     });
-//
-//     return
-//         <svg className={classNames} viewBox="0 0 24 24" aria-labelledby="title">
-//             <title id="title">Share icon</title>
-//             <path d="M3,19.5c2.5-3.5,6-5.1,11-5.1v4.1l7-7-7-7v4C7,9.5,4,14.5,3,19.5Z"/>
-//             <path d="M0 0h24v24H0z" fill="none"/>
-//         </svg>;
-// };
+// var IconBack = React.createClass({
+// 	render: function() {
+// 		return (
+// 			<svg className={"Icon Icon--buttonAlign Icon--" + this.props.size + "Icon--" + this.props.align} viewBox="0 0 24 24" aria-labelledby="title">
+// 				<title id="title">Back icon</title>
+//                 <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"/>
+// 				<path d="M0 0h24v24H0z" fill="none"/>
+// 			</svg>
+// 		);
+// 	}
+// });
 
+// const ICON_PATHS = [
+// 	'back': 'M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z',
+// ];
+// type: React.PropTypes.oneOf(ICON_PATHS)
+
+const IconBack = React.createClass({
+    propTypes: {
+		className: React.PropTypes.string,
+        align: React.PropTypes.string,
+        size: React.PropTypes.string,
+
+    },
+    render: function() {
+        let componentClass = classNames(
+            'Icon',
+            {'Icon--buttonAlign': this.props.withinButton},
+            (this.props.align ? 'Icon--' + this.props.align : null),
+            (this.props.size ? 'Icon--' + this.props.size : null),
+            this.props.className);
+
+        return (
+            <svg className={componentClass} viewBox="0 0 24 24" aria-labelledby="title">
+                <title id="title">Back icon</title>
+                <path d="M15.41 16.09l-4.58-4.59 4.58-4.59L14 5.5l-6 6 6 6z"/>
+                <path d="M0 0h24v24H0z" fill="none"/>
+            </svg>
+        );
+    }
+});
+
+
+// var componentClass = classNames(
+// 	'Button',
+// 	'Button--' + this.props.type,
+// 	(this.props.size ? 'Button--' + this.props.size : null),
+// 	{
+// 		'Button--block': this.props.block,
+// 		'is-active': this.props.isActive,
+// 	},
+// 	this.props.className
+// );
 
 
 
@@ -187,5 +222,6 @@ module.exports = {
 	IcCloseSm: IconCloseSm,
 	IcReturn: IconReturn,
 	IcFeedback: IconFeedback,
-	IcShare: IconShare
+	IcShare: IconShare,
+	IcBack: IconBack
 }

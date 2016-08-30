@@ -2,6 +2,9 @@ var React = require("react");
 var IcClose = require('./Icons.js').IcClose;
 
 var CloseButton = React.createClass({
+    propTypes: {
+        label: React.PropTypes.string
+    },
 	close: function() {
 		this.props.modalCloseFunction();
 	},
@@ -9,7 +12,7 @@ var CloseButton = React.createClass({
 		return (
 			<button className="t-buttonClose" onClick={this.close} aria-label="close">
 				<IcClose size="super" />
-                <label>Finish</label>
+                {this.props.label && <label>{this.props.label}</label>}
 			</button>
 		);
 	}

@@ -194,6 +194,12 @@
 		text-align: center;
 		width: 100%;
 	}
+
+	&--fullLeft {
+		line-height: size(button-height, large);
+		text-align: left;
+		width: 100%;
+	}
 }
 
 .t-xs-button {
