@@ -186,7 +186,6 @@ var ShareScore = React.createClass({
 				'Form--sm': true,
 				'u-xs-flex': true,
 				'u-mxs-marginT13': true,
-				'u-mxs-marginB': true,
 				'u-marginTD2': true,
 				'is-active': this.state.smsInputVisibile,
 				'has-error': this.state.smsInvalid,

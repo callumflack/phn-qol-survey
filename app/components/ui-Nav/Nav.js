@@ -18,7 +18,7 @@ var Nav = React.createClass({
 		this.props.logoutClick();
 	},
 	render: function() {
-		var headerStyleClasses = classNames({
+		var componentClasses = classNames({
 			'c-header': true,
 			'is-registered': this.props.blocked
 		});
@@ -38,7 +38,7 @@ var Nav = React.createClass({
 			<SurveyProgress questionsAnswered={this.props.questionsAnswered} /> : "";
 
 		return (
-			<header className={headerStyleClasses} role="header">
+			<header className={componentClasses} role="header">
 				<nav className="c-nav">
 					<NavLogo />
 					{settingsBtn}

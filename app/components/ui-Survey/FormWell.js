@@ -17,11 +17,12 @@ import React from 'react'
 
 // new es6 stateless function
 // http://buildwithreact.com/article/stateless-functional-components
-const FormWell = props => {
+// you could also list the props function w/o the ().
+const FormWell = (props) => {
     return (
         <div className="u-well u-marginB">
             <h3 className="u-headlineSm--light u-textCenter u-marginB15">{props.headline}</h3>
-            <div className="u-size9of12 Grid-cell--center">
+            <div className="u-size10of12 u-xs-size9of12 Grid-cell--center">
                 {props.children}
             </div>
         </div>

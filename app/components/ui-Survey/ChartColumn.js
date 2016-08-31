@@ -1,7 +1,8 @@
 var React = require('react');
 
-var ChartColumn = React.createClass({
-	getDefaultProps: function() {
+module.exports = React.createClass({
+    displayName: 'ChartColumn',
+    getDefaultProps: function() {
 		return {
 			magnitude: 0,
             label: ""
@@ -28,20 +29,22 @@ var ChartColumn = React.createClass({
         return (
             <div className="Grid-cell u-size1of2 u-xs-size1of4">
                 <div className="c-chart-bar">
+
                     <div className="c-chart-indicator c-chart-indicator--comparison" style={this.styleAverage()}>
                     </div>
+
                     <div className="c-chart-indicator" style={this.styleScore()}>
                         <span className="c-chart-indicatorScore">
                             {this.toFixed()}
                             <span className="c-chart-indicatorMark">%</span>
                         </span>
                     </div>
+
                 </div>
+
                 <h2 className="c-chart-label">{this.props.label}</h2>
                 <p className="c-chart-label--comparison">Average {this.props.magnitudeAverage}%</p>
             </div>
         );
     }
 });
-
-module.exports = ChartColumn;

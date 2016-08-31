@@ -18,48 +18,48 @@ label {
 	}
 }
 
-input:not([type="radio"]),
-input:not([type="submit"]),
-input:not(".Button"),
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-input[type="password"],
-textarea {
-	@include TextSm();
-	color: palette(medium);
-	background: transparent;
-	border: 1px solid transparent;
-	border-radius: size(border-radius, base);
-	display: inline-block;
-	line-height: size(button-height, basePlus);
-	padding: 0 space(2/3);
-	resize: none;
-	transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
-	width: 100%;
-	-webkit-appearance: none;
-
-	@include on-event() {
-		outline: 0;
-	}
-
-	@include respond-to(max-xs) {
-		// font-size: 16px;
-	}
-
-	&:-webkit-autofill {
-		-webkit-box-shadow: 0 0 0 rem(100) darken( palette(neutral),4%) inset;
-		-webkit-text-fill-color: palette(medium);
-		background-clip: padding-box;
-	}
-
-	$color-placeholder: palette(medium);
-
-	&::-webkit-input-placeholder { color: $color-placeholder; }
-	&:-moz-placeholder           { color: $color-placeholder; }
-	&::-moz-placeholder          { color: $color-placeholder; }
-	&:-ms-input-placeholder      { color: $color-placeholder; }
-}
+//input:not([type="radio"]),
+//input:not([type="submit"]),
+//input:not(".Button"),
+//input[type="text"],
+//input[type="email"],
+//input[type="tel"],
+//input[type="password"],
+//textarea {
+//	@include TextSm();
+//	color: palette(medium);
+//	background: transparent;
+//	border: 1px solid transparent;
+//	border-radius: size(border-radius, base);
+//	display: inline-block;
+//	line-height: size(button-height, basePlus);
+//	padding: 0 space(2/3);
+//	resize: none;
+//	transition: all map-fetch($transition, duration, long) map-fetch($transition, type, base);
+//	width: 100%;
+//	-webkit-appearance: none;
+//
+//	@include on-event() {
+//		outline: 0;
+//	}
+//
+//	@include respond-to(max-xs) {
+//		// font-size: 16px;
+//	}
+//
+//	&:-webkit-autofill {
+//		-webkit-box-shadow: 0 0 0 rem(100) darken( palette(neutral),4%) inset;
+//		-webkit-text-fill-color: palette(medium);
+//		background-clip: padding-box;
+//	}
+//
+//	$color-placeholder: palette(medium);
+//
+//	&::-webkit-input-placeholder { color: $color-placeholder; }
+//	&:-moz-placeholder           { color: $color-placeholder; }
+//	&::-moz-placeholder          { color: $color-placeholder; }
+//	&:-ms-input-placeholder      { color: $color-placeholder; }
+//}
 
 // input,
 // textarea {
@@ -84,7 +84,8 @@ $color-placeholder: rgba( palette(brand-counter), 0.7 );
 input[type="text"],
 input[type="email"],
 input[type="tel"],
-input[type="password"] {
+input[type="password"],
+textarea {
 	@include TextMd();
 	@include baseTransition();
 	color: $color-placeholder;
@@ -131,7 +132,7 @@ input[type="password"] {
 	position: relative;
 
 	&:not(:last-child) {
-		margin: 0 0 space(1.1);
+		margin: 0 0 space(1);
 	}
 
 	@include when-inside(".Form--sm") {
@@ -144,7 +145,7 @@ input[type="password"] {
 
 }
 
-// Form label & text input
+// Form label, input and textarea
 .Form {
 	label {
 		@include TextMd();
@@ -157,9 +158,18 @@ input[type="password"] {
 		z-index: map-fetch($z-index, first);
 	}
 
+    textarea {
+        background-color: palette(background);
+    	border: 1px solid rgba( palette(brand-counter), 0.4 );
+        border-radius: size(border-radius, base);
+        line-height: $base-line-height-unit;
+        padding: rem(6) rem(12);
+    }
+
 	// Small form
 	&.Form--sm {
-		label {
+		label,
+        textarea {
 			@include TextRg();
 			color: palette(brand-counter);
 		}

@@ -2,9 +2,6 @@ var React = require('react');
 var classNames = require('classnames');
 // require('./stylesheets/module.icon.scss');
 
-// Refs:
-// http://stackoverflow.com/questions/30762734/multiple-react-components-in-a-single-module
-
 var IconSettings = React.createClass({
 	render: function(props) {
 		propTypes: {
@@ -177,7 +174,6 @@ const IconBack = React.createClass({
 		className: React.PropTypes.string,
         align: React.PropTypes.string,
         size: React.PropTypes.string,
-
     },
     render: function() {
         let componentClass = classNames(
@@ -197,20 +193,7 @@ const IconBack = React.createClass({
     }
 });
 
-
-// var componentClass = classNames(
-// 	'Button',
-// 	'Button--' + this.props.type,
-// 	(this.props.size ? 'Button--' + this.props.size : null),
-// 	{
-// 		'Button--block': this.props.block,
-// 		'is-active': this.props.isActive,
-// 	},
-// 	this.props.className
-// );
-
-
-
+// http://stackoverflow.com/questions/30762734/multiple-react-components-in-a-single-module
 module.exports = {
 	IcSettings: IconSettings,
 	IcSuccess: IconSuccess,

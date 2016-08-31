@@ -3,7 +3,7 @@ var classNames = require('classnames');
 var IcCloseSm = require('../ui-Elements/Icons.js').IcCloseSm;
 
 module.exports = React.createClass({
-    displayName: 'ShareButton',
+    displayName: 'PaneButton',
     propTypes: {
         label: React.PropTypes.string,
         action: React.PropTypes.func,
@@ -25,7 +25,7 @@ module.exports = React.createClass({
 		}, this.props.className);
 
 		return (
-            <button type="button" className={componentClass} onClick={this.action}>
+            <button type="button" className={componentClass} onClick={this.props.action}>
                 {this.props.children}
             </button>
 		);

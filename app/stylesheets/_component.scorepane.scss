@@ -1,0 +1,80 @@
+
+
+// --------------------------------------------------------------------------
+//   COMPONENT: SCORE PANE
+// --------------------------------------------------------------------------
+
+
+.c-tabs {
+    height: 100vh;
+    margin-top: space(1.25);
+    outline: 0;
+    overflow-x: hidden;
+    position: relative;
+
+    @include respond-to(xs) {
+        margin-top: space(2);
+    }
+}
+
+@mixin Pane() {
+    backface-visibility: hidden;
+    background-color: palette(background);
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    outline: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: z-index 0s ease, opacity 250ms ease, transform 500ms ease;
+
+    &.is-active {
+        opacity: 1;
+        transform: translateX(0);
+        transition: z-index 250ms ease, opacity 500ms ease, transform 500ms ease;
+    	z-index: 9;
+    }
+}
+
+.c-pane {
+    @include Pane();
+    transform: translateX( size(container, default) );
+    z-index: -1;
+}
+
+.c-pane--score {
+    @include Pane();
+    position: relative;
+    transform: translateX( - #{size(container, default)} );
+    z-index: 1;
+}
+
+
+//.Modal {
+//	@include posFixed();
+//	background-color: palette(brand);
+//	backface-visibility: hidden;
+//	margin: 0;
+//	opacity: 0;
+//	outline: 0;
+//	overflow-x: hidden;
+//	// transform: scale(0.9);
+//	transition: z-index 0s ease, opacity 250ms ease;
+//	width: 100vw;
+//	z-index: map-fetch($z-index, 'below');
+//}
+//
+//.Modal.is-active {
+//	cursor: pointer; // 1
+//	opacity: 1;
+//	// overflow: hidden;
+//	// transform: scale(1);
+//	transition: z-index 0s ease, opacity 500ms ease;
+//	z-index: map-fetch($z-index, 'modal');
+//
+//	@include respond-to(xs) {
+//		overflow-x: hidden;
+//		overflow-y: auto;
+//	}
+//}
