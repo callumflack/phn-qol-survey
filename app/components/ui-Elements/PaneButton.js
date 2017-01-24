@@ -31,3 +31,13 @@ module.exports = React.createClass({
 		);
 	}
 });
+
+// toggle this.state.score on click
+// handleBackToScore() {
+//     let active = this.state.score;
+//     this.setState({ score: active });
+// }
+// 
+// <PaneButton single onClick={this.handleBackToScore}>
+//     <IcBack withinButton />Back to score
+// </PaneButton>
